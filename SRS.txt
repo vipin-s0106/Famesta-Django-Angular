@@ -1,0 +1,74 @@
+Application Name - 
+
+Login Page
+Logout Page
+Home Page to show all the post sent by the people to whom you follow and post by you , Search the Post
+
+1) Post Story,User can like the post and dislike the post, Comment the post
+2) Follow and Unfollow person
+3) Post the Pictures/Videos
+4) Bio description with Total followers total following total post
+5) Edit Profile - Profile Picture Update, Bio Change, Change Password, Delete Account
+6) Suggestion to follow the person
+7) Chat bar to chatting
+8) Notification to show and clear the notifiaction
+
+
+Tables -
+1) User 
+username - Charfield  *
+password - Charfield  *
+email - charfield     *
+isAdmin - Boolanfield
+isActive - BooleanField
+
+2) UserDetail
+Name- Charfield
+profilePicture - ImageField
+BioDescription - CharField
+DateOfBirth - DateField  *
+Gender - CharField  *
+PhoneNumber - NumberField
+Country - CharField  *
+AccountType - Private/Public  *
+User - Foriegn Key
+
+3) Post
+Desc - CharField
+PostInfo - FileField
+timestamp - timestamp field
+UserDetail- Foreign Key
+
+4) PostDetail
+CommentMessage - 
+Like - 
+UserDetail - ForeignKey
+Post - ForignKey
+
+5) Followers
+UserDetail1 - ForignKey
+UserDetail2 - ForignKey
+
+6) Notication
+Notification_message - CharField
+UserDetail - ForignKey
+Post -ForiegnKey
+Follower - ForiegnKey
+
+
+7) ChatMessage -
+UserDetail1 - Foriegn Key
+UserDetail2 - Foriegn Key
+msg - CharField
+Image - ImageField
+Timestamp - Timstamp field
+
+
+
+
+
+
+
+
+
+
