@@ -15,23 +15,13 @@ Home Page to show all the post sent by the people to whom you follow and post by
 
 
 Tables -
-1) User 
-username - Charfield  *
-password - Charfield  *
-email - charfield     *
-isAdmin - Boolanfield
-isActive - BooleanField
-
-2) UserDetail
-Name- Charfield
+1) User -- inherited Existing User Model
+status - Online/Offline
 profilePicture - ImageField
 BioDescription - CharField
 DateOfBirth - DateField  *
 Gender - CharField  *
-PhoneNumber - NumberField
-Country - CharField  *
-AccountType - Private/Public  *
-User - Foriegn Key
+
 
 3) Post
 Desc - CharField
@@ -64,8 +54,9 @@ Image - ImageField
 Timestamp - Timstamp field
 
 
-
-
+8)Feed Page
+Image - Imagefield
+Video - VideoField
 
 
 
