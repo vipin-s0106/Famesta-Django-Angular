@@ -2,36 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d2ae6bb-500e-4680-9c4e-8e9bbca3c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/JWT_INFO.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/0_tMIG-p9TwVBA-pO7_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/0_tMIG-p9TwVBA-pO7_(1)" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/16180790160.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_Hg1gUTXN5E3Nrku0jWCRow(1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_Hg1gUTXN5E3Nrku0jWCRow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_HyH8oIcJvXp7xzu5oF6dTg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_M2FVPPidy2x386MRAE-EeA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_PDry-Wb8JRquwnikIbJOJQ(1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/1_PDry-Wb8JRquwnikIbJOJQ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/AMPPost_CollectionHomepage_CollectionHomepagePreview_CollectionNewShortformEditor_CollectionPostShor_7ec038a4.f2bbff50.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/AMPPost_CollectionHomepage_CollectionHomepagePreview_DebugCachedPost_PackageBuilder_Post_PostSetting_8e568ca5.9837d739.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/Post.91dd1666.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/a16180790160.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/analytics.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/beacon.min.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/branch-latest.min.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/instrumentation.d94b6604.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/m2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/main.7d91f03e.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/manifest.ce465f88.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/p.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/reporting.70a72b4c.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/vendors_AMPPost_CollectionHomepage_CollectionHomepagePreview_CollectionNewShortformEditor_Collection_37c9fa1e.804ac6aa.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/vendors_AMPPost_DebugCachedPost_Post_SequencePost_Series.9acd20bf.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/vendors_instrumentation.f3f85f2b.chunk.js.download" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JWT_INFO_files/vendors_main.69c6f33a.chunk.js.download" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/media/download.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/exception.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/views.py" afterDir="false" />
@@ -49,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="vipin-s0106 &lt;vipin.s0106@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aOEcXNZ0bsyoLzATGEj0YBjHcb" />
@@ -105,6 +87,14 @@
       <option name="presentableId" value="Default" />
       <updated>1586598319791</updated>
     </task>
+    <task id="LOCAL-00001" summary="JWT authentication completed">
+      <created>1587804685380</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587804685380</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -112,32 +102,38 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="JWT authentication completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="JWT authentication completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586598462352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1586598462352" />
+    <state x="84" y="0" key="CommitChangelistDialog2" timestamp="1587804683693">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="84" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587804683693" />
     <state x="462" y="109" key="FileChooserDialogImpl" timestamp="1586599500210">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="462" y="109" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586599500210" />
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom" timestamp="1587799798536">
+    <state width="1345" height="132" key="GridCell.Tab.0.bottom" timestamp="1587804716476">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587799798536" />
-    <state width="1345" height="132" key="GridCell.Tab.0.center" timestamp="1587799798536">
+    <state width="1345" height="132" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
+    <state width="1345" height="132" key="GridCell.Tab.0.center" timestamp="1587804716476">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587799798536" />
-    <state width="1345" height="132" key="GridCell.Tab.0.left" timestamp="1587799798536">
+    <state width="1345" height="132" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
+    <state width="1345" height="132" key="GridCell.Tab.0.left" timestamp="1587804716476">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587799798536" />
-    <state width="1345" height="132" key="GridCell.Tab.0.right" timestamp="1587799798536">
+    <state width="1345" height="132" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
+    <state width="1345" height="132" key="GridCell.Tab.0.right" timestamp="1587804716476">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587799798536" />
+    <state width="1345" height="132" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
     <state width="1345" height="223" key="GridCell.Tab.1.bottom" timestamp="1587750130182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -158,9 +154,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="237" y="16" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1587743077685" />
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1587791412172">
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2" timestamp="1587804697739">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587791412172" />
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587804697739" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1587812199939">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587812199939" />
   </component>
 </project>

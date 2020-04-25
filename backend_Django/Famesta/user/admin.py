@@ -5,14 +5,14 @@ from .models import User
 
 # make Framework to use Custom user Model For to store Admin Detail to Databases
 class CustomUserAdmin(UserAdmin):
+    model = User
+    list_display = ['username', 'password', 'email', 'is_staff','gender','status','profile_picture']
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('gender',),
+            'fields': ('username', 'password1', 'password2','profile_picture','gender'),
         }),
     )
-    model = User
-    list_display = ['username', 'password', 'email', 'is_staff','gender','status']
 
 
 admin.site.register(User, CustomUserAdmin)
