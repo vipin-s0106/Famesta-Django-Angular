@@ -1,21 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d2ae6bb-500e-4680-9c4e-8e9bbca3c54f" name="Default Changelist" comment="" />
+    <list default="true" id="6d2ae6bb-500e-4680-9c4e-8e9bbca3c54f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/chat/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/feed/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/followers/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/notification/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/0002_auto_20200424_2042.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/0003_auto_20200424_2106.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/angular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/browserslist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/e2e/protractor.conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/e2e/src/app.e2e-spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/e2e/src/app.po.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/e2e/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/karma.conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/app/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/environments/environment.prod.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/environments/environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/polyfills.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/src/test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend_Angular/famesta-fe/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Famesta.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Famesta.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SRS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SRS.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1aOEcXNZ0bsyoLzATGEj0YBjHcb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="RUN" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -58,26 +160,60 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586598462352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1586598462352" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1586598465226">
+    <state x="462" y="109" key="FileChooserDialogImpl" timestamp="1586599500210">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586598465226" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1586598465211">
+    <state x="462" y="109" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586599500210" />
+    <state width="1345" height="223" key="GridCell.Tab.0.bottom" timestamp="1587750130182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586598465211" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1586598465211">
+    <state width="1345" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.0.center" timestamp="1587750130182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586598465211" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1586598465226">
+    <state width="1345" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.0.left" timestamp="1587750130182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586598465226" />
+    <state width="1345" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.0.right" timestamp="1587750130182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom" timestamp="1587750130182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.1.center" timestamp="1587750130182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.1.left" timestamp="1587750130182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state width="1345" height="223" key="GridCell.Tab.1.right" timestamp="1587750130182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1587750130182" />
+    <state x="237" y="16" key="SettingsEditor" timestamp="1587743077685">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="237" y="16" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1587743077685" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1586599343416">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1586599343416" />
   </component>
 </project>
