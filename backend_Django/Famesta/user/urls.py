@@ -10,9 +10,6 @@ urlpatterns = [
    url('^api/token/refresh/$',jwt_views.TokenRefreshView.as_view(), name='refresh_token'),
    url('^hello/$',views.HelloView.as_view(),name='hello'),
    url('^hello_vipin/$',views.hello,name='hello_vipin'),
-   # path('password-reset/',views.password_reset,name="password_reset"),
-   # path('password_reset_done/',views.password_reset_done,name="password_reset_done"),
-   # path('resend_otp/',views.resend_otp,name="resend_otp"),
 ]
 '''
 {
