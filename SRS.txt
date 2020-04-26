@@ -1,7 +1,7 @@
 Application Name - 
 
-Login Page
-Logout Page
+Login Page - Completed
+Logout Page - Completed
 Home Page to show all the post sent by the people to whom you follow and post by you , Search the Post
 
 1) Post Story,User can like the post and dislike the post, Comment the post
@@ -11,28 +11,37 @@ Home Page to show all the post sent by the people to whom you follow and post by
 5) Edit Profile - Profile Picture Update, Bio Change, Change Password, Delete Account
 6) Suggestion to follow the person
 7) Chat bar to chatting
-8) Notification to show and clear the notifiaction
+8) Notification to show and clear the notification
 
 
 Tables -
-1) User -- inherited Existing User Model
+1) UserAccount -- inherited Existing User Model
 status - Online/Offline
+
+
+2)UserProfile
+user - OnetoOneField
 profilePicture - ImageField
 BioDescription - CharField
-DateOfBirth - DateField  *
-Gender - CharField  *
+DateOfBirth - DateField
+Gender - CharField
+Mobile - NumberField
+Account_type - Public/Private
+
 
 
 3) Post
-Desc - CharField
 PostInfo - FileField
+Desc - CharField
 timestamp - timestamp field
-UserDetail- Foreign Key
+User- Foreign Key
 
 4) PostDetail
-CommentMessage - 
-Like - 
-UserDetail - ForeignKey
+Comment -
+Like -
+timestamp - timestamp field
+username - username
+User - UserForiegnkey
 Post - ForignKey
 
 5) Followers

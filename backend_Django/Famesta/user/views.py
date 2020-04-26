@@ -1,17 +1,27 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.decorators import api_view,permission_classes,authentication_classes
-from rest_framework_simplejwt.views import TokenObtainPairView
-from.serializer import CustomTokenObtainPairSerializer
 from django.contrib.auth import logout,login
 from django.shortcuts import render,HttpResponse
+from rest_framework.response import Response
+
+from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+#importing the Decorators
+from rest_framework.decorators import api_view,permission_classes,authentication_classes
+
+#importing permissions and authentication
+from rest_framework.permissions import IsAuthenticated
+
+#importing Serializer
 from .serializer import RegisterSerializer
-from .exception import UserExistException
-from .models import User
-# Create your views here.
+from.serializer import CustomTokenObtainPairSerializer,UserSerializer,ProfileSerializer
+
+#importing Custom Exception
+from .exception import UserExistException,UserDoesNotExist
+
+#importing models
+from .models import User,UserProfile
+
+
 
 
 #Login to the application
@@ -48,11 +58,6 @@ class HelloView(APIView):
         return Response(content)
 
 
-"Defining our Own Exception"
-class ExistUserException(Exception):
-    pass
-
-
 
 class UserCreation(APIView):
 
@@ -73,9 +78,12 @@ class UserCreation(APIView):
 
             if serializer.is_valid():
                 instance = serializer.create(serializer.validated_data)
+
                 if instance is None:
                     return Exception("Some Error Occurred Please contact Support team")
-                #here try to remove the password field from serializer.data it's return type is ReturnSerializer
+
+                user = User.objects.filter(id=instance.id).first()
+                serializer = UserSerializer(user)
 
                 return Response(serializer.data,status=201) #201 for new User creation
             else:
@@ -84,3 +92,63 @@ class UserCreation(APIView):
             return Response({"error":str(e)},status=400)  #400 is for bad request
         except Exception as e:
             return Response({"error":str(e)},status=400)
+
+
+class UserAction(APIView):
+
+    def get_object(self,id):
+        user = User.objects.filter(id=id).first()
+        return user
+
+    def get(self,request,id=None):
+        user = self.get_object(id)
+        if user is None:
+            return Response({"error":"Given user_id - "+str(id)+" user object not found"},status=404)
+        serializer = UserSerializer(user)
+        return Response(serializer.data,status=200)
+
+    def put(self,request,id=None):
+        user = self.get_object(id)
+        if user is None:
+            return Response({"error":"Given user_id - "+str(id)+" user object not found"},status=404)
+        serializer = UserSerializer(user,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=200)
+        return Response(serializer.errors, status=400)
+
+    def delete(self,request,id=None):
+        user = self.get_object(id)
+        if user is None:
+            return Response({"error":"Given user_id - "+str(id)+" user object not found"},status=404)
+        user.delete()
+        return Response(status=200)
+
+class UserProfileAction(APIView):
+
+    def get_object(self,id):
+        user = User.objects.filter(id=id).first()
+        print(user)
+        if user is None:
+            return None
+        else:
+            user_profile = UserProfile.objects.get(user=user)
+            return user_profile
+
+    def get(self,request,id=None):
+        user_profile = self.get_object(id)
+        if user_profile is None:
+            return Response({"error":"Given user_id - "+str(id)+" user profile not found"},status=404)
+        serializer = ProfileSerializer(user_profile)
+        return Response(serializer.data,status=200)
+
+    def put(self,request,id=None):
+        user_profile = self.get_object(id)
+        if user_profile is None:
+            return Response({"error":"Given user_id - "+str(id)+" user profile not found"},status=404)
+        serializer = ProfileSerializer(user_profile,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=200)
+        return Response(serializer.errors, status=400)
+

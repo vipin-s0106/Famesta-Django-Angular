@@ -2,13 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d2ae6bb-500e-4680-9c4e-8e9bbca3c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/media/download.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/exception.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/media/user_24/profile/download_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/signal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/0004_auto_20200426_1102.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/migrations/0005_auto_20200426_1646.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/Famesta/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SRS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SRS.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/media/download.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/media/user_24/profile/download.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/post/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/post/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/exception.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend_Django/Famesta/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend_Django/Famesta/user/views.py" afterDir="false" />
@@ -94,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587804685380</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Resgiter API completed">
+      <created>1587824868534</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587824868534</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -103,37 +120,38 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="JWT authentication completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="JWT authentication completed" />
+    <MESSAGE value="Resgiter API completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resgiter API completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586598462352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1586598462352" />
-    <state x="84" y="0" key="CommitChangelistDialog2" timestamp="1587804683693">
+    <state x="84" y="0" key="CommitChangelistDialog2" timestamp="1587824866489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="84" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587804683693" />
+    <state x="84" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587824866489" />
     <state x="462" y="109" key="FileChooserDialogImpl" timestamp="1586599500210">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="462" y="109" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586599500210" />
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom" timestamp="1587804716476">
+    <state width="1345" height="194" key="GridCell.Tab.0.bottom" timestamp="1587900440329">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
-    <state width="1345" height="132" key="GridCell.Tab.0.center" timestamp="1587804716476">
+    <state width="1345" height="194" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587900440329" />
+    <state width="1345" height="194" key="GridCell.Tab.0.center" timestamp="1587900440329">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
-    <state width="1345" height="132" key="GridCell.Tab.0.left" timestamp="1587804716476">
+    <state width="1345" height="194" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587900440329" />
+    <state width="1345" height="194" key="GridCell.Tab.0.left" timestamp="1587900440329">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
-    <state width="1345" height="132" key="GridCell.Tab.0.right" timestamp="1587804716476">
+    <state width="1345" height="194" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587900440329" />
+    <state width="1345" height="194" key="GridCell.Tab.0.right" timestamp="1587900440329">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587804716476" />
+    <state width="1345" height="194" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587900440329" />
     <state width="1345" height="223" key="GridCell.Tab.1.bottom" timestamp="1587750130182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -154,10 +172,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="237" y="16" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1587743077685" />
-    <state x="275" y="88" key="Vcs.Push.Dialog.v2" timestamp="1587804697739">
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2" timestamp="1587824873602">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="88" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587804697739" />
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587824873602" />
     <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1587812199939">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
