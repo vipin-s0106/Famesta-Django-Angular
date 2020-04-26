@@ -15,7 +15,6 @@ class User(AbstractUser):
 
 
 def upload_user_profile_path(instance, filename):
-    print("Coming to the Function")
     return "user_{0}/profile/{1}".format(instance.user.id, filename)
 
 

@@ -1,16 +1,15 @@
 from django.urls import path
 from django.conf.urls import url
 from . import views
-from rest_framework_simplejwt import views as jwt_views
 
-app_name = 'user'
+app_name = 'post'
 
 urlpatterns = [
-   url('^api/login/$',views.Login.as_view() , name="api_login"),
-   url('^api/token/refresh/$',jwt_views.TokenRefreshView.as_view(), name='refresh_token'),
-   url('^api/logout/$',views.logout,name='api_logout'),
-   url('^api/register/$',views.UserCreation.as_view(),name='register'),
-   url('^api/user/(?P<id>[0-9]+)/$',views.UserAction.as_view(),name='user_action'),
-   url('^api/user/(?P<id>[0-9]+)/profile/$',views.UserProfileAction.as_view(),name='user_profile_action'),
+    url('^api/post_story/(?P<user_id>[0-9]+)/$',views.PostStoryCreateView.as_view(),name="create_story"),
+    url('^api/list_story/(?P<user_id>[0-9]+)/$',views.PostStoryListView.as_view(),name="list_stories"),#not working
+    url('^api/story/(?P<post_id>[0-9]+)/$',views.PostStoryDetailView.as_view(),name="story_detail"),
+    url('^api/story_comment/(?P<post_id>[0-9]+)/$',views.ListCommentView.as_view(),name="story_comments"),
+    url('^api/post_comment/(?P<user_id>[0-9]+)/(?P<post_id>[0-9]+)/$',views.CommentCreateView.as_view(),name="post_comment"),
+    url('^api/delete_comment/(?P<user_id>[0-9]+)/(?P<comment_id>[0-9]+)/$',views.CommentDeleteView.as_view(),name="delete_comment"),
 
 ]

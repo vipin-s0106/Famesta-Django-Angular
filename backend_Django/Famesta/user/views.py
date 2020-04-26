@@ -61,7 +61,7 @@ class HelloView(APIView):
 
 class UserCreation(APIView):
 
-    def post(self,request):
+    def post(self,request,id):
         user_data = request.data
         serializer = RegisterSerializer(data=user_data)
 

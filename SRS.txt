@@ -40,7 +40,6 @@ User- Foreign Key
 Comment -
 Like -
 timestamp - timestamp field
-username - username
 User - UserForiegnkey
 Post - ForignKey
 
