@@ -38,18 +38,28 @@ class PostListSerializer(serializers.ModelSerializer):
 
 
 
-class PostCommentSerializer(serializers.ModelSerializer):
+class PostLikeCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostDetail
         fields = '__all__'
 
+    def create(self, validated_data):
+        post = PostDetail.objects.update_or_create(**validated_data)
+        return post
+
+
+
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    post_detail = PostCommentSerializer(many=True,read_only=True)
+    post_detail = PostLikeCommentSerializer(many=True,read_only=True)
 
     class Meta:
         model = Post
         fields = ['id', 'file', 'post_info', 'post_time_stamp', 'post_detail']
+
+
+
+
 
 
 

@@ -11,5 +11,5 @@ urlpatterns = [
     url('^api/story_comment/(?P<post_id>[0-9]+)/$',views.ListCommentView.as_view(),name="story_comments"),
     url('^api/post_comment/(?P<user_id>[0-9]+)/(?P<post_id>[0-9]+)/$',views.CommentCreateView.as_view(),name="post_comment"),
     url('^api/delete_comment/(?P<user_id>[0-9]+)/(?P<comment_id>[0-9]+)/$',views.CommentDeleteView.as_view(),name="delete_comment"),
-
+    url('^api/like_post/(?P<user_id>[0-9]+)/(?P<post_id>[0-9]+)/$',views.LikeCreateView.as_view(),name="like_post"),
 ]

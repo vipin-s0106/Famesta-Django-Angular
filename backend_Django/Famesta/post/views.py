@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view,permission_classes,authentication
 from rest_framework.permissions import IsAuthenticated
 
 #importing Serializer
-from.serializer import PostCommentSerializer,PostDetailSerializer,PostListSerializer,PostSerializer
+from.serializer import PostLikeCommentSerializer,PostDetailSerializer,PostListSerializer,PostSerializer
 
 #importing models
 from .models import PostDetail,Post
@@ -82,7 +82,7 @@ class ListCommentView(APIView):
         post_comments = self.get_object(post_id)
         if len(post_comments) == 0:
             return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
-        serializer = PostCommentSerializer(post_comments,many=True)
+        serializer = PostLikeCommentSerializer(post_comments,many=True)
         return Response(serializer.data)
 
 
@@ -93,9 +93,11 @@ class CommentCreateView(APIView):
         post_data = request.data
         post_data['user'] = user_id
         post_data['post'] = post_id
-        serializer = PostCommentSerializer(data=post_data)
+        serializer = PostLikeCommentSerializer(data=post_data)
         if serializer.is_valid():
             serializer.save()
+            post = Post.objects.filter(id=post_id).first()
+            serializer = PostDetailSerializer(post)
             return Response(serializer.data,status=201)
         return Response({'error':serializer.error_messages},status=400)
 
@@ -112,6 +114,21 @@ class CommentDeleteView(APIView):
             return Response({"error":"for commentID - "+str(comment_id)+" comment is not exist"},status=400)
         comment.delete()
         return Response(status=200)
+
+
+class LikeCreateView(APIView):
+    def post(self,request,user_id,post_id):
+        post_data = request.data
+        post_data['user'] = user_id
+        post_data['post'] = post_id
+        serializer = PostLikeCommentSerializer(data=post_data)
+        if serializer.is_valid():
+            serializer.save()
+            post = Post.objects.filter(id=post_id).first()
+            serializer = PostDetailSerializer(post)
+            return Response(serializer.data,status=201) #Like Updated by the user
+        else:
+            return Response({"error":serializer.error_messages},status=400) #bad request
 
 
 
