@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('^',include('user.urls')),
     url('^',include('post.urls')),
+    url('^',include('followers.urls')),
 ]
 
 
