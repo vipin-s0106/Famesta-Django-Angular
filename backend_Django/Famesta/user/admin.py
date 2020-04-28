@@ -6,7 +6,7 @@ from .models import User,UserProfile
 # make Framework to use Custom user Model For to store Admin Detail to Databases
 class CustomUserAdmin(UserAdmin):
     model = User
-    list_display = ['username', 'password', 'email', 'is_staff','status']
+    list_display = ['id','username', 'password', 'email', 'is_staff','status']
     add_fieldsets = (
         (None, {
             'classes': ('wide',),

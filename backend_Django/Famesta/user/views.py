@@ -61,15 +61,13 @@ class HelloView(APIView):
 
 class UserCreation(APIView):
 
-    def post(self,request,id):
+    def post(self,request):
         user_data = request.data
         serializer = RegisterSerializer(data=user_data)
-
         username = user_data.get('username')
         email = user_data.get('email')
         user = User.objects.filter(username=username).first()
         email_user  = User.objects.filter(email=email).first()
-
         try:
             if user is not None:
                 raise UserExistException(username+" already exist, try with other username!")
