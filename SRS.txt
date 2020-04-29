@@ -14,12 +14,12 @@ Home Page to show all the post sent by the people to whom you follow and post by
 8) Notification to show and clear the notification
 
 
-Tables -
+Tables - #Completed
 1) UserAccount -- inherited Existing User Model
 status - Online/Offline
 
 
-2)UserProfile
+2)UserProfile #Completed
 user - OnetoOneField
 profilePicture - ImageField
 BioDescription - CharField
@@ -30,43 +30,105 @@ Account_type - Public/Private
 
 
 
-3) Post
+3) Post #Completed
 PostInfo - FileField
 Desc - CharField
 timestamp - timestamp field
 User- Foreign Key
 
-4) PostDetail
+4) PostDetail #Completed
 Comment -
 Like -
 timestamp - timestamp field
 User - UserForiegnkey
 Post - ForignKey
 
-5) Followers
-UserDetail1 - ForignKey
-UserDetail2 - ForignKey
+Followers Table - 
+1) follower_id
+2) userId - foriegnKey
+3) followed_user_id - foriegnKey
+4) block_status - true/false
 
-6) Notication
-Notification_message - CharField
-UserDetail - ForignKey
-Post -ForiegnKey
-Follower - ForiegnKey
+Method -
+1) get suggestion of mutual friend
+2) get search request - return the searched user add this method to user app
 
-
-7) ChatMessage -
-UserDetail1 - Foriegn Key
-UserDetail2 - Foriegn Key
-msg - CharField
-Image - ImageField
-Timestamp - Timstamp field
+3) after accepting the follow request update the table- get two userid one who is requesting one id to whom is requesting
+4) Unfollow the request - get two userid one who is following one id to whom is following
+5) get all the follower details - getuserid
+6) get all the following details - getuserid
+7) blocked user
 
 
-8)Feed Page
-Image - Imagefield
-Video - VideoField
+
+Notification Table-
+NotificationID - pk
+message - string
+seen - true / false
+notification_type - follow request/ unfollow request/ liked request / comment request
+user - foriegnkey
+post - foriengkey to handle post operation
+other_user - foriegnkey to handle all the follow unfollow operation
+timestamp- 
 
 
+Serializer -
+1) Create Notification
+2) Delete Notification
+3) list notification
+4) Update seen status
+5) Delete all notification
+
+
+
+Methods -
+1) when user follow request come then 
+Data - notification type - follow
+user = other_user
+other_usrer = you
+
+2) when user liked post
+Data - notification type - like
+your_post  = post
+user = other_user
+other_user = you
+
+3) when user comment
+Data - notification type - comment
+your_post  = post
+user = other_user
+other_user = you
+
+4) when user message to other other one offline
+Data - notification type - chat
+user = other_user
+other_user = you
+
+
+ChatMessage -
+Id - message_id
+user - foriegnkey
+other_user - foriegnkey
+msg - string
+Image/emoji - file field
+timestamp - datetimefield
+
+1) post
+2) delete
+3) delete_all
+4) list_all messages
+
+Put all message in notification as well when user is offline
+
+
+
+FeedPage
+feed-id
+Filefield
+
+
+Method -
+List all
 
 
 

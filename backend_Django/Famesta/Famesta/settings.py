@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
     'followers.apps.FollowersConfig',
+    'notification.apps.NotificationConfig',
     'post.apps.PostConfig',
     'rest_framework'
 ]

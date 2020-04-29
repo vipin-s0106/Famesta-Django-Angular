@@ -24,6 +24,7 @@ urlpatterns = [
     url('^',include('user.urls')),
     url('^',include('post.urls')),
     url('^',include('followers.urls')),
+    url('^',include('notification.urls')),
 ]
 
 
