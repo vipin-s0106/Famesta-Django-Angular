@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes,authentication_classes
 
 
 from .serializer import NotificationSerializer,NotificationCreateSerializer
@@ -11,13 +11,33 @@ from .models import Notification
 from user.models import User
 from post.models import Post
 
+from rest_framework.permissions import IsAuthenticated
+
 
 class NotificationAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self,request,user_id):
         data = request.data
-        print(request.data)
+        '''
+        changing the mutability of data so that it can be change , if you will call the API using postman you won't face any issue
+        but if you call using request or from other domain this need to be done
+        '''
+        #################
+        _mutable = data._mutable
+
+        # set to mutable
+        data._mutable = True
+
+        # сhange the values you want
         data['user'] = user_id
+
+        # set mutable flag back
+        data._mutable = _mutable
+        ############################
+
         serializer = NotificationCreateSerializer(data=data)
+        print(data)
         if serializer.is_valid():
             serializer.save()
             if data['notification_type'] == "like" or data['notification_type'] == "comment":
@@ -62,6 +82,7 @@ class NotificationAPIView(APIView):
 
 
 @api_view(['DELETE'])
+@permission_classes([])
 def delete_all_notification(request,user_id):
     Notification.objects.filter(user=User.objects.get(pk=user_id)).delete()
     return Response(status=200)

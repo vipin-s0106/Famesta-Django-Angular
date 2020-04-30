@@ -43,13 +43,13 @@ timestamp - timestamp field
 User - UserForiegnkey
 Post - ForignKey
 
-Followers Table - 
+Followers Table -  #Completed
 1) follower_id
 2) userId - foriegnKey
 3) followed_user_id - foriegnKey
 4) block_status - true/false
 
-Method -
+Method - #Completed
 1) get suggestion of mutual friend
 2) get search request - return the searched user add this method to user app
 
@@ -61,7 +61,7 @@ Method -
 
 
 
-Notification Table-
+Notification Table- #Completed
 NotificationID - pk
 message - string
 seen - true / false
@@ -72,7 +72,7 @@ other_user - foriegnkey to handle all the follow unfollow operation
 timestamp- 
 
 
-Serializer -
+Serializer - #Completed
 1) Create Notification
 2) Delete Notification
 3) list notification
@@ -81,19 +81,19 @@ Serializer -
 
 
 
-Methods -
+Methods -  #Completed
 1) when user follow request come then 
 Data - notification type - follow
 user = other_user
 other_usrer = you
 
-2) when user liked post
+2) when user liked post #Completed
 Data - notification type - like
 your_post  = post
 user = other_user
 other_user = you
 
-3) when user comment
+3) when user comment #Completed
 Data - notification type - comment
 your_post  = post
 user = other_user

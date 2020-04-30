@@ -12,6 +12,8 @@ from user.models import User
 from user.serializer import UserSerializer
 from .serializer import FollowSerializer,FollowerSerializer,FollowingSerializer
 
+import requests
+
 
 
 class GetSuggestion(APIView):
@@ -50,8 +52,32 @@ class AcceptFollowRequest(APIView):
 			post_data['followed_user'] = follower_id
 			serializer = FollowSerializer(data=post_data)
 			if serializer.is_valid():
-				serializer.save()
-				return Response(serializer.data,status=201)
+
+
+				################################################################
+				'''
+				Updating the notfication as well that the user has accepted the request
+				'''
+				notification_data = {
+					"message":str(User.objects.get(pk=user_id).username)+" has accepted your request",
+					"notification_type":"follow",
+					"other_user":user_id
+				}
+				#getting the bearer token
+				bearer_token = request.headers.get('Authorization')
+				headers = {
+					'Contetent-Type':'application/json',
+					'Allow':'POST, OPTIONS',
+					'Authorization':bearer_token
+				}
+				print(headers)
+				notification_url = r"http://"+request.META['HTTP_HOST']+"/api/notification/"+str(follower_id)+"/"
+				notification_response = requests.post(notification_url,data=notification_data,headers=headers)
+				################################################################
+				if notification_response.status_code == 201:
+					serializer.save()
+					return Response(serializer.data,status=201)
+				return Response(status=notification_response.status_code)
 			else:
 				return Response({"error":serializer.error_messages},status=400)
 		else:
