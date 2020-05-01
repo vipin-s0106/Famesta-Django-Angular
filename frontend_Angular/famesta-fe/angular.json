@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "famesta-fe"
+    }
+  },
+  "defaultProject": "famesta-fe",
+  "cli": {
+    "analytics": false
+  }
 }
