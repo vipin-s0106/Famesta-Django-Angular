@@ -10,11 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 //Importing RoutingComponenet so Normal Componenet automatically imported
 import { RoutingComponent } from './app-routing.module';
 
+//import services
+import { AuthService } from './auth.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoutingComponent
+    RoutingComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import { RoutingComponent } from './app-routing.module';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

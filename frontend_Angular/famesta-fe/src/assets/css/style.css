@@ -1,9 +1,16 @@
+/**
+* Template Name: Bocor - v2.0.0
+* Template URL: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #444444;
+  color: #d2e0ed;
 }
 
 a {
@@ -68,7 +75,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-weight: 700;
   letter-spacing: 3px;
-  text-transform: uppercase;
   font-family: "Poppins", sans-serif;
 }
 
@@ -213,17 +219,140 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Mobile Navigation */
+.mobile-nav-toggle {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 9998;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  transition: all 0.4s;
+  outline: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-align: right;
+}
+
+.mobile-nav-toggle i {
+  color: #fdc134;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 55px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  z-index: 9999;
+  overflow-y: auto;
+  background: #fff;
+  transition: ease-in-out 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
+.mobile-nav * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobile-nav a {
+  display: block;
+  position: relative;
+  color: #213b52;
+  padding: 10px 20px;
+  font-weight: 500;
+  outline: none;
+  transition: 0.3s;
+}
+
+.mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
+  color: #fdc134;
+  text-decoration: none;
+}
+
+.mobile-nav .drop-down > a:after {
+  content: "\ea99";
+  font-family: IcoFont;
+  padding-left: 10px;
+  position: absolute;
+  right: 15px;
+}
+
+.mobile-nav .active.drop-down > a:after {
+  content: "\eaa1";
+}
+
+.mobile-nav .drop-down > a {
+  padding-right: 35px;
+}
+
+.mobile-nav .drop-down ul {
+  display: none;
+  overflow: hidden;
+}
+
+.mobile-nav .drop-down li {
+  padding-left: 20px;
+}
+
+.mobile-nav .get-started a {
+  background: #213b52;
+  color: #fff;
+  border-radius: 50px;
+  margin: 15px;
+  padding: 8px 25px 10px 25px;
+  text-align: center;
+}
+
+.mobile-nav .get-started a:hover {
+  background: #fdc134;
+  color: #213b52;
+}
+
+.mobile-nav-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 9997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(18, 33, 46, 0.6);
+  overflow: hidden;
+  display: none;
+  transition: ease-in-out 0.2s;
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active .mobile-nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-active .mobile-nav-toggle i {
+  color: #fff;
+}
+
+
 /*--------------------------------------------------------------
-# Hero Section
+# login-register Section
 --------------------------------------------------------------*/
-#hero {
+#login-register {
   width: 100%;
   padding: 0 0 0 0;
   background: #213b52;
   background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
 }
 
-#hero h1 {
+#login-register h1 {
   margin: 0 0 15px 0;
   font-size: 48px;
   font-weight: 700;
@@ -232,13 +361,41 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
 }
 
-#hero h2 {
+#login-register h2 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 22px;
 }
 
-#hero .btn-get-started {
+#login-register form input[type="text"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+#login-register form input[type="password"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+#login-register form input[type="email"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+
+#login-register .btn-get-started {
   color: #213b52;
   border-radius: 50px;
   padding: 8px 35px 10px 35px;
@@ -246,43 +403,148 @@ h1, h2, h3, h4, h5, h6 {
   transition: all ease-in-out 0.3s;
   display: inline-block;
   background: #fdc134;
+  margin:5px;
 }
 
-#hero .btn-get-started:hover {
+#login-register .btn-get-started:hover {
   background: transparent;
   color: #fff;
 }
 
 @media (max-width: 991px) {
-  #hero .hero-img {
+  #login-register .hero-img {
     text-align: center;
   }
-  #hero .hero-img img {
+  #login-register .hero-img img {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  #hero {
+  #login-register {
     -moz-text-align-last: center;
     text-align-last: center;
   }
-  #hero h1 {
+  #login-register h1 {
     font-size: 28px;
     line-height: 36px;
   }
-  #hero h2 {
+  #login-register h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
-  #hero .hero-img img {
+  #login-register .hero-img img {
     width: 70%;
   }
 }
 
 @media (max-width: 575px) {
   #hero .hero-img img {
+    width: 80%;
+  }
+}
+
+/*============================================
+#Dashboard Section
+==============================================*/
+
+#dashboard {
+  width: 100%;
+  padding: 0 0 0 0;
+  background: #213b52;
+  background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
+}
+
+#dashboard h1 {
+  margin: 0 0 15px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #d2e0ed;
+  font-family: "Poppins", sans-serif;
+}
+
+#dashboard h2 {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+#dashboard form input[type="text"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+#dashboard form input[type="password"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+#dashboard form input[type="email"] {
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 25px;
+  background: #d2e0ed;
+  margin:5px;
+  width: calc(80% - 100px);
+  outline-width: 0;
+}
+
+#dashboard .btn-get-started {
+  color: #213b52;
+  border-radius: 50px;
+  padding: 8px 35px 10px 35px;
+  border: 2px solid #fdc134;
+  transition: all ease-in-out 0.3s;
+  display: inline-block;
+  background: #fdc134;
+  margin:5px;
+}
+
+#dashboard .btn-get-started:hover {
+  background: transparent;
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  #dashboard .hero-img {
+    text-align: center;
+  }
+  #dashboard .hero-img img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  #dashboard {
+    -moz-text-align-last: center;
+    text-align-last: center;
+  }
+  #dashboard h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #dashboard h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  #dashboard .hero-img img {
+    width: 70%;
+  }
+}
+
+@media (max-width: 575px) {
+  #dashboard .hero-img img {
     width: 80%;
   }
 }

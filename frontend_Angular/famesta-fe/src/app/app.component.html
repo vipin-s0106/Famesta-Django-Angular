@@ -1,43 +1,27 @@
-  <!-- ======= Header ======= -->
-  <header id="header">
+<!-- ======= Header ======= -->
+<header id="header">
     <div class="container d-flex">
 
-      <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html">Bocor<span>.</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      </div>
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="/dashboard">Famesta<span>.</span></a></h1>
+        </div>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="#header">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Drop Down 2</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact Us</a></li>
-
-          <li class="get-started"><a href="#about">Get Started</a></li>
+        <nav class="nav-menu d-none d-lg-block">
+        <ul *ngIf="!loggedIn; else ElseBlock">
+            <li ><a href="#header">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li class="get-started"><a href="/login">Login</a></li>
+            <li class="get-started"><a href="/register">New User ?</a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+        <ng-template #ElseBlock>
+            <ul>
+                <li class="get-started"><a href="/logout">Logout</a></li>
+            </ul>
+        </ng-template>
+        </nav><!-- .nav-menu -->
 
     </div>
-  </header><!-- End Header -->
-  <!-- <router-outlet></router-outlet> -->
+</header>
+<!-- End Header -->
+<router-outlet></router-outlet>

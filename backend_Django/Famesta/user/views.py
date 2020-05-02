@@ -29,8 +29,8 @@ class Login(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+#@permission_classes([IsAuthenticated])
 def user_logout(request):
     '''
     An implementation would probably be, to store a so called “blacklist” of all the tokens that are valid no more

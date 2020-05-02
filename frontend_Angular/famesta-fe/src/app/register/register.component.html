@@ -1,1 +1,30 @@
-<p>register works!</p>
+<!-- ======= Register ======= -->
+<section id="login-register">
+    <p>{{registeruserMessage}}</p>
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
+          <h1>Register with Famesta</h1>
+          <form action="" method="post">
+            <input [(ngModel)]="registerUserData.username"  type="text" name="username" placeholder="Enter your Username" required><br>
+            <input [(ngModel)]="registerUserData.email" type="email" name="email" placeholder="Enter your Email" required><br>
+            <input [(ngModel)]="registerUserData.password" type="password" name="password" placeholder="Set your Password" required>
+            <input [(ngModel)]="registerUserData.confirm_password" type="password" name="confirm_password" placeholder="Confirm your Password">
+            <br>
+            
+            <a type="button" (click)="registerUser()" class="btn-get-started scrollto" style="margin-top:10px">Register</a>
+          </form>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+          <div>
+            <br>
+          </div>
+          <img src="assets/img/register.png" style="margin-top:30px;"class="img-fluid" alt="">
+          <div>
+            <br><br><br><br>
+          </div>
+        </div>
+        </div>
+    </div> 
+</section>
+<!-- Register --> 
