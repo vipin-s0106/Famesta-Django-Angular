@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="42825f5c-3af5-4a39-857f-9ddd7d5e6845" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="vipin-s0106 &lt;vipin.s0106@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1bAozWfk005kpBT8oO0K7WqEBK5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RunManager">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Famesta" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend_Django/Famesta" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend_Django/Famesta/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="42825f5c-3af5-4a39-857f-9ddd7d5e6845" name="Default Changelist" comment="" />
+      <created>1588084524633</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588084524633</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Followers App API completed">
+      <created>1588094470551</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588094470551</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Notification App API completed">
+      <created>1588185619337</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588185619337</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Notification API called from other API completed">
+      <created>1588265126012</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588265126012</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Followers App API completed" />
+    <MESSAGE value="Notification App API completed" />
+    <MESSAGE value="Notification API called from other API completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Notification API called from other API completed" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588084864368">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1588084864368" />
+    <state x="350" y="0" key="CommitChangelistDialog2" timestamp="1588265124622">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="350" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588265124622" />
+    <state width="1345" height="175" key="GridCell.Tab.0.bottom" timestamp="1588265142296">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588265142296" />
+    <state width="1345" height="175" key="GridCell.Tab.0.center" timestamp="1588265142296">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588265142296" />
+    <state width="1345" height="175" key="GridCell.Tab.0.left" timestamp="1588265142296">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588265142296" />
+    <state width="1345" height="175" key="GridCell.Tab.0.right" timestamp="1588265142296">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588265142296" />
+    <state x="186" y="9" key="SettingsEditor" timestamp="1588085725194">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="186" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1588085725194" />
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2" timestamp="1588265128663">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="88" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588265128663" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1588257870887">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588257870887" />
+  </component>
+</project>
