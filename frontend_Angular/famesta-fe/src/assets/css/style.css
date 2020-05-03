@@ -404,6 +404,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   background: #fdc134;
   margin:5px;
+  outline-width: 0;
 }
 
 #login-register .btn-get-started:hover {

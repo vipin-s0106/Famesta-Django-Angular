@@ -46,9 +46,11 @@ def user_logout(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def hello(request):
-    print(request.headers)
-    return HttpResponse(request.user.username)
+def getLoggedUser(request):
+    user = request.user
+    print(user)
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
 
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)

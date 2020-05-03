@@ -1,19 +1,23 @@
 <!-- ======= Hero Section ======= -->
 <section id="login-register">
-  <div *ngIf="failure_message">Invalid Credential</div>
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
           <h1>New experience with Famesta</h1>
-          <form action="" method="post">
-            <input [(ngModel)]="user_credential.username" type="text" name="username" placeholder="Enter your Username" required><br>
-            <input [(ngModel)]="user_credential.password" type="password" name="password" placeholder="Enter your Password" required>
+          <form #LoginForm="ngForm">
+            <div *ngIf="failure_message" style="color:Tomato;margin-left:10px">Invalid Credentials</div>
+            <input [(ngModel)]="user_credential.username" type="text" name="username" placeholder="Enter your Username" #username="ngModel" required><br>
+            <div *ngIf="username.errors?.required && username.touched">
+              <small style="color:Tomato;margin-left:10px;">username is required.</small>
+            </div>
+            <input [(ngModel)]="user_credential.password" type="password" name="password" placeholder="Enter your Password" #password="ngModel" required>
+            <div *ngIf="password.errors?.required && password.touched">
+              <small style="color:Tomato;margin-left:10px;">password is required.</small>
+            </div>
             <br>
             
-            <a type="button" (click)="LoginUser()" class="btn-get-started scrollto" style="margin-top:10px">Get Login</a>
-          </form>
-          
-          
+            <a (click)="LoginUser()" class="btn-get-started scrollto" style="margin-top:10px">Get Login</a>
+          </form> 
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
           <img src="assets/img/login.png" class="img-fluid" alt="">
@@ -21,4 +25,4 @@
         </div>
     </div> 
 </section>
-<!-- End Hero --> 
+<!-- End Login --> 

@@ -5,13 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 
 //Importing RoutingComponenet so Normal Componenet automatically imported
 import { RoutingComponent } from './app-routing.module';
 
 //import services
 import { AuthService } from './auth.service';
+import { PostService } from './services/post.service';
+import { UserService } from './services/user.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+
+//importing Authguard
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -25,7 +31,12 @@ import { AuthService } from './auth.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,PostService,UserService,AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

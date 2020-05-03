@@ -10,6 +10,7 @@ urlpatterns = [
    url('^api/token/refresh/$',jwt_views.TokenRefreshView.as_view(), name='refresh_token'),
    url('^api/logout/$',views.user_logout,name='api_logout'),
    url('^api/register/$',views.UserCreation.as_view(),name='user_register'),
+   url('^api/loggedUser/$',views.getLoggedUser,name='getLoggedUser'),
    url('^api/user/(?P<id>[0-9]+)/$',views.UserAction.as_view(),name='user_action'),
    url('^api/user/(?P<id>[0-9]+)/profile/$',views.UserProfileAction.as_view(),name='user_profile_action'),
 

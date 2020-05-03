@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ParamMap } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { AppComponent } from '../app.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-login',
@@ -15,24 +15,22 @@ export class LoginComponent implements OnInit {
   public success_message;
   public failure_message;
 
-  constructor(private _auth: AuthService,private route:ActivatedRoute,private router: Router,public app_com: AppComponent) { }
+  constructor(private _auth: AuthService,private route:ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
   }
 
   LoginUser(){
     this._auth.loginUser(this.user_credential).subscribe(
-      res => this.navigationToDashboard(res),
+      res => {
+        console.log(res);
+        localStorage.setItem('token',res.access);
+        localStorage.setItem('refresh',res.refresh);
+        this.router.navigate(['/dashboard']);
+      },
       err => this.failure_message = err
     )
     
-  }
-
-  //navigate user to dashboard if he is login
-  navigationToDashboard(res){
-    this.app_com.loggedIn = true;
-    console.log(this.app_com.loggedIn)
-    this.router.navigate(['/dashboard'],{relativeTo:this.route})
   }
 
 }

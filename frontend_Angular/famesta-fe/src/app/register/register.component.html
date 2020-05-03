@@ -1,18 +1,30 @@
 <!-- ======= Register ======= -->
 <section id="login-register">
-    <p>{{registeruserMessage}}</p>
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
           <h1>Register with Famesta</h1>
-          <form action="" method="post">
-            <input [(ngModel)]="registerUserData.username"  type="text" name="username" placeholder="Enter your Username" required><br>
-            <input [(ngModel)]="registerUserData.email" type="email" name="email" placeholder="Enter your Email" required><br>
-            <input [(ngModel)]="registerUserData.password" type="password" name="password" placeholder="Set your Password" required>
-            <input [(ngModel)]="registerUserData.confirm_password" type="password" name="confirm_password" placeholder="Confirm your Password">
+          <form #RegisterForm="ngForm">
+            <div *ngIf="registeruserMessage" [style.color]="register_message_color" style="margin-left:10px">{{ registeruserMessage }}</div>
+            <input [(ngModel)]="registerUserData.username"  type="text" name="username" placeholder="Enter your Username" required #username="ngModel"><br>
+            <div *ngIf="username.errors?.required && username.touched">
+              <small style="color:Tomato;margin-left:10px;">username is required.</small>
+            </div>
+            <input [(ngModel)]="registerUserData.email" type="email" name="email" placeholder="Enter your Email" required #email="ngModel"><br>
+            <div *ngIf="email.errors?.required && email.touched">
+              <small style="color:Tomato;margin-left:10px;">email is required.</small>
+            </div>
+            <input [(ngModel)]="registerUserData.password" type="password" name="password" placeholder="Set your Password" required #password="ngModel">
+            <div *ngIf="password.errors?.required && password.touched">
+              <small style="color:Tomato;margin-left:10px;">password is required.</small>
+            </div>
+            <input [(ngModel)]="registerUserData.confirm_password" type="password" name="confirm_password" placeholder="Confirm your Password" #confirm_password="ngModel" required>
+            <div *ngIf="confirm_password.errors?.required && confirm_password.touched">
+              <small style="color:Tomato;margin-left:10px;">confirm password is required.</small>
+            </div>
             <br>
             
-            <a type="button" (click)="registerUser()" class="btn-get-started scrollto" style="margin-top:10px">Register</a>
+            <a  (click)="registerUser()" class="btn-get-started scrollto" style="margin-top:10px">Register</a>
           </form>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">

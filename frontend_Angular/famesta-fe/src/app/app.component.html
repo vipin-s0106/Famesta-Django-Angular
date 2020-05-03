@@ -3,22 +3,20 @@
     <div class="container d-flex">
 
         <div class="logo mr-auto">
-            <h1 class="text-light"><a href="/dashboard">Famesta<span>.</span></a></h1>
+            <h1 class="text-light"><a href="#">Famesta<span>.</span></a></h1>
         </div>
 
         <nav class="nav-menu d-none d-lg-block">
-        <ul *ngIf="!loggedIn; else ElseBlock">
+        <ul *ngIf="!_authSrv.loggedIn()">
             <li ><a href="#header">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li class="get-started"><a href="/login">Login</a></li>
             <li class="get-started"><a href="/register">New User ?</a></li>
         </ul>
-        <ng-template #ElseBlock>
-            <ul>
-                <li class="get-started"><a href="/logout">Logout</a></li>
-            </ul>
-        </ng-template>
+        <ul *ngIf="_authSrv.loggedIn()">
+            <li class="get-started"><a href="/logout">Logout</a></li>
+        </ul>
         </nav><!-- .nav-menu -->
 
     </div>
