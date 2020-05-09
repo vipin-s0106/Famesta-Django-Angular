@@ -1,0 +1,155 @@
+/*--------------------------------------------------------------
+# Post
+--------------------------------------------------------------*/
+#dashboard {
+    margin-top:80px;
+    background-color: #213b52;
+}
+
+#post{
+    background-color: #213b52;
+}
+
+#post .profile_pic span{
+    font-size:15px;
+    margin-left:10px
+
+}
+
+#post .profile_pic img{
+  overflow: hidden;
+  border-radius: 50%;
+}
+#post .card-text{
+    white-space: nowrap; 
+    width: 1000px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+#post .card-body p{
+    font-size: 14px;
+    margin-top:0px;
+}
+#post .card-body {
+    font-size: 14px;
+    margin-top:0px;
+}
+
+
+#post .card-body p small{
+    font-size: 14px;
+    margin-top:0px;
+}
+#post .card-body small{
+    color:#5289ba;
+    margin-bottom: 0px;
+    margin-top:0px;
+}
+
+/*--------------------------------------------------------------
+# Search
+--------------------------------------------------------------*/
+
+#nav_notification {
+    margin-bottom:10px;
+}
+
+#nav_notification i {
+    font-size: 25px;
+  }
+
+
+#search input{
+    border: 0;
+    padding: 4px 12px 4px 12px;
+    border-radius: 25px;
+    background: #d2e0ed;
+    margin:5px;
+    width: calc(90% - 100px);
+    outline-width: 0;
+}
+
+
+#search {
+    background-color: #213b52;
+    border:none;
+    margin-top:0px;
+  }
+
+#search .btn-get-started {
+    background: transparent;
+    color: #fff;
+    border-radius: 50px;
+    padding: 5px 18px 5px 18px;
+    border: 1px solid #5289ba;
+    transition: all ease-in-out 0.3s;
+    display: inline-block;
+    margin:5px;
+    outline-width: 0;
+  }
+
+  #search .btn-get-started:hover {
+    background: #5289ba;
+    color: #fff;
+  }
+
+  
+/*--------------------------------------------------------------
+# Profile
+--------------------------------------------------------------*/
+
+#profile {
+    background: #213b52;
+    border: none;
+}
+#profile #userinfo{
+    margin-top:17px;
+}
+#profile #userinfo a{
+    color: #5289ba;
+    transition: 0.3s;
+}
+/*--------------------------------------------------------------
+# Sugeestions
+--------------------------------------------------------------*/
+.member {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+.member .pic {
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  
+.member span {
+    font-style: italic;
+    display: block;
+    font-size: 11px;
+    white-space: nowrap; 
+    width: 71px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+  
+.member .social {
+    margin-top: 8px;
+  }
+  
+.member .social a {
+    color: #5289ba;
+    transition: 0.3s;
+  }
+  
+.member .social a:hover {
+    color: #fdc134;
+  }
+  
+.member .social i {
+    font-size: 18px;
+    margin: 0 2px;
+  }
+  

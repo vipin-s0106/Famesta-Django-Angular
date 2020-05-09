@@ -5,7 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { LogoutComponent } from './logout/logout.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path: '',redirectTo:'/dashboard',pathMatch:'full'},

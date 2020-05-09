@@ -39,7 +39,7 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  getRefreshToken(){
+  getRefreshToken(): string{
     return localStorage.getItem('refresh')
   }
 
@@ -52,7 +52,11 @@ export class AuthService {
     }
     let access_token = ""
     this.refreshToken(data).subscribe(
-      res => console.log(res),
+      res => {
+        access_token = res.access;
+        console.log(access_token);
+        localStorage.setItem("token",access_token);
+      },
       err => console.log(err)
     )
   }

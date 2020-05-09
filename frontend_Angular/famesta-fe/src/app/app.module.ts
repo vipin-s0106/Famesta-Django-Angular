@@ -11,13 +11,13 @@ import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RoutingComponent } from './app-routing.module';
 
 //import services
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
-import { TokenInterceptorService } from './token-interceptor.service';
+import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
 //importing Authguard
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 
 
 @NgModule({

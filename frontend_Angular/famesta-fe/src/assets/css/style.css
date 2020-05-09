@@ -11,6 +11,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #d2e0ed;
+  background: #213b52;
 }
 
 a {
@@ -66,6 +67,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   padding: 16px 0;
   background: #213b52;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 #header .logo h1 {
@@ -446,106 +451,4 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/*============================================
-#Dashboard Section
-==============================================*/
 
-#dashboard {
-  width: 100%;
-  padding: 0 0 0 0;
-  background: #213b52;
-  background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
-}
-
-#dashboard h1 {
-  margin: 0 0 15px 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
-  color: #d2e0ed;
-  font-family: "Poppins", sans-serif;
-}
-
-#dashboard h2 {
-  color: #fff;
-  margin-bottom: 30px;
-  font-size: 22px;
-}
-
-#dashboard form input[type="text"] {
-  border: 0;
-  padding: 4px 8px;
-  border-radius: 25px;
-  background: #d2e0ed;
-  margin:5px;
-  width: calc(80% - 100px);
-  outline-width: 0;
-}
-#dashboard form input[type="password"] {
-  border: 0;
-  padding: 4px 8px;
-  border-radius: 25px;
-  background: #d2e0ed;
-  margin:5px;
-  width: calc(80% - 100px);
-  outline-width: 0;
-}
-#dashboard form input[type="email"] {
-  border: 0;
-  padding: 4px 8px;
-  border-radius: 25px;
-  background: #d2e0ed;
-  margin:5px;
-  width: calc(80% - 100px);
-  outline-width: 0;
-}
-
-#dashboard .btn-get-started {
-  color: #213b52;
-  border-radius: 50px;
-  padding: 8px 35px 10px 35px;
-  border: 2px solid #fdc134;
-  transition: all ease-in-out 0.3s;
-  display: inline-block;
-  background: #fdc134;
-  margin:5px;
-}
-
-#dashboard .btn-get-started:hover {
-  background: transparent;
-  color: #fff;
-}
-
-@media (max-width: 991px) {
-  #dashboard .hero-img {
-    text-align: center;
-  }
-  #dashboard .hero-img img {
-    width: 50%;
-  }
-}
-
-@media (max-width: 768px) {
-  #dashboard {
-    -moz-text-align-last: center;
-    text-align-last: center;
-  }
-  #dashboard h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-  #dashboard h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-  #dashboard .hero-img img {
-    width: 70%;
-  }
-}
-
-@media (max-width: 575px) {
-  #dashboard .hero-img img {
-    width: 80%;
-  }
-}
