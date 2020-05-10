@@ -15,6 +15,7 @@ from.serializer import PostLikeCommentSerializer,PostDetailSerializer,PostListSe
 #importing models
 from .models import PostDetail,Post
 from user.models import User
+from followers.models import Follower
 
 import requests
 
@@ -33,7 +34,36 @@ class PostStoryCreateView(APIView):
             return Response(serializer.error_messages,status=400)
 
 
-class PostStoryListView(APIView):
+class GetAllUserStoryListView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self,user_id):
+        user = User.objects.filter(id = user_id).first()
+        posts = Post.objects.filter(user = user)
+        return posts
+
+    def get(self,request,user_id):
+        posts = self.get_object(user_id)
+        followers_list = Follower.objects.filter(user = User.objects.filter(id = user_id).first())
+        for follower in followers_list:
+            posts = posts.union(Post.objects.filter(user = User.objects.filter(id = follower.followed_user.id).first()))
+        posts = posts.order_by('-post_time_stamp')
+        if len(posts) == 0:
+            return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
+        serializer = PostListSerializer(posts,many=True)
+        return Response(serializer.data)
+
+
+
+
+
+
+
+class UserStoryListView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
     def get_object(self,user_id):
         user = User.objects.filter(id = user_id).first()
         posts = Post.objects.filter(user = user)

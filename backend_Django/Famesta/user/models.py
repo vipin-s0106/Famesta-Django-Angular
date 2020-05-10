@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 from django.utils.translation import gettext_lazy as _
 
+from PIL import Image
+
 
 # Create your models here.
 
@@ -37,6 +39,31 @@ class UserProfile(models.Model):
         ('Private', 'Private')
     )
     account_type = models.CharField(_('account_type'), max_length=50, choices=account_choice, default='Public')
+    
+    '''
+    def save(self):
+        super().save()  # saving image first
+
+        img = Image.open(self.profile_picture.path) # Open image using self
+
+        
+        if img.height > 600:
+            height = 600
+        else:
+            height = img.height
+        if img.width > 600:
+            width = 600
+        else:
+            width = img.width
+        
+        
+
+        new_img = (height, width)
+        img.thumbnail(new_img)
+        img = img.rotate(-90)
+        img.save(self.profile_picture.path)  # saving image at the same path
+    '''
+    
 
     def __str__(self):
         return str(self.user.username) + " Profile"

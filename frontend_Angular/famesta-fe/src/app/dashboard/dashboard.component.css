@@ -10,16 +10,18 @@
     background-color: #213b52;
 }
 
-#post .profile_pic span{
-    font-size:15px;
-    margin-left:10px
-
-}
-
-#post .profile_pic img{
+#post .profile_pic{
+  position: relative;
+  width: 45px;
+  height: 45px;
   overflow: hidden;
   border-radius: 50%;
 }
+#post .profile_pic img{
+  width: 100%;
+  height: auto;
+}
+
 #post .card-text{
     white-space: nowrap; 
     width: 1000px; 
@@ -119,10 +121,18 @@
   }
   
 .member .pic {
-    margin-bottom: 15px;
-    overflow: hidden;
-    border-radius: 50%;
+  position: relative;
+  width: 85px;
+  height: 85px;
+  overflow: hidden;
+  border-radius: 50%;
   }
+
+  .member .pic img{
+    width: 100%;
+    height: auto;
+  }
+  
   
   
 .member span {

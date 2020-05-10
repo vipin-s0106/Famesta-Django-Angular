@@ -18,12 +18,16 @@ import { TokenInterceptorService } from './interceptor/token-interceptor.service
 
 //importing Authguard
 import { AuthGuard } from './guard/auth.guard';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { ImageUrlPipe } from './pipes/image-url.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponent,
+    DateAgoPipe,
+    ImageUrlPipe,
   ],
   imports: [
     BrowserModule,

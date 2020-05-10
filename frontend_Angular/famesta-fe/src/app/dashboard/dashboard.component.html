@@ -6,70 +6,52 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8" style="margin-top:45px">
 
-        <!-- Blog Post -->
-        <div class="card mb-4" id="post">
-          <div class="card-header">
-              <div>
-                <div class="profile_pic"><img src="assets/img/team/team-1.jpg" height="45px" weight="45px" alt=""><span>aman_s212001</span></div>
+        <div *ngIf="posts?.length > 0; else ElseBlock">
+          <div *ngFor="let post of posts"> 
+            <!-- Blog Post -->
+            <div class="card mb-4" id="post">
+              <div class="card-header">
+                  <div class="row">
+                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture | TransalateImageUrl}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><span style="font-size: 15px;">{{post.user.username}}</span></div>
+                  </div>
               </div>
-          </div>
-          <img class="card-img-top" src="/assets/img/services-2.jpg" height="350" weight="750" alt="Card image cap">
-          <div class="card-body">
-            <p class="liked">Liked by <small>beauty_S2507,vipin_s0106 and others</small></p>
-            <p class="card-text">#instagram #Cool #Bro</p>
-            
-            <a>View all 170 comments<br><small>aman_s212001 nice pic!</small> ... <a>more</a> 
-            </a>
-            <br>
-            <small style="color:#8C8D89">Posted on January 1, 2017</small>
-          </div>
-        </div>
-
-        <div class="card mb-4" id="post">
-          <div class="card-header">
-              <div>
-                <div class="profile_pic"><img src="assets/img/team/team-2.jpg" height="45px" weight="45px" alt=""><span>aman_s212001</span></div>
+              <img class="card-img-top" src="{{post.file | TransalateImageUrl}}"alt="Card image cap">
+              <div class="card-body">
+                <a href=""><i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i></a><a href=""><i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i></a>
+                <p class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:#d2e0ed" href="">others</a> </small></p>
+                <p class="card-text">{{post.post_info}}</p>
+                <div *ngIf="post.total_comment > 1; else ElseBlock">
+                  <a style="color:#d2e0ed" href="">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="">more</a> 
+                  </a>
+                </div>
+                <ng-template #ElseBlock>
+                  <div *ngIf="post.comment_usr != null">
+                    <a style="color:#d2e0ed" href="">View comment<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                    </a>
+                  </div>
+                </ng-template>
+                <small style="color:#8C8D89;font-weight: bold;">{{post.post_time_stamp | dateAgo}}</small>
               </div>
+            </div>
           </div>
-          <img class="card-img-top" src="/assets/img/services-3.jpg" height="350" weight="750" alt="Card image cap">
-          <div class="card-body">
-            <p class="liked">Liked by <small>beauty_S2507,vipin_s0106 and others</small></p>
-            <p class="card-text">#instagram #Cool #Bro</p>
-            
-            <a>View all 170 comments<br><small>aman_s212001 nice pic!</small> ... <a>more</a> 
-            </a>
-            <br>
-            <small style="color:#8C8D89">Posted on January 1, 2017</small>
-          </div>
+           <!-- Pagination -->
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+          </ul>
         </div>
-
-        <div class="card mb-4" id="post">
-          <div class="card-header">
-              <div>
-                <div class="profile_pic"><img src="assets/img/team/team-3.jpg" height="45px" weight="45px" alt=""><span>aman_s212001</span></div>
-              </div>
+        <ng-template #ElseBlock>
+          <div class="card mb-4" id="post" style="border:none;">
+            <img height="400px" class="card-img-top" src="/assets/img/NoPostFound.png" alt="Card image cap" style="background-image:#213b52"> 
           </div>
-          <img class="card-img-top" src="/assets/img/services-1.jpg" height="350" weight="750" alt="Card image cap">
           <div class="card-body">
-            <p class="liked">Liked by <small>beauty_S2507,vipin_s0106 and others</small></p>
-            <p class="card-text">#instagram #Cool #Bro</p>
-            
-            <a>View all 170 comments<br><small>aman_s212001 nice pic!</small> ... <a>more</a> 
-            </a>
-            <br>
-            <small style="color:#8C8D89">Posted on January 1, 2017</small>
+            <h1 ALIGN="CENTER">No Post Found for your Account</h1>
           </div>
-        </div>
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
+        </ng-template>
 
       </div>
 
@@ -108,13 +90,13 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="member" data-aos="fade-up">
-                  <div class="pic"><img src="assets/img/team/team-1.jpg" height="85px" weight="50px" alt=""></div>
+                  <div class="pic"><img src="{{LoggedUser.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
                 </div>
               </div>
               <div class="col-md-6" id="userinfo">
-                <span>AMAN SHARMA</span>
+                <span>{{LoggedUser.profile.full_name | uppercase }}</span>
                 <div class="social">
-                  <a href="">aman_s212001</a>
+                  <a href="">{{LoggedUser.username }}</a>
                 </div>
               </div>
             </div>
@@ -122,66 +104,19 @@
         </div>
 
         <!-- Side Widget -->
-        <div class="card my-4" style="background: #213b52;border: none;">
+        <div *ngIf="suggestion_user?.lenght > 0" class="card my-4" style="background: #213b52;border: none;">
           <h5 class="card-header">Suggestions</h5>
           <div class="card-body">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-1.jpg" height="85px" weight="50px" alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
+                    <div class="col-md-4" *ngFor="let user of suggestion_user">
+                      <div class="member" data-aos="fade-up">
+                        <div class="pic"><img src="{{user.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
+                        <span>{{user.username}}</span>
+                        <div class="social">
+                          <a href=""><i class="icofont-instagram"></i>follow</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-2.jpg" height="85px" weight="50px"  alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-3.jpg" height="85px" weight="50px" alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-4.jpg" height="85px" weight="50px" alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-2.jpg" height="85px" weight="50px" alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="member" data-aos="fade-up">
-                      <div class="pic"><img src="assets/img/team/team-3.jpg" height="85px" weight="50px" alt=""></div>
-                      <span>aman_s212001</span>
-                      <div class="social">
-                        <a href=""><i class="icofont-instagram"></i>follow</a>
-                      </div>
-                    </div>
-                  </div>
                 </div>
           </div>
         </div>
