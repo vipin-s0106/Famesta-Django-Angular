@@ -46,7 +46,7 @@
   .about .content h3 {
     font-weight: 500;
     font-size: 34px;
-    color: #d2e0ed;
+    color: #213b52;
   }
   
   .about .content p {
@@ -61,23 +61,22 @@
   .about .content .count-box i {
     display: block;
     font-size: 36px;
-    color: #eeafca;
+    color: slategray;
     float: left;
   }
 
 
   .about .btn-get-started {
-    color: #213b52;
+    color: #fff;
     border-radius: 50px;
-    padding: 5px 5px 5px 5px;
-    border: 2px solid #fdc134;
+    padding: 5px 10px 5px 10px;
+    border: 2px solid #adc7de;
     transition: all ease-in-out 0.3s;
-    background: #fdc134;
-    outline-width: 0;
+    background: #5289ba;
   }
 
   #about .btn-get-started:hover {
-    background: transparent;
+    background:#213b52;
     color: #fff;
   }
 

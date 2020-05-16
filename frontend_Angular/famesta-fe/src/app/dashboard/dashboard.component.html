@@ -13,21 +13,21 @@
             <div class="card mb-4" id="post">
               <div class="card-header">
                   <div class="row">
-                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture | TransalateImageUrl}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><span style="font-size: 15px;">{{post.user.username}}</span></div>
+                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture | TransalateImageUrl}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></div>
                   </div>
               </div>
               <img class="card-img-top" src="{{post.file | TransalateImageUrl}}"alt="Card image cap">
               <div class="card-body">
                 <a href=""><i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i></a><a href=""><i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i></a>
-                <p class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:#d2e0ed" href="">others</a> </small></p>
+                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="">others</a> </small></p>
                 <p class="card-text">{{post.post_info}}</p>
                 <div *ngIf="post.total_comment > 1; else ElseBlock">
-                  <a style="color:#d2e0ed" href="">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="">more</a> 
+                  <a style="color:grey;font-weight: bold;" href="">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="">more</a> 
                   </a>
                 </div>
                 <ng-template #ElseBlock>
                   <div *ngIf="post.comment_usr != null">
-                    <a style="color:#d2e0ed" href="">View comment<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                    <a style="color:grey;font-weight: bold;" href="">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
                     </a>
                   </div>
                 </ng-template>
@@ -65,14 +65,14 @@
             <div class="input-group">
               <div class="row" id="nav_notification">
                 <div class="col-sm-2">
-                  <a href=""><i class="icofont-home"></i></a>
+                  <a href=""><i style="color:midnightblue" class="icofont-home"></i></a>
                 </div>
                 <div class="col-sm-2">
-                  <a href=""><i class="icofont-chat" style="margin-right:200px"><span class="badge badge-light" style="font-size:10px;">5</span></i></a>
+                  <a href=""><i class="icofont-chat" style="margin-right:200px;color:midnightblue"><span class="badge badge-light" style="font-size:10px;background:slategrey;color:white">5</span></i></a>
                   
                 </div>
                 <div class="col-sm-2">
-                  <a href=""><i class="icofont-notification"><span class="badge badge-light" style="font-size:10px;">5</span></i></a>
+                  <a href=""><i style="color:midnightblue" class="icofont-notification"><span class="badge badge-light" style="font-size:10px;background:slategrey;color:white">5</span></i></a>
                 </div>
               </div>
               <div class="row">
@@ -95,7 +95,7 @@
                 </div>
               </div>
               <div class="col-md-6" id="userinfo">
-                <span>{{LoggedUser.profile.full_name | uppercase }}</span>
+                <span style="color:midnightblue;font-weight: bold;">{{LoggedUser.profile.full_name | uppercase }}</span>
                 <div class="social">
                   <a href="/profile">{{LoggedUser.username }}</a>
                 </div>
@@ -105,7 +105,7 @@
         </div>
 
         <!-- Side Widget -->
-        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="background: #213b52;border: none;">
+        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="background: white;border: none;">
           <h5 class="card-header">Suggestions</h5>
           <div class="card-body">
                 <div class="row">

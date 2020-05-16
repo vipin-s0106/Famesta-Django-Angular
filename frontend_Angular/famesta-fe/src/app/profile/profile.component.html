@@ -20,8 +20,8 @@
             <div class="col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start"><img id ="profile_pic" src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-fluid"></div>
             <div class="col-xl-5 pl-1 pl-lg-2 pr-lg-1 d-flex align-items-stretch">
             <div class="content d-flex flex-column justify-content-center">
-                <h2>{{LoggedUser.profile.full_name}}</h2>
-                <br><br>
+                <h2 style="color:#13436d">{{LoggedUser.profile.full_name | uppercase}}</h2>
+                <hr>
                 <div class="row">
                     <div class="col-sm-2.8" style="margin-left:14px">
                         <p style="color:#5289ba">{{LoggedUser.username}}</p>
@@ -31,14 +31,14 @@
                     </div>
                 </div>
                 <br>
-                <p>
+                <p style="color:black">
                     {{LoggedUser.profile.BioDescription}}
                 </p>
                 <div class="row">
                     <div class="col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                         <i class="icofont-square"></i>
-                        <span data-toggle="counter-up">{{posts?.length}}</span>
+                        <span style="color: #213b52;" data-toggle="counter-up">{{posts?.length}}</span>
                         <p><strong>Total Post</strong></p>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                         <i class="icofont-users-social"></i>
-                        <span data-toggle="counter-up">{{ followers?.length}}</span>
+                        <span style="color: #213b52;" data-toggle="counter-up">{{ followers?.length}}</span>
                         <p><strong>Followers</strong></p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                         <i class="icofont-users-social"></i>
-                        <span data-toggle="counter-up">{{ followings?.length}}</span>
+                        <span style="color: #213b52;" data-toggle="counter-up">{{ followings?.length}}</span>
                         <p><strong>Followings</strong></p>
                         </div>
                     </div>

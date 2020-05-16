@@ -10,12 +10,12 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #d2e0ed;
-  background: #213b52;
+  color: #4c84b9;
+  background: white;
 }
 
 a {
-  color: #fdc134;
+  color: #4c84b9;
 }
 
 a:hover {
@@ -61,12 +61,12 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  height: 80px;
+  height: 60px;
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  padding: 16px 0;
-  background: #213b52;
+  padding: 12px 0;
+  background: white;
   position: fixed;
   top: 0;
   width: 100%;
@@ -74,17 +74,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo h1 {
-  font-size: 24px;
-  margin: 0;
-  padding: 10px 0;
+  font-size: 28px;
+  padding: 5px 0;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   font-family: "Poppins", sans-serif;
 }
 
 #header .logo h1 a, #header .logo h1 a:hover {
-  color: #fff;
+  color: midnightblue;
   text-decoration: none;
 }
 
@@ -95,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -121,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #adc7de;
+  color: #204564;
   padding: 10px 15px;
   transition: 0.3s;
   font-size: 14px;
@@ -129,22 +128,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #fff;
+  color: midnightblue;
   text-decoration: none;
 }
 
 .nav-menu .get-started a {
-  background: #213b52;
+  background: #5289ba;
   color: #fff;
   border-radius: 50px;
   margin: 2px 0 0 15px;
   padding: 4px 25px 6px 25px;
-  border: 2px solid #fdc134;
+  border: 2px solid #adc7de;
 }
 
 .nav-menu .get-started a:hover {
-  background: #fdc134;
-  color: #213b52;
+  background: #213b52;
+  color: white;
 }
 
 .nav-menu .drop-down ul {
@@ -353,8 +352,8 @@ h1, h2, h3, h4, h5, h6 {
 #login-register {
   width: 100%;
   padding: 0 0 0 0;
-  background: #213b52;
-  background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
+  background: white;
+  background: linear-gradient(180deg, white 0%, white 35%, white 100%);
 }
 
 #login-register h1 {
@@ -362,7 +361,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
-  color: #d2e0ed;
+  color: #213b52;
   font-family: "Poppins", sans-serif;
 }
 
