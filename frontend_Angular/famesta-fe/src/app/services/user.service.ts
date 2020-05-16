@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  public _base_url = "http://127.0.0.1:8000"
   private _LoggedUserUrl: string = "http://127.0.0.1:8000/api/loggedUser/";
 
   constructor(private http: HttpClient) { }
@@ -14,5 +15,6 @@ export class UserService {
   getLoggedUserDetails(): Observable<any>{
     return this.http.get(this._LoggedUserUrl);
   }
+
 
 }

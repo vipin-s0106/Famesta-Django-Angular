@@ -49,8 +49,8 @@ class GetAllUserStoryListView(APIView):
         for follower in followers_list:
             posts = posts.union(Post.objects.filter(user = User.objects.filter(id = follower.followed_user.id).first()))
         posts = posts.order_by('-post_time_stamp')
-        if len(posts) == 0:
-            return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
+        #if len(posts) == 0:
+            #return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
         serializer = PostListSerializer(posts,many=True)
         return Response(serializer.data)
 
@@ -71,8 +71,8 @@ class UserStoryListView(APIView):
 
     def get(self,request,user_id):
         posts = self.get_object(user_id)
-        if len(posts) == 0:
-            return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
+        #if len(posts) == 0:
+            #return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
         serializer = PostListSerializer(posts,many=True)
         return Response(serializer.data)
 
@@ -112,8 +112,8 @@ class ListCommentView(APIView):
 
     def get(self,request,post_id):
         post_comments = self.get_object(post_id)
-        if len(post_comments) == 0:
-            return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
+        #if len(post_comments) == 0:
+            #return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
         serializer = PostLikeCommentSerializer(post_comments,many=True)
         return Response(serializer.data)
 

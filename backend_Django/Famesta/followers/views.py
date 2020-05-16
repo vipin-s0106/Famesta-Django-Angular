@@ -24,8 +24,11 @@ class GetSuggestion(APIView):
 			user = User.objects.get(pk=user_id)
 			not_required_in_list.append(user)
 			followd_user_list = Follower.objects.filter(user=user)
+
+			for follower in followd_user_list:
+				not_required_in_list.append(follower.followed_user)
+
 			for followd_user in followd_user_list:
-				not_required_in_list.append(followd_user.followed_user)
 				follower_follower_list = Follower.objects.filter(user=followd_user.followed_user)
 				for suggested_user in follower_follower_list:
 					if suggested_user.followed_user not in not_required_in_list:

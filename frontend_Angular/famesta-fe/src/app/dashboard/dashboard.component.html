@@ -6,7 +6,8 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8" style="margin-top:45px">
 
-        <div *ngIf="posts?.length > 0; else ElseBlock">
+        <!-- <div *ngIf="posts?.length > 0; else ElseBlock"> -->
+        <div>
           <div *ngFor="let post of posts"> 
             <!-- Blog Post -->
             <div class="card mb-4" id="post">
@@ -44,14 +45,14 @@
             </li>
           </ul>
         </div>
-        <ng-template #ElseBlock>
+        <!-- <ng-template #ElseBlock>
           <div class="card mb-4" id="post" style="border:none;">
             <img height="400px" class="card-img-top" src="/assets/img/NoPostFound.png" alt="Card image cap" style="background-image:#213b52"> 
           </div>
           <div class="card-body">
             <h1 ALIGN="CENTER">No Post Found for your Account</h1>
           </div>
-        </ng-template>
+        </ng-template> -->
 
       </div>
 
@@ -96,7 +97,7 @@
               <div class="col-md-6" id="userinfo">
                 <span>{{LoggedUser.profile.full_name | uppercase }}</span>
                 <div class="social">
-                  <a href="">{{LoggedUser.username }}</a>
+                  <a href="/profile">{{LoggedUser.username }}</a>
                 </div>
               </div>
             </div>
@@ -104,7 +105,7 @@
         </div>
 
         <!-- Side Widget -->
-        <div *ngIf="suggestion_user?.lenght > 0" class="card my-4" style="background: #213b52;border: none;">
+        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="background: #213b52;border: none;">
           <h5 class="card-header">Suggestions</h5>
           <div class="card-body">
                 <div class="row">
