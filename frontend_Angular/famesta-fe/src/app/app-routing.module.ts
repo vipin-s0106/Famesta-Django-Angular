@@ -35,14 +35,14 @@ const routes: Routes = [
     component:LogoutComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'notification',component:NotificationComponent},
-  {path: 'profile',component:ProfileComponent},
+  {path: 'notification/:id',component:NotificationComponent},
+  {path: 'profile/:username',component:ProfileComponent},
   {path: 'search',component:SearchComponent},
-  {path: 'followers',component:FollowersComponent},
-  {path: 'following',component:FollowingComponent},
-  {path: 'edit-profile',component:EditProfileComponent},
-  {path: 'post-detail',component:PostDetailComponent},
-  {path: 'chat',component:ChatComponent},
+  {path: 'followers/:id',component:FollowersComponent},
+  {path: 'following/:id',component:FollowingComponent},
+  {path: 'edit-profile/:id',component:EditProfileComponent},
+  {path: 'post-detail/:id',component:PostDetailComponent},
+  {path: 'chat/:id',component:ChatComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 

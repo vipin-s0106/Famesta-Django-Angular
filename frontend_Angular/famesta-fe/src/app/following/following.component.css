@@ -1,0 +1,122 @@
+
+.candidates-listing-bg {
+    padding: 210px 0px 60px 0px;
+    background-size: cover;
+    position: relative;
+    background-position: center center;
+  }
+  
+  .custom-checkbox .custom-control-input:checked ~ .custom-control-label:before {
+    background-color: #ff4f6c;
+    border-color: #ff4f6c;
+  }
+  
+  .custom-checkbox .custom-control-input:focus ~ .custom-control-label:before {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+  .candidates-img img {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  .fav-icon i {
+    -webkit-text-stroke: 2px #ff4f6c;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .fav-icon i:hover {
+    -webkit-text-stroke: 0px #ff4f6c;
+    -webkit-text-fill-color: #ff4f6c;
+  }
+  
+  .candidates-list-desc {
+    overflow: hidden;
+  }
+  
+  .candidates-right-details {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+  
+  .candidates-item-desc {
+    margin-left: 5px;
+  }
+  
+  .list-grid-item {
+    border: 1px solid #ececec;
+    border-radius: 6px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  
+  .list-grid-item:hover {
+    -webkit-box-shadow: 0 0 20px 0px rgba(47, 47, 47, 0.09);
+            box-shadow: 0 0 20px 0px rgba(47, 47, 47, 0.09);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    border-color: transparent;
+  }
+  
+  .left-sidebar .card-body {
+      border-bottom: 1px solid #ececec;
+  }
+  
+  .custom-control {
+      margin: 11px 20px;
+  }
+  
+  .card-header {
+      background-color: transparent;
+      margin-bottom: 0 !important;
+  }
+  
+  .pagination.job-pagination .page-link {
+    border-radius: 50% !important;
+    margin: 0 4px;
+    height: 46px;
+    width: 45px;
+    line-height: 29px;
+    text-align: center;
+    color: #777777;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #ff4f6c;
+    border-color: #ff4f6c;
+    color: #ffffff !important;
+  }
+  
+  .f-14 {
+      font-size: 14px;
+  }
+  
+  .btn-outline {
+      color: #ff4f6c;
+      border-color: #ff4f6c;
+  }
+  .btn-sm {
+      padding: 8px 22px;
+  }
+  
+   .btn-get-started {
+    color:blue;
+    border-radius: 50px;
+    padding: 8px 20px 10px 20px;
+    border: 2px solid #969de0;
+    transition: all ease-in-out 0.3s;
+    display: inline-block;
+    background: white;
+    margin:5px;
+    outline-width: 0;
+  }
+  
+   .btn-get-started:hover {
+    background: blue;
+    color:white;
+  }

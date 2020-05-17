@@ -1,0 +1,209 @@
+
+/*--------------------------------------------------------------
+# Schedule Section
+--------------------------------------------------------------*/
+#schedule{
+  font-size: 20px;
+}
+
+#schedule {
+    padding: 60px 0 60px 0;
+  }
+  
+  #schedule .nav-tabs {
+    text-align: center;
+    margin: auto;
+    display: block;
+    border-bottom: 0;
+    margin-bottom: 30px;
+  }
+  
+  #schedule .nav-tabs li {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left:5px;
+  }
+  
+  #schedule .nav-tabs a {
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color: #0e1b4d;
+    color: #fff;
+    padding: 10px 100px;
+  }
+  
+  @media (max-width: 991px) {
+    #schedule .nav-tabs a {
+      padding: 8px 60px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    #schedule .nav-tabs a {
+      padding: 8px 50px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #schedule .nav-tabs a {
+      padding: 8px 30px;
+    }
+  }
+  
+  #schedule .nav-tabs a.active {
+    background-color: #f82249;
+    color: #fff;
+  }
+  
+  #schedule .sub-heading {
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0 auto 30px auto;
+  }
+  
+  @media (min-width: 991px) {
+    #schedule .sub-heading {
+      width: 75%;
+    }
+  }
+  
+  #schedule .tab-pane {
+    transition: ease-in-out .2s;
+  }
+  
+  #schedule .schedule-item {
+    border-bottom: 1px solid #cad4f6;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    transition: background-color ease-in-out 0.3s;
+  }
+  
+  #schedule .schedule-item:hover {
+    background-color: #fff;
+  }
+  
+  #schedule .schedule-item time {
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+
+  .member .pic {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    overflow: hidden;
+    float: left;
+    border-radius: 50%;
+    margin: 0 5px 5px 0;
+    }
+  
+    .member .pic img{
+      width: 100%;
+      height: auto;
+    }
+  
+  #schedule .schedule-item h4 {
+    margin-top: 15px;
+    margin-left:145px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  #schedule .schedule-item h4 span {
+    font-weight: bold;
+    color:slategray;
+    font-size: 14px;
+    margin-left:10px;
+  }
+  
+  #schedule .schedule-item p {
+    font-style: italic;
+    margin-left: 145px;
+    font-size: 15px;
+    font-weight:bold;
+    color:rgb(91, 91, 94);
+  }
+
+  #schedule .schedule-item small {
+    margin-left: 55px;
+    font-size: 12px;
+    font-weight:bold;
+    color:rgb(91, 91, 94);
+  }
+
+  #clear{
+    color:tomato;
+    font-size: 18px;
+    margin-top:40px;
+  }
+
+  #clear:hover{
+    color:tomato;
+    font-size: 22px;
+    margin-top:40px;
+  }
+
+
+  
+
+ .accept .btn-get-started {
+  color: #213b52;
+  border-radius: 50px;
+  border: 2px solid white;
+  padding: 8px;
+  transition: all ease-in-out 0.3s;
+  display: inline-block;
+  background: rgb(53, 212, 53);
+  margin-left:40px;
+  outline-width: 0;
+  font-size: 12px;
+  }
+  
+  .accept .btn-get-started:hover {
+    background: rgb(53, 212, 53);
+    color: #213b52;
+    border: 2px solid rgb(53, 212, 53);
+  }
+
+
+  .decline .btn-get-started {
+    color: #213b52;
+    border-radius: 50px;
+    border: 2px solid white;
+    padding: 8px;
+    transition: all ease-in-out 0.3s;
+    display: inline-block;
+    background: tomato;
+    margin-left:40px;
+    outline-width: 0;
+    font-size: 12px;
+  }
+  
+  .decline .btn-get-started:hover {
+    background: tomato;
+    color: #213b52;
+    border: 2px solid tomato;
+  }
+
+  .btn-get-started{
+    color: #213b52;
+    border-radius: 50px;
+    border: 2px solid white;
+    padding: 8px;
+    transition: all ease-in-out 0.3s;
+    display: inline-block;
+    background: tomato;
+    margin-left:128px;
+    margin-top:20px;
+    outline-width: 0;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+ .btn-get-started:hover {
+    background: tomato;
+    color: #213b52;
+    border: 2px solid tomato;
+  }

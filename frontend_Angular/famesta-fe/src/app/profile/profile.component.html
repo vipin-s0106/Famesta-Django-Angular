@@ -27,7 +27,7 @@
                         <p style="color:#5289ba">{{LoggedUser.username}}</p>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn-get-started scrollto" style="margin-top:10px">Edit Profile</a>
+                        <a href="/edit-profile/{{LoggedUser.id}}" class="btn-get-started scrollto" style="margin-top:10px">Edit Profile</a>
                     </div>
                 </div>
                 <br>
@@ -35,29 +35,35 @@
                     {{LoggedUser.profile.BioDescription}}
                 </p>
                 <div class="row">
-                    <div class="col-md-6 d-md-flex align-items-md-stretch">
-                        <div class="count-box">
-                        <i class="icofont-square"></i>
-                        <span style="color: #213b52;" data-toggle="counter-up">{{posts?.length}}</span>
-                        <p><strong>Total Post</strong></p>
+                    <a >
+                        <div class="col-md-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box">
+                            <i class="icofont-square"></i>
+                            <span style="color: #213b52;" data-toggle="counter-up">{{posts?.length}}</span>
+                            <p><strong>Post</strong></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-6 d-md-flex align-items-md-stretch">
-                        <div class="count-box">
-                        <i class="icofont-users-social"></i>
-                        <span style="color: #213b52;" data-toggle="counter-up">{{ followers?.length}}</span>
-                        <p><strong>Followers</strong></p>
+                    <a href="/followers">
+                        <div class="col-md-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box">
+                            <i class="icofont-users-social"></i>
+                            <span style="color: #213b52;" data-toggle="counter-up">{{ followers?.length}}</span>
+                            <p><strong>Followers</strong></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-6 d-md-flex align-items-md-stretch">
-                        <div class="count-box">
-                        <i class="icofont-users-social"></i>
-                        <span style="color: #213b52;" data-toggle="counter-up">{{ followings?.length}}</span>
-                        <p><strong>Followings</strong></p>
+                    <a href="/following">
+                        <div class="col-md-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box">
+                            <i class="icofont-users-social"></i>
+                            <span style="color: #213b52;" data-toggle="counter-up">{{ followings?.length}}</span>
+                            <p><strong>Followings</strong></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
                 </div>
             </div><!-- End .content-->
@@ -69,7 +75,7 @@
 
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio section-bg" style="margin-top:50px">
-    <div class="container">
+    <div class="container" id="user_post">
 
         <div class="section-title">
         <h2 data-aos="fade-in">Post</h2>

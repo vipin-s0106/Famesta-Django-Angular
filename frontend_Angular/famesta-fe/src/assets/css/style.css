@@ -413,7 +413,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #login-register .btn-get-started:hover {
   background: transparent;
-  color: #fff;
+  color: #213b52;
 }
 
 @media (max-width: 991px) {
