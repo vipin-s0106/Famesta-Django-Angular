@@ -16,6 +16,7 @@ import { FollowingComponent } from './following/following.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ChatComponent } from './chat/chat.component';
+import { OtherUserProfileComponent } from './other-user-profile/other-user-profile.component';
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
@@ -36,13 +37,14 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'notification/:id',component:NotificationComponent},
-  {path: 'profile/:username',component:ProfileComponent},
+  {path: 'profile',component:ProfileComponent},
   {path: 'search',component:SearchComponent},
   {path: 'followers/:id',component:FollowersComponent},
   {path: 'following/:id',component:FollowingComponent},
   {path: 'edit-profile/:id',component:EditProfileComponent},
   {path: 'post-detail/:id',component:PostDetailComponent},
   {path: 'chat/:id',component:ChatComponent},
+  {path: 'user/:username',component:OtherUserProfileComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 
@@ -65,4 +67,5 @@ export const RoutingComponent = [
   EditProfileComponent,
   PostDetailComponent,
   ChatComponent,
+  OtherUserProfileComponent,
 ]

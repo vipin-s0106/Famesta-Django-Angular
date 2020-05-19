@@ -1,142 +1,60 @@
 
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
-  #hero{
-    width: 100%;
-    height: 75vh;
-    background-size: cover;
-    padding: 0 15px;
-    background-repeat: no-repeat;
-  }
-  #hero h1 {
-    margin: 0 0 10px 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: #fff;
-  }
-  
-  
-  @media (min-width: 1024px) {
-    #hero {
-      background-attachment: fixed;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-    }
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-      margin-bottom: 30px;
-    }
-  }
+.profile-banner {
+  width: 100%;
+  height: 300px;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  background-color: #252932;
+  border-bottom: 4px solid #fff;
+  box-shadow: 2px 0px 4px rgba(0,0,0,0.1);
+}
 
-  /*--------------------------------------------------------------
-  # About
-  --------------------------------------------------------------*/
-  .about .content {
-    padding: 30px 0;
-  }
-  
-  .about .content h3 {
-    font-weight: 500;
-    font-size: 34px;
-    color: #213b52;
-  }
-  
-  .about .content p {
-    margin-bottom: 0;
-  }
-  
-  .about .content .count-box {
-    padding: 20px 0;
-    width: 100%;
-  }
-  
-  .about .content .count-box i {
-    display: block;
-    font-size: 36px;
-    color: slategray;
-    float: left;
-  }
+.avatar-container {
+  height: 300px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 200px;
+  height:200px;
+  position: relative;
+  margin: 0px auto;
+  margin-top: 196px;
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+}
+
+.profile-actions {
+  position: absolute;
+  bottom: 20px;
+}
 
 
-  .about .btn-get-started {
-    color: #fff;
-    border-radius: 50px;
-    padding: 5px 10px 5px 10px;
-    border: 2px solid #adc7de;
-    transition: all ease-in-out 0.3s;
-    background: #5289ba;
-  }
-
-  #about .btn-get-started:hover {
-    background:#213b52;
-    color: #fff;
-  }
-
-
-  
-  .about .content .count-box span {
-    font-size: 36px;
-    line-height: 20px;
-    display: block;
-    font-weight: 700;
-    color: #d2e0ed;
-    margin-left: 50px;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .about .content .count-box p {
-    padding: 15px 0 0 0;
-    margin: 0 0 0 50px;
-    font-family: "Playfair Display", serif;
-    font-size: 14px;
-    color: #5289ba;
-  }
-  
-  .about .content .count-box a {
-    font-weight: 600;
-    display: block;
-    margin-top: 20px;
-    color: #d2e0ed;
+.profile-actions .btn:hover {
     font-size: 15px;
-    font-family: "Poppins", sans-serif;
-    transition: ease-in-out 0.3s;
   }
-  
-  .about .content .count-box a:hover {
-    color: #d2e0ed;
-  }
-  
-  #profile_pic {
-    background-size: cover;
-    min-height: 400px;
-    max-height: 450px;
-    min-width: 300px;
-    max-width: 350px;
-    border-radius: 10%;
-  }
-  
-  @media (max-width: 991px) {
-    .about .image {
-      text-align: center;
-    }
-    .about .image img {
-      max-width: 80%;
-    }
-  }
-  
-  @media (max-width: 667px) {
-    .about .image img {
-      max-width: 100%;
-    }
-  }
+
+
+.user-profile-2 {
+  margin-top: 50px;
+}
+
+.user-profile-sidebar {
+  margin: 0 0 20px 0;
+}
+
+.user-profile-sidebar .user-identity {
+  margin: 20px 0 0 0;
+}
+
+.user-profile-sidebar img {
+  width: 90px;
+}
+
+.link{
+    color:midnightblue;
+}
 
 
 /*--------------------------------------------------------------

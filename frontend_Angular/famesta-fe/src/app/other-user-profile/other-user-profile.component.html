@@ -7,20 +7,20 @@
     <div *ngIf="background_image; else ElseBlock">
         <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
             <div class="col-sm-3 avatar-container">
-                <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
             </div>
         </div>
     </div>
     <ng-template #ElseBlock>
         <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
             <div class="col-sm-3 avatar-container">
-                <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
             </div>
         </div>
     </ng-template>
@@ -35,17 +35,17 @@
 				<div class="text-center user-profile-2" style="margin-top:120px">
 					<ul class="list-group">
                       <li class="list-group-item">
-                            <h4 style="color:darkblue"><b>{{LoggedUser.profile.full_name | uppercase}}</b></h4>
-                            <small style="color:black">{{LoggedUser.username}}</small>
+                            <h4 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h4>
+                            <small style="color:black">{{User.username}}</small>
 					  </li>
                       <li class="list-group-item" style="color:black">
-                        <a class="link" href="/followers/{{ LoggedUser.id }}">
+                        <a class="link" href="/followers/{{ User.id }}">
                             <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
                             Followers
                         </a>
 					  </li>
                       <li class="list-group-item" style="color:black">
-                        <a class="link" href="/following/{{ LoggedUser.id }}">
+                        <a class="link" href="/following/{{ User.id }}">
                             <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
                             Following
                         </a>
@@ -70,19 +70,9 @@
 						<!-- Tab timeline -->
 						<div class="tab-pane animated active fadeInRight" id="my-timeline">
 							<div class="user-profile-content">
-								<br>
+								<br><br>
 								<!-- Begin timeline -->
 								<div class="the-timeline">
-									<form role="form" class="post-to-timeline">
-										<textarea class="form-control" style="height: 70px;margin-bottom:10px;" placeholder="Whats on your mind..."></textarea>
-										<div class="row">
-										<div class="col-sm-6">
-											<a class="btn btn-sm btn-default"><i class="fa fa-camera"></i></a>
-											<div id="attached-file"></div>
-										</div>
-										<div class="col-sm-6 text-right"><button type="submit" class="btn btn-primary">Post</button></div>
-										</div>
-									</form>
                                     <!-- Post will Go here -->
                                     
                                     <!-- ======= Portfolio Section ======= -->
