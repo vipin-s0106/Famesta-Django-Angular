@@ -94,21 +94,25 @@ class UnfollowUser(APIView):
 		follower_obj.delete()
 		return Response(status=200)
 
-class GetUserFollowers(APIView):
+class RemoveFollowedUser(APIView):  #Removing from the following
+	def delete(self,request,user_id,followed_user_id):
+		follower_obj = Follower.objects.filter(user=User.objects.get(pk=followed_user_id), followed_user=User.objects.get(pk=user_id)).first()
+		follower_obj.delete()
+		return Response(status=200)
+
+class GetUserFollowings(APIView):
 	def get(self,request,user_id):
 		user = User.objects.filter(id=user_id).first()
 		print(user)
 		data = Follower.objects.filter(user=user)
-		serializer = FollowerSerializer(data,many=True)
+		serializer = FollowingSerializer(data,many=True)
 		return Response(serializer.data,status=200)
 
-
-
-class GetUserFollowings(APIView):
+class GetUserFollowers(APIView):
 	def get(self, request, user_id):
 		user = User.objects.filter(id=user_id).first()
 		data = Follower.objects.filter(followed_user=user)
-		serializer = FollowingSerializer(data, many=True)
+		serializer = FollowerSerializer(data, many=True)
 		return Response(serializer.data, status=200)
 
 

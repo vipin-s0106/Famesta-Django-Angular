@@ -107,7 +107,7 @@ class ListCommentView(APIView):
 
     def get_object(self,post_id):
         post = Post.objects.filter(id = post_id).first()
-        post_comments = PostDetail.objects.filter(post=post)
+        post_comments = PostDetail.objects.filter(post=post,comment__isnull=False)
         return post_comments
 
     def get(self,request,post_id):
@@ -116,6 +116,21 @@ class ListCommentView(APIView):
             #return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
         serializer = PostLikeCommentSerializer(post_comments,many=True)
         return Response(serializer.data)
+
+class ListLikeView(APIView):
+
+    def get_object(self,post_id):
+        post = Post.objects.filter(id = post_id).first()
+        post_likes = PostDetail.objects.filter(post=post,like_isnull=False)
+        return post_likes
+
+    def get(self,request,post_id):
+        post_likes = self.get_object(post_id)
+        #if len(post_comments) == 0:
+            #return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
+        serializer = PostLikeCommentSerializer(post_likes,many=True)
+        return Response(serializer.data)
+
 
 
 
@@ -164,7 +179,7 @@ class CommentDeleteView(APIView):
         comment = PostDetail.objects.filter(id=comment_id).first()
         return comment
 
-    def delete(self,request,user_id,comment_id):
+    def delete(self,request,comment_id):
         comment = self.get_comment(comment_id)
         if comment is None:
             return Response({"error":"for commentID - "+str(comment_id)+" comment is not exist"},status=400)

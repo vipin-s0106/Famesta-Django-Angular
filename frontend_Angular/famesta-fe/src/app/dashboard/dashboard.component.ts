@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ParamMap } from '@angular/router'
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
+import { FollowerService } from '../services/follower.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   public posts;
   public suggestion_user;
 
-  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService) {
+  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {
     
    }
 
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
             this._router.navigate(['/dashboard']);
           } 
         );
-        this.post_srv.getUserSuggestion(res.id).subscribe(
+        this.follower_srv.getUserSuggestion(res.id).subscribe(
           res => {
             console.log(res);
             this.suggestion_user = res;

@@ -14,6 +14,9 @@ import { RoutingComponent } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
+import { FollowerService } from './services/follower.service';
+import { NotificationService } from './services/notification.service';
+import { ChatService } from './services/chat.service';
 import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
 //importing Authguard
@@ -37,7 +40,7 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,PostService,UserService,AuthGuard,
+  providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

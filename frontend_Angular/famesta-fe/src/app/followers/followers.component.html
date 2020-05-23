@@ -3,28 +3,28 @@
 <div class="container">
     <div class="row" style="margin-top:20px">
         <div class="col-sm-3">
-            <a href="/profile"><i style="font-size:24px" class="icofont-circled-left"></i> Profile</a>
+            <a href="/profile"><i style="font-size:24px;" class="icofont-circled-left"></i> Profile</a>
         </div>
-        <div class="col-sm-4" style="margin-left:48px">
+        <div class="col-sm-4" style="margin-left:150px;margin-top:30px">
             <h2>Followers</h2>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-left:150px">
         <div class="col-lg-9">
             <div class="candidates-listing-item">
-                <div class="list-grid-item mt-4 p-2">
+                <div *ngFor="let follower of follower_list" class="list-grid-item mt-4 p-2">
                     <div class="row">
                         <div class="col-md-9">
                             <div class="candidates-img float-left mr-4">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                <img src="{{ follower.user.profile.profile_picture | TransalateImageUrl }}" alt="">
                             </div>
                             <div class="candidates-list-desc job-single-meta  pt-2">
-                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">Vipin Sharma</a></h5>
-                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>vipin_s0106</p>
+                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">{{ follower.user.profile.full_name | titlecase  }}</a></h5>
+                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>{{ follower.user.username }}</p>
                                 <div class="candidates-item-desc">
                                     <hr>
-                                    <p class="text-muted mb-2 f-14">Aenean leo ligula porttitor eu consequat eleifend ac enim.</p>
+                                    <p class="text-muted mb-2 f-14">{{follower.user.profile.BioDescription}}</p>
                                 </div>
                             </div>
                         </div>
@@ -35,94 +35,7 @@
                                     <i class="mdi mdi-heart f-20"></i>
                                 </div>
                                 <div class="candidates-listing-btn mt-4">
-                                    <a class="btn-get-started scrollto" style="margin-top:2px">Remove</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="list-grid-item mt-4 p-2">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="candidates-img float-left mr-4">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                            </div>
-                            <div class="candidates-list-desc job-single-meta  pt-2">
-                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">Vipin Sharma</a></h5>
-                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>vipin_s0106</p>
-                                <div class="candidates-item-desc">
-                                    <hr>
-                                    <p class="text-muted mb-2 f-14">Aenean leo ligula porttitor eu consequat eleifend ac enim.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="candidates-list-fav-btn text-right">
-                                <div class="fav-icon">
-                                    <i class="mdi mdi-heart f-20"></i>
-                                </div>
-                                <div class="candidates-listing-btn mt-4">
-                                    <a class="btn-get-started scrollto" style="margin-top:2px">Remove</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="list-grid-item mt-4 p-2">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="candidates-img float-left mr-4">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                            </div>
-                            <div class="candidates-list-desc job-single-meta  pt-2">
-                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">Vipin Sharma</a></h5>
-                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>vipin_s0106</p>
-                                <div class="candidates-item-desc">
-                                    <hr>
-                                    <p class="text-muted mb-2 f-14">Aenean leo ligula porttitor eu consequat eleifend ac enim.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="candidates-list-fav-btn text-right">
-                                <div class="fav-icon">
-                                    <i class="mdi mdi-heart f-20"></i>
-                                </div>
-                                <div class="candidates-listing-btn mt-4">
-                                    <a class="btn-get-started scrollto" style="margin-top:2px">Remove</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="list-grid-item mt-4 p-2">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="candidates-img float-left mr-4">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                            </div>
-                            <div class="candidates-list-desc job-single-meta  pt-2">
-                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">Vipin Sharma</a></h5>
-                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>vipin_s0106</p>
-                                <div class="candidates-item-desc">
-                                    <hr>
-                                    <p class="text-muted mb-2 f-14">Aenean leo ligula porttitor eu consequat eleifend ac enim.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="candidates-list-fav-btn text-right">
-                                <div class="fav-icon">
-                                    <i class="mdi mdi-heart f-20"></i>
-                                </div>
-                                <div class="candidates-listing-btn mt-4">
-                                    <a class="btn-get-started scrollto" style="margin-top:2px">Remove</a>
+                                    <a (click)="remove_Follower(userid,follower.user.id)" class="btn-get-started scrollto" style="margin-top:2px">Remove</a>
                                 </div>
                             </div>
                         </div>

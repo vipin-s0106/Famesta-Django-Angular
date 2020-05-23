@@ -14,21 +14,21 @@ class FollowSerializer(serializers.ModelSerializer):
 
 
 class FollowerSerializer(serializers.HyperlinkedModelSerializer):
-    followed_user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Follower
-        fields = ['id', 'block_Status', 'followed_user']
+        fields = ['id', 'block_Status', 'user']
 
 
 class FollowingSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    followed_user = UserSerializer(read_only=True)
     following_username = serializers.SerializerMethodField('get_username')
     class Meta:
         model = Follower
-        fields = ['id', 'user', 'following_username']
+        fields = ['id', 'followed_user', 'following_username']
 
     def get_username(self,obj):
         if obj:
-            return obj.followed_user.username
+            return obj.user.username
 
