@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+import { catchError, mapTo, tap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,22 +45,19 @@ export class AuthService {
     return localStorage.getItem('refresh')
   }
 
+  //below code added after changing in the interceptor
+
+  private storeJwtToken(jwt: string) {
+    localStorage.setItem("token", jwt);
+  }
+
 
   doTokenRefresh(){
-    let refreshToken = this.getRefreshToken()
-    console.log(refreshToken)
-    let data = {
-      'refresh':refreshToken
-    }
-    let access_token = ""
-    this.refreshToken(data).subscribe(
-      res => {
-        access_token = res.access;
-        console.log(access_token);
-        localStorage.setItem("token",access_token);
-      },
-      err => console.log(err)
-    )
+    return this.http.post<any>(this._refresh_token, {
+      'refresh': this.getRefreshToken()
+    }).pipe(tap((tokens: any) => {
+      this.storeJwtToken(tokens.access);
+    }));
   }
 
 

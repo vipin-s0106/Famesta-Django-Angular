@@ -164,3 +164,7 @@
     margin: 0 2px;
   }
   
+
+.card-img-top{
+  max-height: 620px;
+}

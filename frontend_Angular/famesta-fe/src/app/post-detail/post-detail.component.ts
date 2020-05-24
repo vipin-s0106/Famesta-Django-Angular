@@ -75,4 +75,20 @@ export class PostDetailComponent implements OnInit {
     )
   }
 
+  checkCommentPresent(commentData){
+    let count = 0
+    for (var comment of commentData){
+      if(comment.comment != null){
+        count ++;
+        break
+      }
+    }
+    if (count > 0){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+
 }

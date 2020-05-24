@@ -22,6 +22,7 @@ import requests
 
 
 class PostStoryCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self,request,user_id):
         user = User.objects.filter(id=user_id).first()
@@ -52,7 +53,14 @@ class GetAllUserStoryListView(APIView):
         posts = posts.order_by('-post_time_stamp')
         #if len(posts) == 0:
             #return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
-        serializer = PostListSerializer(posts,many=True)
+
+        '''
+        this serializer context is very important if you want to access the request data into the serializer class and method
+        '''
+        serializer_context = {
+            'request': request,
+        }
+        serializer = PostListSerializer(posts,many=True,context=serializer_context)
         return Response(serializer.data)
 
 
@@ -80,6 +88,8 @@ class UserStoryListView(APIView):
 
 class PostStoryDetailView(APIView):
 
+    permission_classes = (IsAuthenticated,)
+
     def get_object(self,post_id):
         post = Post.objects.filter(id = post_id).first()
         return post
@@ -105,6 +115,7 @@ class PostStoryDetailView(APIView):
 
 
 class ListCommentView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self,post_id):
         post = Post.objects.filter(id = post_id).first()
@@ -119,6 +130,7 @@ class ListCommentView(APIView):
         return Response(serializer.data)
 
 class ListLikeView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self,post_id):
         post = Post.objects.filter(id = post_id).first()
@@ -136,6 +148,7 @@ class ListLikeView(APIView):
 
 
 class CommentCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self,request,user_id,post_id):
         post_data = request.data
@@ -175,6 +188,7 @@ class CommentCreateView(APIView):
 
 
 class CommentDeleteView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_comment(self,comment_id):
         comment = PostDetail.objects.filter(id=comment_id).first()
@@ -189,6 +203,7 @@ class CommentDeleteView(APIView):
 
 
 class LikeCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
     def post(self,request,user_id,post_id):
         post_data = request.data
         print(post_data)

@@ -52,6 +52,17 @@ export class DashboardComponent implements OnInit {
     
   }
 
+  likePost(user_id,post_id){
+    this.post_srv.likePost(user_id,post_id).subscribe(
+      res => {
+        console.log(res)
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
+
 
 
 }

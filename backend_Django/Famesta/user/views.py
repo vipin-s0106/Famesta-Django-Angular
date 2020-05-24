@@ -20,6 +20,7 @@ from .exception import UserExistException,UserDoesNotExist
 
 #importing models
 from .models import User,UserProfile
+from followers.models import Follower
 
 
 
@@ -151,4 +152,35 @@ class UserProfileAction(APIView):
             serializer.save()
             return Response(serializer.data,status=200)
         return Response(serializer.errors, status=400)
+
+
+class OtherUserProfileAPIView(APIView):
+    def get_object(self,username):
+        user = User.objects.filter(username=username).first()
+        return user
+
+    def get(self,request,username):
+        user = self.get_object(username)
+        user_profile = UserProfile.objects.filter(user=user).first()
+        if user is None:
+            return Response({"error":"Given username - "+str(username)+" user object not found"},status=404)
+        serializer_context = {
+            'request': request,
+        }
+        object = Follower.objects.filter(user=request.user, followed_user=user).first()
+        if object:
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=200)
+        else:
+            if user_profile.account_type == "Private":
+                return Response({"message":user.username+" account is private"},status=200)
+            else:
+                serializer = UserSerializer(user)
+                return Response(serializer.data, status=200)
+
+
+
+
+
+
 

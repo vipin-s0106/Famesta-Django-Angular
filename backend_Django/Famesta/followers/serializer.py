@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Follower
 
 from user.serializer import UserSerializer
+from notification.models import Notification
 
 
 # importing other serializer
@@ -31,4 +32,12 @@ class FollowingSerializer(serializers.ModelSerializer):
     def get_username(self,obj):
         if obj:
             return obj.user.username
+
+
+class FollowStatusSerializer(serializers.Serializer):
+    follow_request_sent = serializers.NullBooleanField()
+    followed_status = serializers.NullBooleanField()
+
+    class Meta:
+        fields = ['follow_request_sent','followed_status']
 

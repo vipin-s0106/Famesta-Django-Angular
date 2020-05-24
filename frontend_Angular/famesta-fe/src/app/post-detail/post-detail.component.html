@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="profile_pic col-xs-2"><img src="{{ post.user.profile.profile_picture }}" alt=""></div>
-                        <div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href=""><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
+                        <div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
                         <div *ngIf="post.followed_status; else ElseBlock" class="col-xs-2" style="margin-top:8px;margin-left:10px"><span class="icofont-check-alt" style="margin-left:40px;font-size: 15px;font-weight: bolder;color:rgb(7, 112, 7)">Following</span></div>
                         <ng-template #ElseBlock>
                             <div *ngIf="post.user.id==LoggedUser.id; else ElseBlock1" class="col-xs-2" style="margin-left:100px"></div>
@@ -39,19 +39,21 @@
             </div>
 
             <!-- Profile Widget -->
-            <div class="widget widget-latest-post">
-                <div class="widget-body">
-                    <div *ngFor="let comment of post.post_detail">
-                        <div *ngIf="comment.comment" class="latest-post-aside media">
-                            <div class="lpa-left media-body">
-                                <a href=""> 
-                                    <div class="profile_pic1"><img src="{{comment.user.profile.profile_picture}}" alt=""></div>
-                                </a>
-                            </div>
-                            <div class="lpa-right">
-                                <a href=""><span style="font-size: 12px;font-weight: bold;">{{comment.user.username}}</span></a><small style="margin-left:5px;font-size: 11px;color:black"> {{comment.comment}}</small>
-                                <br>
-                                <span style="font-weight:bold;font-size: 10px;color: slategrey;">{{comment.post_action_timestamp | dateAgo}}</span>
+            <div *ngIf="checkCommentPresent(post.post_detail)">
+                <div class="widget widget-latest-post">
+                    <div class="widget-body">
+                        <div *ngFor="let comment of post.post_detail">
+                            <div *ngIf="comment.comment" class="latest-post-aside media">
+                                <div class="lpa-left media-body">
+                                    <a href="/user/{{comment.user.username}}"> 
+                                        <div class="profile_pic1"><img src="{{comment.user.profile.profile_picture}}" alt=""></div>
+                                    </a>
+                                </div>
+                                <div class="lpa-right">
+                                    <a href="/user/{{comment.user.username}}"><span style="font-size: 12px;font-weight: bold;">{{comment.user.username}}</span></a><small style="margin-left:5px;font-size: 11px;color:black"> {{comment.comment}}</small>
+                                    <br>
+                                    <span style="font-weight:bold;font-size: 10px;color: slategrey;">{{comment.post_action_timestamp | dateAgo}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -79,7 +81,7 @@
                             <small style="color:black;font-weight: bold;margin-left:225px;margin-top:10px">{{post.post_time_stamp | dateAgo}}</small>
                         </div>
                     </div>
-                    <div class="row latest-post-aside media">
+                    <div *ngIf="post.liked_by" class="row latest-post-aside media">
                         <p style="color:grey;font-weight: bold;margin-top:5px" class="liked">Liked by <small style="color: midnightblue;">{{post.liked_by}} .. <a href="" style="color:blue;font-weight: bold;" data-toggle="modal" data-target="#basicExampleModal">others</a> </small></p>
                     </div>
                    
@@ -108,7 +110,7 @@
                         <div *ngIf="like.like" class="latest-post-aside media">
                             <div class="lpa-left media-body" style="margin-top:5px">
                                 
-                                    <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href=""><span style="font-size: 12px;font-weight: bold;margin-left:5px"> {{like.user.username}}</span></a></div>
+                                    <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px"> {{like.user.username}}</span></a></div>
                             </div>
                             <div class="lpa-right" style="margin-top:15px;margin-left:50px">
                                 <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>

@@ -13,5 +13,5 @@ urlpatterns = [
    url('^api/loggedUser/$',views.getLoggedUser,name='getLoggedUser'),
    url('^api/user/(?P<id>[0-9]+)/$',views.UserAction.as_view(),name='user_action'),
    url('^api/user/(?P<id>[0-9]+)/profile/$',views.UserProfileAction.as_view(),name='user_profile_action'),
-
+   url('^api/otheruser/(?P<username>[\w]+)/$',views.OtherUserProfileAPIView.as_view(),name="other_user_profile")
 ]

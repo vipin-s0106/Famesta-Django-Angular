@@ -20,10 +20,24 @@ class PostListSerializer(serializers.ModelSerializer):
     liked_by = serializers.SerializerMethodField('get_liked_by')
     user = UserSerializer(read_only=True)
     comment_usr = serializers.SerializerMethodField('get_first_comment_username_userid')
+    like_by_you = serializers.SerializerMethodField('check_post_like_by_user')
 
     class Meta:
         model = Post
-        fields = ['id', 'file', 'post_info', 'post_time_stamp', 'total_comment', 'liked_by', 'user', 'comment_usr']
+        fields = ['id', 'file', 'post_info', 'post_time_stamp', 'total_comment', 'liked_by', 'user', 'comment_usr','like_by_you']
+
+    def check_post_like_by_user(self,obj):
+        if obj:
+            post = Post.objects.filter(id=obj.id).first()
+            request = self.context.get("request")
+            if request and hasattr(request, "user"):
+                user = request.user
+                instance = PostDetail.objects.filter(post=post, like=True,user=user)
+                if instance:
+                    return True
+            return False
+        return None
+
 
     def get_total_comment(self, obj):
         if obj:
@@ -134,7 +148,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             user = obj.user
             request = self.context.get("request")
             if request and hasattr(request, "user"):
-                instance = Notification.objects.filter(user=user,other_user=request.user,notification_type="follow")
+                instance = Notification.objects.filter(user=user,other_user=request.user,notification_type="follow").first()
                 if instance:
                     return True
                 return False
@@ -148,7 +162,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             request = self.context.get("request")
             if request and hasattr(request, "user"):
                 user = request.user
-                instance = PostDetail.objects.filter(post=post, like=True,user=user)
+                instance = PostDetail.objects.filter(post=post, like=True,user=user).first()
                 if instance:
                     return True
             return False

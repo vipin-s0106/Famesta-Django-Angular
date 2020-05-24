@@ -13,21 +13,32 @@
             <div class="card mb-4" id="post">
               <div class="card-header">
                   <div class="row">
-                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture | TransalateImageUrl}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></div>
+                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
                   </div>
               </div>
-              <img class="card-img-top" src="{{post.file | TransalateImageUrl}}"alt="Card image cap">
+              <a href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
               <div class="card-body">
-                <a href=""><i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i></a><a href=""><i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i></a>
-                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="">others</a> </small></p>
+                <a *ngIf="post.like_by_you; else ElseBlock1">
+                  <i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i>
+                </a>
+                <ng-template #ElseBlock1>
+                  <a (click)="likePost(LoggedUser.id,post.id)" href="">
+                    <i style="font-size: 23px;color:thistle;margin-right: 10px;" class="icofont-heart"></i>
+                  </a>
+                </ng-template>
+                <a href="/post-detail/{{post.id}}">
+                  <i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i>
+                </a>
+                
+                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="/post-detail/{{post.id}}">others</a> </small></p>
                 <p class="card-text">{{post.post_info}}</p>
                 <div *ngIf="post.total_comment > 1; else ElseBlock">
-                  <a style="color:grey;font-weight: bold;" href="">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="">more</a> 
+                  <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="/post-detail/{{post.id}}">more</a> 
                   </a>
                 </div>
                 <ng-template #ElseBlock>
                   <div *ngIf="post.comment_usr != null">
-                    <a style="color:grey;font-weight: bold;" href="">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                    <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
                     </a>
                   </div>
                 </ng-template>
@@ -112,7 +123,7 @@
                     <div class="col-md-4" *ngFor="let user of suggestion_user">
                       <div class="member" data-aos="fade-up">
                         <div class="pic"><img src="{{user.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
-                        <span>{{user.username}}</span>
+                        <span><a href="/user/{{user.username}}">{{user.username}}</a></span>
                         <div class="social">
                           <a href=""><i class="icofont-instagram"></i>follow</a>
                         </div>

@@ -2,6 +2,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 
 from .models import User, UserProfile
+from notification.models import Notification
+from followers.models import Follower
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

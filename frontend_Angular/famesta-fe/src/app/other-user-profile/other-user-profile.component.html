@@ -3,115 +3,151 @@
 <br><br>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-<div class="content-page">
-    <div *ngIf="background_image; else ElseBlock">
-        <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
-            <div class="col-sm-3 avatar-container">
-                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+    <div class="content-page">
+        <div *ngIf="background_image; else ElseBlock">
+            <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
+                <div class="col-sm-3 avatar-container">
+                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                        alt="User avatar">
+                </div>
+                <div class="col-sm-12 profile-actions text-right">
+                    <a *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-check"></i> Following
+                    </a>
+                    <ng-template #ElseBlock1>
+                        <a *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
+                            class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                            <i class="fa fa-check"></i> Requested
+                        </a>
+                        <ng-template #ElseBlock2>
+                            <a (click)="followUser(User.id,LoggedUser.id,LoggedUser.username)" type="button" class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                                <i class="fa fa-check"></i> Follow
+                            </a>
+                        </ng-template>
+                    </ng-template>
+                </div>
             </div>
-            <div class="col-sm-12 profile-actions text-right">
-                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
+        </div>
+        <ng-template #ElseBlock>
+            <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
+                <div class="col-sm-3 avatar-container">
+                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                        alt="User avatar">
+                </div>
+                <div class="col-sm-12 profile-actions text-right">
+                    <a *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-check"></i> Following
+                    </a>
+                    <ng-template #ElseBlock1>
+                        <a *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
+                            class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                            <i class="fa fa-check"></i> Requested
+                        </a>
+                        <ng-template #ElseBlock2>
+                            <a (click)="followUser(User.id,LoggedUser.id,LoggedUser.username)" type="button" class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                                <i class="fa fa-plus"></i> Follow
+                            </a>
+                        </ng-template>
+                    </ng-template>
+                </div>
+            </div>
+        </ng-template>
+
+
+
+        <div class="content">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Begin user profile -->
+                    <div class="text-center user-profile-2" style="margin-top:120px">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h4 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h4>
+                                <small style="color:black">{{User.username}}</small>
+                            </li>
+                            <li class="list-group-item" style="color:black">
+                                <a class="link" href="/followers/{{ User.id }}">
+                                    <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
+                                    Followers
+                                </a>
+                            </li>
+                            <li class="list-group-item" style="color:black">
+                                <a class="link" href="/following/{{ User.id }}">
+                                    <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
+                                    Following
+                                </a>
+                            </li>
+                            <li class="list-group-item" style="color:midnightblue">
+                                <span class="badge" style="color:darkblue">{{posts?.length}}</span>
+                                Posts
+                            </li>
+                        </ul>
+                    </div><!-- End div .box-info -->
+                    <br>
+                    <!-- Begin user profile -->
+                </div><!-- End div .col-sm-4 -->
+
+                <div class="col-sm-9">
+                    <div class="widget widget-tabbed">
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+
+
+                            <!-- Tab timeline -->
+                            <div class="tab-pane animated active fadeInRight" id="my-timeline">
+                                <div class="user-profile-content">
+                                    <br><br>
+                                    <!-- Begin timeline -->
+                                    <div class="the-timeline">
+                                        <!-- Post will Go here -->
+
+                                        <!-- ======= Portfolio Section ======= -->
+                                        <section id="portfolio" class="portfolio section-bg" style="margin-top:20px">
+                                            <div class="container" id="user_post">
+
+                                                <div class="section-title">
+                                                    <h2 data-aos="fade-in">Post</h2>
+                                                    <p data-aos="fade-in"></p>
+                                                </div>
+
+                                                <div class="row portfolio-container" data-aos="fade-up">
+
+                                                    <div *ngFor="let post of posts"
+                                                        class="col-lg-4 col-md-6 portfolio-item filter-web">
+                                                        <div class="portfolio-wrap">
+                                                            <img src="{{ post.file | TransalateImageUrl }}"
+                                                                class="img-fluid">
+                                                            <div class="portfolio-links">
+                                                                <a href="/post-detail/{{post.id}}"  class="venobox"
+                                                                    title="{{post.post_info}}"
+                                                                    ><i
+                                                                        class="icofont-link"></i></a>
+                                                                <a href="" title="More Details"><i
+                                                                        class="icofont-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                        </section>
+
+
+
+                                    </div><!-- End div .the-timeline -->
+                                    <!-- End timeline -->
+                                </div><!-- End div .user-profile-content -->
+                            </div><!-- End div .tab-pane -->
+                            <!-- End Tab timeline -->
+                        </div><!-- End div .tab-content -->
+                    </div><!-- End div .box-info -->
+                </div>
             </div>
         </div>
     </div>
-    <ng-template #ElseBlock>
-        <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
-            <div class="col-sm-3 avatar-container">
-                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
-            </div>
-            <div class="col-sm-12 profile-actions text-right">
-                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
-            </div>
-        </div>
-    </ng-template>
-
-
-
-    <div class="content">
-
-		<div class="row">
-			<div class="col-sm-3">
-				<!-- Begin user profile -->
-				<div class="text-center user-profile-2" style="margin-top:120px">
-					<ul class="list-group">
-                      <li class="list-group-item">
-                            <h4 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h4>
-                            <small style="color:black">{{User.username}}</small>
-					  </li>
-                      <li class="list-group-item" style="color:black">
-                        <a class="link" href="/followers/{{ User.id }}">
-                            <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
-                            Followers
-                        </a>
-					  </li>
-                      <li class="list-group-item" style="color:black">
-                        <a class="link" href="/following/{{ User.id }}">
-                            <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
-                            Following
-                        </a>
-                      </li>
-                      <li class="list-group-item" style="color:midnightblue">
-						<span class="badge" style="color:darkblue">{{posts?.length}}</span>
-						Posts
-					  </li>
-					</ul>
-                </div><!-- End div .box-info -->
-                <br>
-				<!-- Begin user profile -->
-			</div><!-- End div .col-sm-4 -->
-			
-			<div class="col-sm-9">
-				<div class="widget widget-tabbed">
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						
-						
-						<!-- Tab timeline -->
-						<div class="tab-pane animated active fadeInRight" id="my-timeline">
-							<div class="user-profile-content">
-								<br><br>
-								<!-- Begin timeline -->
-								<div class="the-timeline">
-                                    <!-- Post will Go here -->
-                                    
-                                    <!-- ======= Portfolio Section ======= -->
-                                    <section id="portfolio" class="portfolio section-bg" style="margin-top:20px">
-                                        <div class="container" id="user_post">
-
-                                            <div class="section-title">
-                                            <h2 data-aos="fade-in">Post</h2>
-                                            <p data-aos="fade-in"></p>
-                                            </div>
-
-                                            <div class="row portfolio-container" data-aos="fade-up">
-
-                                                <div *ngFor="let post of posts" class="col-lg-4 col-md-6 portfolio-item filter-web">
-                                                    <div class="portfolio-wrap">
-                                                        <img src="{{ post.file | TransalateImageUrl }}" class="img-fluid">
-                                                        <div class="portfolio-links">
-                                                            <a data-gall="portfolioGallery" class="venobox" title="{{post.post_info}}" href="{{ post.file | TransalateImageUrl }}" ><i class="icofont-link"></i></a>
-                                                            <a href="" title="More Details"><i class="icofont-trash"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                    </section>
-
-
-
-								</div><!-- End div .the-timeline -->
-								<!-- End timeline -->
-							</div><!-- End div .user-profile-content -->
-						</div><!-- End div .tab-pane -->
-						<!-- End Tab timeline -->
-					</div><!-- End div .tab-content -->
-                </div><!-- End div .box-info -->
-			</div>
-		</div>
-	</div>	
-</div>
