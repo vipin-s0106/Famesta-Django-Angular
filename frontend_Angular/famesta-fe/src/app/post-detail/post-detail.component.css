@@ -1,10 +1,24 @@
+a:hover{
+  color:midnightblue;
+}
+
+
 .profile_pic{
   position: relative;
   overflow: hidden;
   border-radius: 50%;
+  
 }
-.profile_pic1 img{
+.profile_pic img{
     border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
+
+.profile_pic1 img{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
 }
 /* Blog Sidebar
 -------------------*/
@@ -102,13 +116,27 @@
     border: none;
 }
 
+.btn-get-started2 {
+  color:white;
+  border-radius: 50px;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid white;
+  transition: all ease-in-out 0.3s;
+  display: inline-block;
+  background: rgb(46, 236, 39);
+  outline-width: 0;
+}
 
+.btn-get-started2:hover {
+  background: rgb(46, 236, 39);
+  color:white;
+}
 
 
 .btn-get-started {
     color:white;
     border-radius: 50px;
-    padding: 2px;
+    padding: 5px 10px 5px 10px;
     border: 2px solid white;
     transition: all ease-in-out 0.3s;
     display: inline-block;
@@ -123,9 +151,14 @@
   }
 
 
+  .modal-dialog{
+    width: 400px;
+  }
+
+
   .like-modal{
     border-radius: 5px;
-    width: 100%;
+    /* width: 100%; */
     display: inline-block;
     vertical-align: top;
     max-height: 300px;

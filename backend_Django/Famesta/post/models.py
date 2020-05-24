@@ -26,6 +26,6 @@ class PostDetail(models.Model):
     post = models.ForeignKey(Post,related_name='post_detail',on_delete=models.CASCADE)
 
     def __str__(self):
-        return "PostID:"+str(self.post.id)+" UserID:"+str(self.user.id)+" Comment: "+str(self.comment)
+        return "PostID:"+str(self.post.id)+" UserID:"+str(self.user.id)+" Comment: "+str(self.comment) + " Like: "+str(self.like)
 
 

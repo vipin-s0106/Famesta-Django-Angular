@@ -10,12 +10,13 @@ from rest_framework.decorators import api_view,permission_classes,authentication
 from rest_framework.permissions import IsAuthenticated
 
 #importing Serializer
-from.serializer import PostLikeCommentSerializer,PostDetailSerializer,PostListSerializer,PostSerializer
+from.serializer import PostLikeCommentSerializer,PostDetailSerializer,PostListSerializer,PostSerializer,PostLikeCommentCreateSerializer
 
 #importing models
 from .models import PostDetail,Post
 from user.models import User
 from followers.models import Follower
+import json
 
 import requests
 
@@ -85,14 +86,14 @@ class PostStoryDetailView(APIView):
 
     def get(self,request,post_id):
         post = self.get_object(post_id)
-        print(post)
+        # print(post)
         if post is None:
             return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
         serializer_context = {
             'request': request,
         }
         serializer = PostDetailSerializer(post,context=serializer_context)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
 
     def delete(self,request,post_id):
@@ -140,7 +141,7 @@ class CommentCreateView(APIView):
         post_data = request.data
         post_data['user'] = user_id
         post_data['post'] = post_id
-        serializer = PostLikeCommentSerializer(data=post_data)
+        serializer = PostLikeCommentCreateSerializer(data=post_data)
         if serializer.is_valid():
             #########################################
             '''
@@ -190,9 +191,11 @@ class CommentDeleteView(APIView):
 class LikeCreateView(APIView):
     def post(self,request,user_id,post_id):
         post_data = request.data
+        print(post_data)
         post_data['user'] = user_id
         post_data['post'] = post_id
-        serializer = PostLikeCommentSerializer(data=post_data)
+        print(post_data)
+        serializer = PostLikeCommentCreateSerializer(data=post_data)
         if serializer.is_valid():
             #########################################
             '''

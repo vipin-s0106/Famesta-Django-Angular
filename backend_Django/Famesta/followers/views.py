@@ -42,8 +42,6 @@ class GetSuggestion(APIView):
 		except:
 			return Response({"error":"Something happend at server side"},status=500)
 
-
-
 class AcceptFollowRequest(APIView):
 	def post(self,request,user_id,follower_id):
 		post_data = request.data

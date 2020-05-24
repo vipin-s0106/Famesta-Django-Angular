@@ -46,8 +46,7 @@ export class PostService {
     return this.http.get(this._getLikesList_url+post_id+"/");
   }
 
-  postComment(user_id,post_id): Observable<any>{
-    let data = {}
+  postComment(user_id,post_id,data): Observable<any>{
     return this.http.post<any>(this._postComment_url+user_id+"/"+post_id+"/",data)
   }
 
@@ -56,13 +55,8 @@ export class PostService {
   }
 
   likePost(user_id,post_id): Observable<any>{
-    let data = {}
+    let data = {'like':true}
     return this.http.post<any>(this._like_post_url+user_id+"/"+post_id+"/",data)
   }
-
-
-
-
-
 
 }
