@@ -97,5 +97,15 @@ export class OtherUserProfileComponent implements OnInit {
     )
   }
 
+  unfollowUser(user_id,following_user_id){
+    this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
+      res => {
+        console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
 
 }

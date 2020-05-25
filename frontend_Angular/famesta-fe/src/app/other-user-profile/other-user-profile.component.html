@@ -11,9 +11,9 @@
                         alt="User avatar">
                 </div>
                 <div class="col-sm-12 profile-actions text-right">
-                    <a *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
-                        class="btn btn-success btn-sm" style="margin-right:10px;color:white">
-                        <i class="fa fa-check"></i> Following
+                    <a (click)="unfollowUser(LoggedUser.id,User.id)" *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-reply"></i> Unfollow
                     </a>
                     <ng-template #ElseBlock1>
                         <a *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
@@ -22,7 +22,7 @@
                         </a>
                         <ng-template #ElseBlock2>
                             <a (click)="followUser(User.id,LoggedUser.id,LoggedUser.username)" type="button" class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
-                                <i class="fa fa-check"></i> Follow
+                                <i class="fa fa-plus"></i> Follow
                             </a>
                         </ng-template>
                     </ng-template>
@@ -36,12 +36,12 @@
                         alt="User avatar">
                 </div>
                 <div class="col-sm-12 profile-actions text-right">
-                    <a *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
-                        class="btn btn-success btn-sm" style="margin-right:10px;color:white">
-                        <i class="fa fa-check"></i> Following
+                    <a (click)="unfollowUser(LoggedUser.id,User.id)" *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-reply"></i> Unfollow
                     </a>
                     <ng-template #ElseBlock1>
-                        <a *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
+                        <a  *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
                             class="btn btn-success btn-sm" style="margin-right:10px;color:white">
                             <i class="fa fa-check"></i> Requested
                         </a>

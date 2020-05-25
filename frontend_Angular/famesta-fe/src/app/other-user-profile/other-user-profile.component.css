@@ -8,6 +8,7 @@
     background-color: #252932;
     border-bottom: 4px solid #fff;
     box-shadow: 2px 0px 4px rgba(0,0,0,0.1);
+    border-radius: 5%;
   }
   
   .avatar-container {

@@ -3,6 +3,7 @@ import { Router, ParamMap } from '@angular/router'
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service';
+import { NotificationService } from '../services/notification.service'
 
 
 @Component({
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   public posts;
   public suggestion_user;
 
-  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {
+  constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {
     
    }
 
@@ -62,7 +63,14 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-
+  followUser(user_id,follower_user_id,user_name){
+    let postData = {"message":user_name+" has requested to follow you","notification_type":"follow","other_user":follower_user_id}
+    console.log(postData)
+    this.not_srv.createFollowRequest(user_id,postData).subscribe(
+      res => this.ngOnInit(),
+      err => console.log(err)
+    )
+  }
 
 
 }

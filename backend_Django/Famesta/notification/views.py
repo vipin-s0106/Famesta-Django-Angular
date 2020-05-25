@@ -98,8 +98,9 @@ class NotificationAPIView(APIView):
     def get(self,request,user_id):
         user = User.objects.filter(pk=user_id).first()
         if user:
-            instance = Notification.objects.filter(user=user)
-            serializer = NotificationSerializer(instance,many=True)
+            instance = Notification.objects.filter(user=user).order_by('-timestamp')
+            serializer_context = {'request':request}
+            serializer = NotificationSerializer(instance,many=True,context=serializer_context)
             return Response(serializer.data,status=200)
         else:
             return Response({"error":"Given user id does not exist"},status=400)

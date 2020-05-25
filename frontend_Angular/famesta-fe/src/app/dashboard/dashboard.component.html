@@ -116,8 +116,8 @@
         </div>
 
         <!-- Side Widget -->
-        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="background: white;border: none;">
-          <h5 class="card-header">Suggestions</h5>
+        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="border: none;">
+          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a><span style="margin-left:90px;color:black;font-weight: bold;">view all</span></a></h5>
           <div class="card-body">
                 <div class="row">
                     <div class="col-md-4" *ngFor="let user of suggestion_user">
@@ -125,7 +125,7 @@
                         <div class="pic"><img src="{{user.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
                         <span><a href="/user/{{user.username}}">{{user.username}}</a></span>
                         <div class="social">
-                          <a href=""><i class="icofont-instagram"></i>follow</a>
+                          <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)"><i class="icofont-instagram"></i>follow</a>
                         </div>
                       </div>
                     </div>

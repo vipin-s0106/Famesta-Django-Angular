@@ -24,13 +24,13 @@
                     <div class="row">
                         <div class="profile_pic col-xs-2"><img src="{{ post.user.profile.profile_picture }}" alt=""></div>
                         <div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
-                        <div *ngIf="post.followed_status; else ElseBlock" class="col-xs-2" style="margin-top:8px;margin-left:10px"><span class="icofont-check-alt" style="margin-left:40px;font-size: 15px;font-weight: bolder;color:rgb(7, 112, 7)">Following</span></div>
+                        <div *ngIf="post.followed_status; else ElseBlock" class="col-xs-2" style="margin-top:8px;margin-left:80px"><a (click)="unfollowUser(LoggedUser.id,post.user.id)" class="btn btn-primary btn-sm" style="font-size: 15px;"><span class="icofont-reply" style="color:white"> Unfollow</span></a></div>
                         <ng-template #ElseBlock>
                             <div *ngIf="post.user.id==LoggedUser.id; else ElseBlock1" class="col-xs-2" style="margin-left:100px"></div>
                             <ng-template #ElseBlock1>
                                 <div *ngIf="post.follow_request_sent; else ElseBlock2" class="col-xs-3" style="margin-left:60px"><a class="btn-get-started2">Requested<span class="icofont-check"></span></a></div>
                                 <ng-template #ElseBlock2>
-                                    <div class="col-xs-2" style="margin-left:100px"><a (click)="followUser(post.user.id,LoggedUser.id,LoggedUser.username)" class="btn-get-started">Follow</a></div>
+                                    <div class="col-xs-2" style="margin-left:90px;color:white;margin-top:5px"><a (click)="followUser(post.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm"><i style="font-size: 12px;" class="icofont-plus"></i> Follow</a></div>
                                 </ng-template>
                             </ng-template>
                         </ng-template>
@@ -52,7 +52,7 @@
                                 <div class="lpa-right">
                                     <a href="/user/{{comment.user.username}}"><span style="font-size: 12px;font-weight: bold;">{{comment.user.username}}</span></a><small style="margin-left:5px;font-size: 11px;color:black"> {{comment.comment}}</small>
                                     <br>
-                                    <span style="font-weight:bold;font-size: 10px;color: slategrey;">{{comment.post_action_timestamp | dateAgo}}</span>
+                                    <a><span style="font-weight:bold;font-size: 10px;color: slategrey;">{{comment.post_action_timestamp | dateAgo}}</span></a>
                                 </div>
                             </div>
                         </div>
@@ -112,14 +112,14 @@
                                 
                                     <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px"> {{like.user.username}}</span></a></div>
                             </div>
-                            <div class="lpa-right" style="margin-top:15px;margin-left:50px">
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 100px;">
                                 <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>
                                 <ng-template #ElseBlock2>
-                                    <span *ngIf="like.followed_status; else ElseBlock" class="icofont-check-alt" style="font-size: 15px;font-weight: bolder;color:rgb(7, 112, 7)">Following</span>
+                                    <a (click)="unfollowUser(LoggedUser.id,like.user.id)" *ngIf="like.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
                                     <ng-template #ElseBlock>
-                                        <span *ngIf="like.follow_request_sent; else ElseBlock1" class="icofont-check-alt" style="font-size: 14px;font-weight: bolder;color:rgb(7, 112, 7)"><a >Requested</a></span>
+                                        <a *ngIf="like.follow_request_sent; else ElseBlock1" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
                                         <ng-template #ElseBlock1>
-                                            <span><a (click)="followUser(like.user.id,LoggedUser.id,LoggedUser.username)" class="btn-get-started" style="margin-left:100px">Follow</a></span>
+                                            <a (click)="followUser(like.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
                                         </ng-template>
                                     </ng-template>
                                 </ng-template>

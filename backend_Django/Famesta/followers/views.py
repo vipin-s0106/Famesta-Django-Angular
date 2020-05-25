@@ -44,14 +44,15 @@ class GetSuggestion(APIView):
 
 
 class AcceptFollowRequest(APIView):
+
     def post(self, request, user_id, follower_id):
         post_data = request.data
-        post_data['user'] = User.objects.get(pk=user_id)
-        post_data['followed_user'] = User.objects.get(pk=follower_id)
+        post_data['user'] = User.objects.get(pk=follower_id)
+        post_data['followed_user'] = User.objects.get(pk=user_id)
         follower_obj = Follower.objects.filter(user=post_data['user'], followed_user=post_data['followed_user']).first()
         if follower_obj is None:
-            post_data['user'] = user_id
-            post_data['followed_user'] = follower_id
+            post_data['user'] = follower_id
+            post_data['followed_user'] = user_id
             serializer = FollowSerializer(data=post_data)
             if serializer.is_valid():
 
@@ -61,7 +62,7 @@ class AcceptFollowRequest(APIView):
 				'''
                 notification_data = {
                     "message": str(User.objects.get(pk=user_id).username) + " has accepted your request",
-                    "notification_type": "follow",
+                    "notification_type": "request_accepted",
                     "other_user": user_id
                 }
                 # getting the bearer token
@@ -71,7 +72,7 @@ class AcceptFollowRequest(APIView):
                     'Allow': 'POST, OPTIONS',
                     'Authorization': bearer_token
                 }
-                print(headers)
+                # print(headers)
                 notification_url = r"http://" + request.META['HTTP_HOST'] + "/api/notification/" + str(
                     follower_id) + "/"
                 notification_response = requests.post(notification_url, data=notification_data, headers=headers)

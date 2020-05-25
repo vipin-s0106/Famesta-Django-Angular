@@ -3,177 +3,59 @@
 <section id="schedule" class="section-with-bg">
     <div class="container wow fadeInUp">
       <div class="section-header">
-        <a href="/dashboard"><span id="back" class="icofont-circled-left"> Home</span></a>
-        <h3 align="center" style="margin-top:10px;margin-bottom:20px">Notification</h3>
+        <h3 style="font-size:18px;font-weight:bold;margin-top:10px;margin-bottom:0px;margin-left:500px">Notification <span><a (click)="deleteAllUserNotification(user_id)"  class="btn-get-started scrollto" style="margin-left:500px"><span  class="icofont-ui-delete"></span> Clear All</a></span></h3>
       </div>
-
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" href="#activity" role="tab" data-toggle="tab">Activity</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#request" role="tab" data-toggle="tab">Request</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#chat" role="tab" data-toggle="tab">Chat</a>
-        </li>
-      </ul>
 
       <hr>
 
       <div class="tab-content row justify-content-center">
 
         <!-- Schdule Day 1 -->
-        <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="activity">
-
-          <div class="row schedule-item">
+        <div *ngFor="let not of notifications" role="tabpanel" class="col-lg-9 tab-pane fade show active" id="activity">
+          <div *ngIf="not.notification_type!='follow'; else ElseBlock"  class="row schedule-item">
             <div class="col-md-10">
               <div class="speaker">
                 <div class="member" data-aos="fade-up">
-                    <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></div>
-                  </div>
-              </div>
-              <h4>Aman Sharma<span> aman_s200222</span></h4>
-              <a><p>aman_s200222 has liked your post</p></a>
-              <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
-            </div>
-            <a id="clear"><span  class="icofont-ui-delete"></span></a>
-          </div>
-
-          <div class="row schedule-item">
-            <div class="col-md-10">
-              <div class="speaker">
-                <div class="member" data-aos="fade-up">
-                    <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></div>
-                  </div>
-              </div>
-              <h4>Aman Sharma<span> aman_s200222</span></h4>
-              <a><p>aman_s200222 has liked your post</p></a>
-              <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
-            </div>
-            <a id="clear"><span  class="icofont-ui-delete"></span></a>
-          </div>
-
-          <div class="row schedule-item">
-            <div class="col-md-10">
-              <div class="speaker">
-                <div class="member" data-aos="fade-up">
-                    <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></div>
-                  </div>
-              </div>
-              <h4>Aman Sharma<span> aman_s200222</span></h4>
-              <a><p>aman_s200222 has liked your post</p></a>
-              <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
-            </div>
-            <a id="clear"><span  class="icofont-ui-delete"></span></a>
-          </div>
-
-          <div class="row schedule-item">
-            <div class="col-md-10">
-              <div class="speaker">
-                <div class="member" data-aos="fade-up">
-                    <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""></div>
-                  </div>
-              </div>
-              <h4>Aman Sharma<span> aman_s200222</span></h4>
-              <a><p>aman_s200222 has liked your post</p></a>
-              <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
-            </div>
-            <a id="clear"><span  class="icofont-ui-delete"></span></a>
-          </div>
-
-        </div>
-        <!-- End Schdule Day 1 -->
-
-        <!-- Schdule Day 2 -->
-        <div role="tabpanel" class="col-lg-9  tab-pane fade" id="request">
-
-            <div class="row schedule-item">
-                <div class="col-md-10">
-                  <div class="speaker">
-                    <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></div>
-                      </div>
-                  </div>
-                  <h4>Aman Sharma<span> aman_s200222</span></h4>
-                  <a><p>aman_s200222 has requested to follow you</p></a>
-                  <div class="row" >
-                    <div class="col-xs-10" style="margin-left:15px"></div>
-                    <div class="col-sm-1" class="accept">
-                      <a  class="btn-get-started scrollto" >Accept</a>
-                    </div>
-                    <div class="col-sm-1" class="decline">
-                      <a  class="btn-get-started scrollto" >Decline</a>
-                    </div>
-                  </div> 
-                  <small style="color:#8C8D89;font-weight: bold;margin-left:145px">2 days ago</small>
-                    
-                </div>  
-            </div>
-
-            <div class="row schedule-item">
-                <div class="col-md-10">
-                  <div class="speaker">
-                    <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></div>
-                      </div>
-                  </div>
-                  <h4>Aman Sharma<span> aman_s200222</span></h4>
-                  <a><p>aman_s200222 has requested to follow you</p></a>
-                  <div class="row">
-                    <div class="col-xs-10" style="margin-left:15px"></div>
-                    <div class="col-sm-1" class="accept">
-                      <a  class="btn-get-started scrollto" >Accept</a>
-                    </div>
-                    <div class="col-sm-1" class="decline">
-                      <a  class="btn-get-started scrollto" >Decline</a>
-                    </div>
-                  </div> 
-                  <small style="color:#8C8D89;font-weight: bold;margin-left:145px">2 days ago</small>
-                    
-                </div>  
-            </div>
-              
-
-        </div>
-        <!-- End Schdule Day 2 -->
-
-        <!-- Schdule Day 3 -->
-        <div role="tabpanel" class="col-lg-9  tab-pane fade" id="chat">
-
-            <div class="row schedule-item">
-                <div class="col-md-10">
-                  <div class="speaker">
-                    <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""></div>
-                      </div>
-                  </div>
-                  <h4>Aman Sharma<span> aman_s200222</span></h4>
-                  <a><p>aman_s200222 has liked your post</p></a>
-                  <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
+                    <a href="/user/{{not.other_user.username}}"><div class="pic"><img src="{{not.other_user.profile.profile_picture}}" alt=""></div></a>
                 </div>
-                <a id="clear"><span  class="icofont-ui-delete"></span></a>
               </div>
-
-              <div class="row schedule-item">
-                <div class="col-md-10">
-                  <div class="speaker">
-                    <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""></div>
-                      </div>
-                  </div>
-                  <h4>Aman Sharma<span> aman_s200222</span></h4>
-                  <a><p>aman_s200222 has liked your post</p></a>
-                  <small style="color:#8C8D89;font-weight: bold;">2 days ago</small>
+              <a href="/user/{{not.other_user.username}}"><h4 style="font-size:18px">{{not.other_user.profile.full_name | titlecase}}<span> {{not.other_user.username}}</span></h4></a>
+              <a *ngIf="not.notification_type!='request_accepted'; else ElseBlock1" href="/post-detail/{{not.post.id}}"><p>{{not.message}}</p></a>
+              <ng-template #ElseBlock1>
+                <p>{{not.message}}</p>
+              </ng-template>
+              <small style="color:#8C8D89;font-weight: bold;">{{not.timestamp | dateAgo}}</small>
+            </div>
+            <a (click)="deleteNotification(not.id)"  id="clear"><span  class="icofont-ui-delete"></span></a>
+          </div>
+          <ng-template #ElseBlock>
+            <div *ngIf="not.notification_type === 'follow'" class="row schedule-item">
+              <div class="col-md-10">
+                <div class="speaker">
+                  <div class="member" data-aos="fade-up">
+                    <a href="/user/{{not.other_user.username}}"><div class="pic"><img src="{{not.other_user.profile.profile_picture}}" alt=""></div></a>
+                    </div>
                 </div>
-                <a id="clear"><span  class="icofont-ui-delete"></span></a>
-              </div>
-
+                <a href="/user/{{not.other_user.username}}"><h4 style="font-size:18px">{{not.other_user.profile.full_name | titlecase}}<span> {{not.other_user.username}}</span></h4></a>
+                <a><p>{{not.message}}</p></a>
+                <div class="row" >
+                  <div class="col-xs-10" style="margin-left:15px"></div>
+                  <div class="col-sm-1" class="accept">
+                    <a (click)="acceptFollowRequest(user_id,not.other_user.id,not.id)"  class="btn-get-started scrollto" >Accept</a>
+                  </div>
+                  <div class="col-sm-1" class="decline">
+                    <a (click)="declineRequest(not.id)"  class="btn-get-started scrollto" >Decline</a>
+                  </div>
+                </div> 
+                <small style="color:#8C8D89;font-weight: bold;margin-left:145px">{{not.timestamp | dateAgo}}</small>
+                  
+              </div>  
+            </div>
+          </ng-template>
+          
         </div>
-        <!-- End Schdule Day 3 -->
-
       </div>
-      <a  class="btn-get-started scrollto" ><span  class="icofont-ui-delete"></span> Clear All</a>
+      
 
     </div>
 

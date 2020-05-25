@@ -156,7 +156,8 @@
   }
   
 .member .social a:hover {
-    color: #fdc134;
+    color: midnightblue;
+    font-style: bold;
   }
   
 .member .social i {
