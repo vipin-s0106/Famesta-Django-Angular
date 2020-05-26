@@ -181,3 +181,43 @@
       opacity: 1;
       bottom: 0;
     }
+
+
+
+
+/* Followers and Following Modal  */
+
+.profile_pic1 img{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+  
+.modal-header{
+  height: 10px;
+  border: none;
+}
+
+.modal-dialog{
+  width: 400px;
+}
+
+.like-modal{
+  border-radius: 5px;
+  /* width: 100%; */
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.media-body a:hover{
+    color:midnightblue;
+    font-size: 16px;
+}
+
+.like-modal::-webkit-scrollbar
+{
+width: 0px;
+background-color: #F5F5F5;
+}

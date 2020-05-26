@@ -73,4 +73,24 @@ export class ProfileComponent implements OnInit {
     return this.usr_srv._base_url+image_url
   }
 
+  remove_Follower(user_id,follower_user_id){
+    this.follower_srv.removeFollower(user_id,follower_user_id).subscribe(
+      res => {
+        console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
+  unfollowUser(user_id,following_user_id){
+    this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
+      res => {
+        console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
 }

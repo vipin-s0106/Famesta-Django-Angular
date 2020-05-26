@@ -24,9 +24,15 @@ class GetSuggestion(APIView):
             user = User.objects.get(pk=user_id)
             not_required_in_list.append(user)
             followd_user_list = Follower.objects.filter(user=user)
+            request_sent_list = Notification.objects.filter(other_user=user,notification_type="follow")
+
 
             for follower in followd_user_list:
                 not_required_in_list.append(follower.followed_user)
+
+            #append the user to whom you have already requested
+            for requested_user in request_sent_list:
+                not_required_in_list.append(requested_user.user)
 
             for followd_user in followd_user_list:
                 follower_follower_list = Follower.objects.filter(user=followd_user.followed_user)
@@ -38,7 +44,7 @@ class GetSuggestion(APIView):
                 suggestion_serializer = UserSerializer(suggestion_user_list, many=True)
                 return Response(suggestion_serializer.data, status=200)
             else:
-                return Response({"msg": "No Suggestion found"}, status=404)
+                return Response({"msg": "No Suggestion found"}, status=200)
         except:
             return Response({"error": "Something happend at server side"}, status=500)
 
@@ -108,7 +114,8 @@ class GetUserFollowings(APIView):
         user = User.objects.filter(id=user_id).first()
         print(user)
         data = Follower.objects.filter(user=user)
-        serializer = FollowingSerializer(data, many=True)
+        serilizer_context = {'request': request}
+        serializer = FollowingSerializer(data, many=True,context=serilizer_context)
         return Response(serializer.data, status=200)
 
 
@@ -116,7 +123,8 @@ class GetUserFollowers(APIView):
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
         data = Follower.objects.filter(followed_user=user)
-        serializer = FollowerSerializer(data, many=True)
+        serilizer_context = {'request':request}
+        serializer = FollowerSerializer(data, many=True,context=serilizer_context)
         return Response(serializer.data, status=200)
 
 

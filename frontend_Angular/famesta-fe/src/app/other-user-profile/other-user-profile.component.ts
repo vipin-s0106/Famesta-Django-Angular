@@ -107,5 +107,15 @@ export class OtherUserProfileComponent implements OnInit {
     )
   }
 
+  remove_Follower(user_id,follower_user_id){
+    this.follower_srv.removeFollower(user_id,follower_user_id).subscribe(
+      res => {
+        console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
 
 }

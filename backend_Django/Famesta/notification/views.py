@@ -96,14 +96,17 @@ class NotificationAPIView(APIView):
         return Response(status=200)
 
     def get(self,request,user_id):
-        user = User.objects.filter(pk=user_id).first()
-        if user:
-            instance = Notification.objects.filter(user=user).order_by('-timestamp')
-            serializer_context = {'request':request}
-            serializer = NotificationSerializer(instance,many=True,context=serializer_context)
-            return Response(serializer.data,status=200)
+        if user_id == request.user.id:
+            user = User.objects.filter(pk=user_id).first()
+            if user:
+                instance = Notification.objects.filter(user=user).order_by('-timestamp')
+                serializer_context = {'request':request}
+                serializer = NotificationSerializer(instance,many=True,context=serializer_context)
+                return Response(serializer.data,status=200)
+            else:
+                return Response({"error":"Given user id does not exist"},status=400)
         else:
-            return Response({"error":"Given user id does not exist"},status=400)
+            return Response({"error": "Unauthorized User to see the notification"}, status=401)
 
     def put(self,request,notification_id):
         instance = Notification.objects.filter(id = notification_id).first()

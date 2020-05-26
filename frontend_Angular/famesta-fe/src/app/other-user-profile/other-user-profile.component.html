@@ -69,13 +69,13 @@
                                 <small style="color:black">{{User.username}}</small>
                             </li>
                             <li class="list-group-item" style="color:black">
-                                <a class="link" href="/followers/{{ User.id }}">
+                                <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal">
                                     <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
                                     Followers
                                 </a>
                             </li>
                             <li class="list-group-item" style="color:black">
-                                <a class="link" href="/following/{{ User.id }}">
+                                <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal1">
                                     <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
                                     Following
                                 </a>
@@ -151,3 +151,94 @@
             </div>
         </div>
     </div>
+
+
+
+    
+<!-- Followers Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followers</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followers?.length > 0; else Else">
+                    <div *ngFor="let follower of followers" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{follower.user.profile.profile_picture}}" alt=""><a href="/user/{{follower.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{follower.user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 110px;">
+                                <span *ngIf="follower.user.id==LoggedUser.id; else ElseBlock2"></span>
+                                <ng-template #ElseBlock2>
+                                    <a (click)="unfollowUser(LoggedUser.id,follower.user.id)" *ngIf="follower.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                    <ng-template #ElseBlock>
+                                        <a *ngIf="follower.follow_request_sent; else ElseBlock1" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                        <ng-template #ElseBlock1>
+                                            <a (click)="followUser(follower.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No followers found
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Following Modal -->
+<div class="modal fade" id="basicExampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followings</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followings?.length > 0; else Else1">
+                    <div *ngFor="let following of followings" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{following.followed_user.profile.profile_picture}}" alt=""><a href="/user/{{following.followed_user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;">{{following.followed_user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 130px;">
+                                <span *ngIf="following.followed_user.id==LoggedUser.id; else ElseBlock3"></span>
+                                <ng-template #ElseBlock3>
+                                    <a (click)="unfollowUser(LoggedUser.id,following.followed_user.id)" *ngIf="following.followed_status; else ElseBlock4" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                    <ng-template #ElseBlock4>
+                                        <a *ngIf="following.follow_request_sent; else ElseBlock5" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                        <ng-template #ElseBlock5>
+                                            <a (click)="followUser(following.followed_user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else1>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No following found
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

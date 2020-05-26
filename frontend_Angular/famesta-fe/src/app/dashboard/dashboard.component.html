@@ -116,7 +116,7 @@
         </div>
 
         <!-- Side Widget -->
-        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="border: none;">
+        <!-- <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="border: none;">
           <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a><span style="margin-left:90px;color:black;font-weight: bold;">view all</span></a></h5>
           <div class="card-body">
                 <div class="row">
@@ -131,7 +131,42 @@
                     </div>
                 </div>
           </div>
+        </div> -->
+        <!-- Suggestions -->
+        <div *ngIf="suggestion_user?.length > 0; else ElseBlock2">
+          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a><span style="margin-left:140px;color:black;font-weight: bold;">view all</span></a></h5>
+          <div class="widget widget-latest-post">
+              <div class="widget-body">
+                  <div *ngFor="let user of suggestion_user">
+                      <div class="latest-post-aside media">
+                          <div class="lpa-left media-body">
+                              <div class="row" style="margin-top:8px">
+                                <div class="col-sm-2">
+                                  <a href="/user/{{user.username}}"> 
+                                    <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                  </a>
+                                </div>
+                                <div class="col-sm-10" style="margin-top: 0;">
+                                  <div>
+                                    <a style="font-size: 12px;color:midnightblue;font-weight: bold;padding:0px;white-space: nowrap;width: 71px; ">{{user.profile.full_name}}</a>
+                                  </div>
+                                  <div>
+                                    <a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;padding:0px;white-space: nowrap;width: 71px;">{{user.username}}</span></a>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="lpa-right">
+                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:8px;padding-right:8px;margin-top:15px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
+        <ng-template #ElseBlock2>
+          <h5 style="font-size: 14px;font-weight: bold;margin-left:20px">No suggestions found for you</h5>
+        </ng-template>
       </div>
     </div>
     <!-- /.row -->
