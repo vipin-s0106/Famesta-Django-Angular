@@ -96,7 +96,8 @@ class NotificationAPIView(APIView):
         return Response(status=200)
 
     def get(self,request,user_id):
-        if user_id == request.user.id:
+        print(user_id,request.user.id)
+        if str(user_id) == str(request.user.id):
             user = User.objects.filter(pk=user_id).first()
             if user:
                 instance = Notification.objects.filter(user=user).order_by('-timestamp')
@@ -106,7 +107,7 @@ class NotificationAPIView(APIView):
             else:
                 return Response({"error":"Given user id does not exist"},status=400)
         else:
-            return Response({"error": "Unauthorized User to see the notification"}, status=401)
+            return Response({"error": "Unauthorized User to see the notification"}, status=403)
 
     def put(self,request,notification_id):
         instance = Notification.objects.filter(id = notification_id).first()

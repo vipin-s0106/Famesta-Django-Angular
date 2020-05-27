@@ -45,11 +45,17 @@ export class AuthService {
     return localStorage.getItem('refresh')
   }
 
+  removeToken(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh')
+  }
+
   //below code added after changing in the interceptor
 
   private storeJwtToken(jwt: string) {
     localStorage.setItem("token", jwt);
   }
+
 
 
   doTokenRefresh(){

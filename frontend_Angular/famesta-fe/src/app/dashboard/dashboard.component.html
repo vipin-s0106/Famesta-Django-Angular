@@ -134,10 +134,10 @@
         </div> -->
         <!-- Suggestions -->
         <div *ngIf="suggestion_user?.length > 0; else ElseBlock2">
-          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a><span style="margin-left:140px;color:black;font-weight: bold;">view all</span></a></h5>
+          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a *ngIf="suggestion_user?.length > 6" href="" data-toggle="modal" data-target="#SuggestionsModal"><span style="margin-left:140px;color:black;font-weight: bold;">view all</span></a></h5>
           <div class="widget widget-latest-post">
               <div class="widget-body">
-                  <div *ngFor="let user of suggestion_user">
+                  <div *ngFor="let user of suggestion_user | slice:0:6">
                       <div class="latest-post-aside media">
                           <div class="lpa-left media-body">
                               <div class="row" style="margin-top:8px">
@@ -157,7 +157,7 @@
                               </div>
                           </div>
                           <div class="lpa-right">
-                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:8px;padding-right:8px;margin-top:15px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:8px;padding-right:8px;margin-top:15px"><span style="font-size: 12px;" class="icofont-plus"></span> Follow</a>
                           </div>
                       </div>
                   </div>
@@ -173,3 +173,39 @@
   </div>
   <!-- /.container -->
 
+
+
+   
+<!-- Suggestions Modal -->
+<div class="modal fade" id="SuggestionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Suggestions</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="like-modal" *ngIf="suggestion_user?.length > 0; else Else">
+                  <div *ngFor="let user of suggestion_user" class="widget-body1">
+                      <div class="latest-post-aside media">
+                          <div class="lpa-left media-body" style="margin-top:5px">
+                              
+                                  <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""><a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{user.username}}</span></a></div>
+                          </div>
+                          <div class="lpa-right" style="margin-top:15px;margin-left: 130px;">
+                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span style="font-size: 12px;" class="icofont-plus"> </span> Follow</a>     
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <ng-template #Else>
+                  <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                      No suggestions found
+                  </p>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>

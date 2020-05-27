@@ -68,7 +68,13 @@ export class TokenInterceptorService implements HttpInterceptor {
         switchMap((token: any) => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(token.access);
-          return next.handle(this.addToken(request, token.access));
+          return next.handle(this.addToken(request, token.access)).pipe(catchError(error => {
+            if (error instanceof HttpErrorResponse && error.status === 401) {
+              this.authService.removeToken();
+            } else {
+              return throwError(error);
+            }
+          }));
         }));
 
     } else {
