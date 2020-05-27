@@ -30,10 +30,10 @@
                   <i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i>
                 </a>
                 
-                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="/post-detail/{{post.id}}">others</a> </small></p>
+                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" (click)="getPostLikeDetail(post.id)" data-toggle="modal" data-target="#LikeModal">others</a> </small></p>
                 <p class="card-text">{{post.post_info}}</p>
                 <div *ngIf="post.total_comment > 1; else ElseBlock">
-                  <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="/post-detail/{{post.id}}">more</a> 
+                  <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#8C8D89" href="/post-detail/{{post.id}}">more</a> 
                   </a>
                 </div>
                 <ng-template #ElseBlock>
@@ -194,7 +194,7 @@
                               
                                   <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""><a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{user.username}}</span></a></div>
                           </div>
-                          <div class="lpa-right" style="margin-top:15px;margin-left: 130px;">
+                          <div class="lpa-right" style="margin-top:15px;margin-left: 120px;">
                             <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span style="font-size: 12px;" class="icofont-plus"> </span> Follow</a>     
                           </div>
                       </div>
@@ -205,6 +205,45 @@
                       No suggestions found
                   </p>
               </ng-template>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- Like Modal -->
+<div class="modal fade" id="LikeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body">
+              <div class="like-modal">
+                  <div *ngFor="let like of post_detail" class="widget-body1">
+                      <div *ngIf="like.like" class="latest-post-aside media">
+                          <div class="lpa-left media-body" style="margin-top:3px">
+                              
+                                  <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}" style="white-space: nowrap;width: 10px;overflow: hidden;text-overflow: ellipsis;"><span style="font-size: 12px;font-weight: bold;margin-left:5px;"> {{like.user.username}}</span></a></div>
+                          </div>
+                          <div class="lpa-right" style="margin-top:15px;margin-left: 120px;">
+                              <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>
+                              <ng-template #ElseBlock2>
+                                  <a (click)="unfollowUser(LoggedUser.id,like.user.id)" *ngIf="like.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                  <ng-template #ElseBlock>
+                                      <a *ngIf="like.follow_request_sent; else ElseBlock1" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                      <ng-template #ElseBlock1>
+                                          <a (click)="followUser(like.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                      </ng-template>
+                                  </ng-template>
+                              </ng-template>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
       </div>
   </div>

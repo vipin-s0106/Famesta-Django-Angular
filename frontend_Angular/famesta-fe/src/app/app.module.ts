@@ -23,7 +23,14 @@ import { TokenInterceptorService } from './interceptor/token-interceptor.service
 import { AuthGuard } from './guard/auth.guard';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+//import material module
+import { MaterialModule } from './material/material.module';
+
+
+import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
 
 
 
@@ -34,11 +41,14 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
     DateAgoPipe,
     ImageUrlPipe,
   ],
+  entryComponents:[UnAuthorizedComponenetComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
   {

@@ -134,14 +134,15 @@ class ListLikeView(APIView):
 
     def get_object(self,post_id):
         post = Post.objects.filter(id = post_id).first()
-        post_likes = PostDetail.objects.filter(post=post,like_isnull=False)
+        post_likes = PostDetail.objects.filter(post=post,like__isnull=False)
         return post_likes
 
     def get(self,request,post_id):
         post_likes = self.get_object(post_id)
         #if len(post_comments) == 0:
             #return Response({"error":"for postID - "+str(post_id)+" story is not exist"},status=400)
-        serializer = PostLikeCommentSerializer(post_likes,many=True)
+        serializer_context = {'request':request}
+        serializer = PostLikeCommentSerializer(post_likes,many=True,context=serializer_context)
         return Response(serializer.data)
 
 

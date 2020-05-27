@@ -57,7 +57,7 @@
 
 
 
-        <div class="content">
+        <div *ngIf="User.profile.account_type!='Private' || userFollowerStatus.followed_status; else ElseBlock5" class="content">
 
             <div class="row">
                 <div class="col-sm-3">
@@ -150,6 +150,28 @@
                 </div>
             </div>
         </div>
+        <ng-template #ElseBlock5>
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Begin user profile -->
+                    <div class="text-center user-profile-2" style="margin-top:120px">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h5>
+                                <small style="color:black">{{User.username}}</small>
+                            </li>
+                        </ul>
+                    </div><!-- End div .box-info -->
+                    <br>
+                    <!-- Begin user profile -->
+                </div><!-- End div .col-sm-4 -->
+                <div align="center" class="col-sm-9" style="margin-top:55px;color:black">
+                    <span style="margin-top:50px;color:black;font-size: 40px;" class="icofont-lock"></span>
+                    <h3 style="margin-top:20px;">This Account is Private</h3>
+                    <p style="color:slategrey">Follow this account to see their photos and videos.</p>
+                </div>
+            </div>
+        </ng-template>
     </div>
 
 

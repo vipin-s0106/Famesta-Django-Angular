@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   public posts;
   public suggestion_user;
 
+  public post_detail;
+
   constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {
     
    }
@@ -68,6 +70,27 @@ export class DashboardComponent implements OnInit {
     console.log(postData)
     this.not_srv.createFollowRequest(user_id,postData).subscribe(
       res => this.ngOnInit(),
+      err => console.log(err)
+    )
+  }
+
+  unfollowUser(user_id,following_user_id){
+    this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
+      res => {
+        console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
+
+  getPostLikeDetail(post_id){
+    this.post_srv.getLikeViewDetailsOfPost(post_id).subscribe(
+      res => {
+        this.post_detail = res;
+        console.log(this.post_detail)
+      },
       err => console.log(err)
     )
   }

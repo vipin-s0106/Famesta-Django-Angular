@@ -29,7 +29,7 @@ export class OtherUserProfileComponent implements OnInit {
     this.username = username;
     this.usr_srv.getUserProfile(username).subscribe(
       res => {
-        // console.log(res);
+        console.log(res);
         this.User = res;
         if(res.profile.background_picture){
           this.background_image = this.getBackgroundImgURL(res.profile.background_picture)
@@ -42,7 +42,12 @@ export class OtherUserProfileComponent implements OnInit {
           err => console.log(err)
         );
         this.usr_srv.getLoggedUserDetails().subscribe(
-          res => this.LoggedUser = res,
+          res => {
+            this.LoggedUser = res
+            if (this.LoggedUser.username === username){
+              this._router.navigate(['/profile'])
+            }
+          },
           err => console.log(err)
         );
         // console.log(this.User)

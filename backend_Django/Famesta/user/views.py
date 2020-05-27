@@ -172,11 +172,11 @@ class OtherUserProfileAPIView(APIView):
             serializer = UserSerializer(user)
             return Response(serializer.data, status=200)
         else:
-            if user_profile.account_type == "Private":
-                return Response({"message":user.username+" account is private"},status=200)
-            else:
-                serializer = UserSerializer(user)
-                return Response(serializer.data, status=200)
+            # if user_profile.account_type == "Private":
+            #     return Response({"message":user.username+" account is private"},status=200)
+            # else:
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=200)
 
 
 

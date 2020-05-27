@@ -84,7 +84,6 @@
                     <div *ngIf="post.liked_by" class="row latest-post-aside media">
                         <p style="color:grey;font-weight: bold;margin-top:5px" class="liked">Liked by <small style="color: midnightblue;">{{post.liked_by}} .. <a href="" style="color:blue;font-weight: bold;" data-toggle="modal" data-target="#basicExampleModal">others</a> </small></p>
                     </div>
-                   
                 </div>
             </div>
             
@@ -110,9 +109,9 @@
                         <div *ngIf="like.like" class="latest-post-aside media">
                             <div class="lpa-left media-body" style="margin-top:5px">
                                 
-                                    <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px"> {{like.user.username}}</span></a></div>
+                                    <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{like.user.username}}</span></a></div>
                             </div>
-                            <div class="lpa-right" style="margin-top:15px;margin-left: 100px;">
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 160px;">
                                 <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>
                                 <ng-template #ElseBlock2>
                                     <a (click)="unfollowUser(LoggedUser.id,like.user.id)" *ngIf="like.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>

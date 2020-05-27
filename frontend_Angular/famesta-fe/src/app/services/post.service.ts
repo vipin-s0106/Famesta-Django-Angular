@@ -16,6 +16,7 @@ export class PostService {
   private _postComment_url: string = "http://127.0.0.1:8000/api/post_comment/"  //append user_id and post id with this url
   private _deleteComment_url: string = "http://127.0.0.1:8000/api/delete_comment/"  //append user_id and post id with this url
   private _like_post_url: string = "http://127.0.0.1:8000/api/like_post/"  //append user_id and post id with this url
+  private _list_likes_detailsOfPost_url: string ="http://127.0.0.1:8000/api/story_like/" //append the post id with this url
 
   constructor(private http: HttpClient) { }
 
@@ -57,6 +58,10 @@ export class PostService {
   likePost(user_id,post_id): Observable<any>{
     let data = {'like':true}
     return this.http.post<any>(this._like_post_url+user_id+"/"+post_id+"/",data)
+  }
+
+  getLikeViewDetailsOfPost(post_id):Observable<any>{
+    return this.http.get(this._list_likes_detailsOfPost_url+post_id+"/")
   }
 
 }

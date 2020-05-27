@@ -5,6 +5,11 @@ import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service';
 import { NotificationService } from '../services/notification.service';
 
+import { UnAuthorizedComponenetComponent } from '../un-authorized-componenet/un-authorized-componenet.component'
+
+
+import { MatDialog } from '@angular/material/dialog'
+
 
 @Component({
   selector: 'app-notification',
@@ -17,7 +22,7 @@ export class NotificationComponent implements OnInit {
   public followe_request_list = new Array();
   public user_id;
 
-  constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,private route:ActivatedRoute) { }
+  constructor(public dialog: MatDialog,public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -27,7 +32,15 @@ export class NotificationComponent implements OnInit {
         this.notifications = res;
         console.log(this.notifications);
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        if (err.status === 403){
+          let dialogRef = this.dialog.open(UnAuthorizedComponenetComponent);
+          dialogRef.afterClosed().subscribe(result => {
+            this._router.navigate(['/dashboard'])
+          });
+        }
+      }
     )
   }
 
@@ -38,7 +51,14 @@ export class NotificationComponent implements OnInit {
         this.notifications = res;
         console.log(this.notifications);
       },
-      err => console.log(err)
+      err => {
+        if (err.status === 403){
+          let dialogRef = this.dialog.open(UnAuthorizedComponenetComponent);
+          dialogRef.afterClosed().subscribe(result => {
+            this._router.navigate(['/dashboard'])
+          });
+        }
+      }
     )
   }
 
@@ -78,8 +98,5 @@ export class NotificationComponent implements OnInit {
     this.deleteNotification(notification_id);
     this.loadDataAgain()
   }
-
-
-
 
 }

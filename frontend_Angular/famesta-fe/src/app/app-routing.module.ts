@@ -17,6 +17,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ChatComponent } from './chat/chat.component';
 import { OtherUserProfileComponent } from './other-user-profile/other-user-profile.component';
+import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
@@ -68,4 +69,5 @@ export const RoutingComponent = [
   PostDetailComponent,
   ChatComponent,
   OtherUserProfileComponent,
+  UnAuthorizedComponenetComponent,
 ]
