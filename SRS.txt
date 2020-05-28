@@ -138,18 +138,18 @@ Things need to complete in API
 4) same followers and following should be display modal in other user profile section also - Fixed
 5) logged user should not be able to see the other user notification -Fixed
 6) if user account is private do not allow to see -Fixed
-12) echanced the dashboard page when user click on like of any post it should display a modal like in post-detail page - Fixed
-7 ) User can like his post but notification should not be generated edit in backend server
-7) develop the proper comment section layout
-8) complete the user should post the story
-9) user can edit the profile section
-10) develop the search result should be properly auto populated
-11) include pagination in dashboard page
-
-13) enhanced the navigation bar properly include home notification
-14) develop chat page
-15) change the password
-16) contact support page
+7) echanced the dashboard page when user click on like of any post it should display a modal like in post-detail page - Fixed
+8) User can like his post but notification should not be generated edit in backend server -Fixed
+9) Delete Post should be completed -Fixed
+10) complete the user should post the story -Fixed
+11) develop the proper comment section layout -Fixed
+12) user can edit the profile section
+13) develop the search result should be properly auto populated
+14) include pagination in dashboard page
+15) enhanced the navigation bar properly include home notification
+16) develop chat page
+17) change the password
+18) contact support page
 
 
 

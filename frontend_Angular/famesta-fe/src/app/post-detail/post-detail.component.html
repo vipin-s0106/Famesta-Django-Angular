@@ -26,7 +26,7 @@
                         <div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
                         <div *ngIf="post.followed_status; else ElseBlock" class="col-xs-2" style="margin-top:8px;margin-left:80px"><a (click)="unfollowUser(LoggedUser.id,post.user.id)" class="btn btn-primary btn-sm" style="font-size: 15px;"><span class="icofont-reply" style="color:white"> Unfollow</span></a></div>
                         <ng-template #ElseBlock>
-                            <div *ngIf="post.user.id==LoggedUser.id; else ElseBlock1" class="col-xs-2" style="margin-left:100px"></div>
+                            <div *ngIf="post.user.id===LoggedUser.id; else ElseBlock1" class="col-xs-2" style="margin-left:100px"></div>
                             <ng-template #ElseBlock1>
                                 <div *ngIf="post.follow_request_sent; else ElseBlock2" class="col-xs-3" style="margin-left:60px"><a class="btn-get-started2">Requested<span class="icofont-check"></span></a></div>
                                 <ng-template #ElseBlock2>
@@ -42,20 +42,31 @@
             <div *ngIf="checkCommentPresent(post.post_detail)">
                 <div class="widget widget-latest-post">
                     <div class="widget-body">
-                        <div *ngFor="let comment of post.post_detail">
-                            <div *ngIf="comment.comment" class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <a href="/user/{{comment.user.username}}"> 
-                                        <div class="profile_pic1"><img src="{{comment.user.profile.profile_picture}}" alt=""></div>
-                                    </a>
-                                </div>
-                                <div class="lpa-right">
-                                    <a href="/user/{{comment.user.username}}"><span style="font-size: 12px;font-weight: bold;">{{comment.user.username}}</span></a><small style="margin-left:5px;font-size: 11px;color:black"> {{comment.comment}}</small>
-                                    <br>
-                                    <a><span style="font-weight:bold;font-size: 10px;color: slategrey;">{{comment.post_action_timestamp | dateAgo}}</span></a>
+                        
+                        <div class="be-comment-block">
+                            <div *ngFor="let comment of post.post_detail" class="be-comment">
+                                <div *ngIf="comment.comment">
+                                    <div class="be-img-comment">	
+                                        <a href="/user/{{comment.user.username}}">
+                                            <img src="{{comment.user.profile.profile_picture}}" alt="" class="be-ava-comment">
+                                        </a>
+                                    </div>
+                                    <div class="be-comment-content">
+                                        
+                                            <span class="be-comment-name">
+                                                <a href="/user/{{comment.user.username}}" style="color:#213b52;font-weight:bold;">{{comment.user.username}}</a>
+                                                </span>
+                                            <span class="be-comment-time">
+                                                <i class="icofont-ui-clock"></i>
+                                                {{comment.post_action_timestamp | dateAgo}}
+                                            </span>
+                                        <p class="be-comment-text">{{comment.comment}}</p>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                            
                     </div>
                 </div>
             </div>
@@ -111,8 +122,8 @@
                                 
                                     <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{like.user.username}}</span></a></div>
                             </div>
-                            <div class="lpa-right" style="margin-top:15px;margin-left: 160px;">
-                                <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 110px;">
+                                <span *ngIf="like.user.id===LoggedUser.id; else ElseBlock2"></span>
                                 <ng-template #ElseBlock2>
                                     <a (click)="unfollowUser(LoggedUser.id,like.user.id)" *ngIf="like.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
                                     <ng-template #ElseBlock>

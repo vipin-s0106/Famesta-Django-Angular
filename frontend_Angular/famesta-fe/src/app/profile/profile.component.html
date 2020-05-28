@@ -74,13 +74,22 @@
 								<!-- Begin timeline -->
 								<div class="the-timeline">
 									<form role="form" class="post-to-timeline">
-										<textarea class="form-control" style="height: 70px;margin-bottom:10px;" placeholder="Whats on your mind..."></textarea>
+                                        <textarea [(ngModel)]="new_post_data.post_info" class="form-control" style="height: 70px;margin-bottom:10px;" name="post_info" placeholder="Whats on your mind..." #post_info="ngModel" required></textarea>
+                                        <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="post_info.errors?.required && post_info.touched">post tag/info is required.</span>
 										<div class="row">
 										<div class="col-sm-6">
-											<a class="btn btn-sm btn-default"><i class="fa fa-camera"></i></a>
-											<div id="attached-file"></div>
+											<div class="myfileupload-buttonbar ">
+                                                <label class="myui-button">
+                                                    <span style="color: black;" class="icofont-camera"></span>
+                                                    <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
+                                                    <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
+                                                        <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
+                                                    </span>
+                                                </label>
+                                                
+                                            </div>
 										</div>
-										<div class="col-sm-6 text-right"><button type="submit" class="btn btn-primary">Post</button></div>
+										<div class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button></div>
 										</div>
 									</form>
                                     <!-- Post will Go here -->
@@ -100,11 +109,11 @@
                                                     <div class="portfolio-wrap">
                                                         <img src="{{ post.file | TransalateImageUrl }}" class="img-fluid">
                                                         <div class="portfolio-links">
-                                                            <a href="/post-detail/{{post.id}}"  class="venobox"
+                                                            <a href="/post-detail/{{post.id}}"  
                                                                     title="{{post.post_info}}"
                                                                     ><i
                                                                         class="icofont-link"></i></a>
-                                                                <a href="" title="More Details"><i
+                                                                <a (click)="deletePost(post.id)" title="More Details"><i
                                                                         class="icofont-trash"></i></a>
                                                         </div>
                                                     </div>

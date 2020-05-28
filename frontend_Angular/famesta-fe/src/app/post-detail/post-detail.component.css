@@ -29,7 +29,7 @@ a:hover{
   width: 100%;
   display: inline-block;
   vertical-align: top;
-  max-height: 300px;
+  max-height: 280px;
   overflow: auto;
 }
 
@@ -174,4 +174,72 @@ a:hover{
 {
 	width: 0px;
 	background-color: #F5F5F5;
+}
+
+/*Comment Section*/
+
+.be-comment-block {
+  margin-bottom: 50px !important;
+  border: 1px solid #edeff2;
+  border-radius: 2px;
+  border:1px solid #ffffff;
+  
+}
+
+.comments-title {
+  font-size: 16px;
+  color: #262626;
+  margin-bottom: 15px;
+  font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-img-comment a img {
+  width: 45px;
+  height: 45px;
+  float: left;
+  border-radius: 50%;
+}
+
+/* .be-ava-comment {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+} */
+
+.be-comment-content {
+  margin-left: 50px;
+}
+
+.be-comment-content span {
+  display: inline-block;
+}
+
+.be-comment-name {
+  font-size: 13px;
+}
+
+.be-comment-content a {
+  color: #383b43;
+}
+
+
+.be-comment-time {
+  float: right;
+}
+
+.be-comment-time {
+  font-size: 10px;
+  color: #b4b7c1;
+}
+
+.be-comment-text {
+  font-size: 13px;
+  line-height: 18px;
+  word-break: break-all;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+  border-radius: 10px;
+  padding: 10px;
 }

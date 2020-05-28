@@ -216,40 +216,48 @@ class LikeCreateView(APIView):
     permission_classes = (IsAuthenticated,)
     def post(self,request,user_id,post_id):
         post_data = request.data
+        post_username = Post.objects.get(id=post_id).user.username
         print(post_data)
         post_data['user'] = user_id
         post_data['post'] = post_id
         print(post_data)
         serializer = PostLikeCommentCreateSerializer(data=post_data)
         if serializer.is_valid():
-            #########################################
-            '''
-            Creating Notification for that
-            '''
-            notification_data = {
-                "message": str(User.objects.get(pk=user_id).username) + " has liked your post",
-                "notification_type": "like",
-                "post": post_id,
-                "other_user":user_id
-            }
-            # getting the bearer token
-            bearer_token = request.headers.get('Authorization')
-            headers = {
-                'Contetent-Type': 'application/json',
-                'Allow': 'POST, OPTIONS',
-                'Authorization': bearer_token
-            }
-            #getting the user who have uploaded the post
-            user_id_of_post = Post.objects.get(id=post_id).user.id
-            notification_url = r"http://" + request.META['HTTP_HOST'] + "/api/notification/" + str(user_id_of_post) + "/"
-            notification_response = requests.post(notification_url, data=notification_data, headers=headers)
-            #########################################
-            if notification_response.status_code == 201:
+            if post_username != request.user.username:
+                #########################################
+                '''
+                Creating Notification for that
+                '''
+                notification_data = {
+                    "message": str(User.objects.get(pk=user_id).username) + " has liked your post",
+                    "notification_type": "like",
+                    "post": post_id,
+                    "other_user":user_id
+                }
+                # getting the bearer token
+                bearer_token = request.headers.get('Authorization')
+                headers = {
+                    'Contetent-Type': 'application/json',
+                    'Allow': 'POST, OPTIONS',
+                    'Authorization': bearer_token
+                }
+                #getting the user who have uploaded the post
+                user_id_of_post = Post.objects.get(id=post_id).user.id
+                notification_url = r"http://" + request.META['HTTP_HOST'] + "/api/notification/" + str(user_id_of_post) + "/"
+                notification_response = requests.post(notification_url, data=notification_data, headers=headers)
+                #########################################
+                if notification_response.status_code == 201:
+                    serializer.save()
+                    post = Post.objects.filter(id=post_id).first()
+                    serializer = PostDetailSerializer(post)
+                    return Response(serializer.data,status=201) #Like Updated by the user
+                return Response({"error":"Not able to update the notification for story posted by the user"},status=400)
+            else:
                 serializer.save()
                 post = Post.objects.filter(id=post_id).first()
                 serializer = PostDetailSerializer(post)
-                return Response(serializer.data,status=201) #Like Updated by the user
-            return Response(status=400)
+                return Response(serializer.data, status=201)  # Like Updated by the user
+
         else:
             return Response({"error":serializer.error_messages},status=400) #bad request
 

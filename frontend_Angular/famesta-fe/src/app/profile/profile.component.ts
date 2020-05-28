@@ -19,6 +19,10 @@ export class ProfileComponent implements OnInit {
   public followings;
   public background_image;
 
+  public new_post_file;
+  public upload_post_file: File;
+  public new_post_data = {"post_info":""}
+
   constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) { }
 
   ngOnInit(): void {
@@ -87,6 +91,33 @@ export class ProfileComponent implements OnInit {
     this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
       res => {
         console.log(res);
+        this.ngOnInit();
+      },
+      err => console.log(err)
+    )
+  }
+
+
+  deletePost(post_id){
+    this.post_srv.deletePost(post_id).subscribe(
+      res => this.ngOnInit(),
+      err => console.log(err)
+    )
+  }
+
+  onNewPostFileChange(event){
+    this.new_post_file = event.target.files[0].name;
+    this.upload_post_file = event.target.files[0];
+  }
+
+
+  addPost(user_id){
+    const uploadData = new  FormData();
+    uploadData.append('post_info',this.new_post_data.post_info)
+    uploadData.append('file',this.upload_post_file,this.upload_post_file.name)
+    this.post_srv.postStory(uploadData,user_id).subscribe(
+      res => {
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
