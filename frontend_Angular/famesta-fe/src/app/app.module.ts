@@ -31,6 +31,7 @@ import { MaterialModule } from './material/material.module';
 
 
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
+import { ProfileComponent } from './profile/profile.component';
 
 
 

@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   public LoggedUser;
   public posts;
   public suggestion_user;
+  public notification_count;
 
   public post_detail;
 
@@ -46,9 +47,17 @@ export class DashboardComponent implements OnInit {
             this._router.navigate(['/dashboard']);
           }
         );
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => {
+            console.log(res);
+            this.notification_count = res;
+          },
+          err => console.log(err)
+        )
 
       },
-      err => this._router.navigate(['/login'])
+      // err => this._router.navigate(['/login'])
+      err => console.log(err)
     )
     
 

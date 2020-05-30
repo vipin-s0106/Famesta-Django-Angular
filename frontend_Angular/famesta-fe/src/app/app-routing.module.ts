@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'search',component:SearchComponent},
   {path: 'followers/:id',component:FollowersComponent},
   {path: 'following/:id',component:FollowingComponent},
-  {path: 'edit-profile/:id',component:EditProfileComponent},
+  {path: 'edit-profile',component:EditProfileComponent},
   {path: 'post-detail/:id',component:PostDetailComponent},
   {path: 'chat/:id',component:ChatComponent},
   {path: 'user/:username',component:OtherUserProfileComponent},

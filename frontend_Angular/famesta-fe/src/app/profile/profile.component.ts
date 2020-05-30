@@ -73,6 +73,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
   getBackgroundImgURL(image_url){
     return this.usr_srv._base_url+image_url
   }

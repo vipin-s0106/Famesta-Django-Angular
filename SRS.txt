@@ -143,7 +143,8 @@ Things need to complete in API
 9) Delete Post should be completed -Fixed
 10) complete the user should post the story -Fixed
 11) develop the proper comment section layout -Fixed
-12) user can edit the profile section
+12) user can edit the profile section -Fixed
+12.1) Notification count should be populated - Fixed
 13) develop the search result should be properly auto populated
 14) include pagination in dashboard page
 15) enhanced the navigation bar properly include home notification

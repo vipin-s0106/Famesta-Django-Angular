@@ -5,6 +5,7 @@ from . import views
 app_name = 'notification'
 
 urlpatterns = [
+	url('^api/notification/count/(?P<user_id>[0-9]+)/$',views.get_notification_count,name="notification_count"),
     url('^api/notification/follow/(?P<user_id>[0-9]+)/$',views.NotificationFollowRequestCreateView().as_view(),name="create_notification"),
 	url('^api/notification/(?P<user_id>[0-9]+)/$',views.NotificationAPIView().as_view(),name="get_user_notification"),
 	url('^api/notification/(?P<notification_id>[0-9]+)/$',views.NotificationAPIView().as_view(),name="get_notification_by_id"),

@@ -10,7 +10,7 @@
                 <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
             </div>
         </div>
     </ng-template>
@@ -158,7 +158,7 @@
                                 
                                     <div class="profile_pic1"><img src="{{follower.user.profile.profile_picture}}" alt=""><a href="/user/{{follower.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{follower.user.username}}</span></a></div>
                             </div>
-                            <div class="lpa-right" style="margin-top:15px;margin-left: 150px;">
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 110px;">
                                 <a (click)="remove_Follower(LoggedUser.id,follower.user.id)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-close-line">Remove</span></a>
                             </div>
                         </div>

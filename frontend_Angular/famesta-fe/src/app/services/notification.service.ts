@@ -11,6 +11,7 @@ export class NotificationService {
   private _getUserNotification_url: string = "http://127.0.0.1:8000/api/notification/";  //append user id here
   private _deleteNotification_url: string = "http://127.0.0.1:8000/api/notification/delete/"; //apped notification id
   private _deleteAllUserNotification_url: string = "http://127.0.0.1:8000/api/notification/delete_all/"; //append the user id
+  private _getNotification_count_url: string = "http://127.0.0.1:8000/api/notification/count/"  //append user id with this
 
 
   constructor(private http: HttpClient) { }
@@ -29,6 +30,10 @@ export class NotificationService {
 
   deleteAllNotification(user_id): Observable<any>{
     return this.http.delete(this._deleteAllUserNotification_url+user_id+"/")
+  }
+
+  getNotificationCount(user_id):Observable<any>{
+    return this.http.get(this._getNotification_count_url+user_id+"/")
   }
 
 }

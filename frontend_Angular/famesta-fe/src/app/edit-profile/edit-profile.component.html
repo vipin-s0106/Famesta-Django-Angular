@@ -50,17 +50,20 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <h1 style="color:grey">Vipin Sharma </h1>
-                                            <p style="color:blue;font-weight: bold;margin-left:5px">vipin_s0106</p>
+                                            <h1 style="color:grey">{{LoggedUser.profile.full_name | titlecase }} </h1>
+                                            <p style="color:blue;font-weight: bold;margin-left:5px">{{LoggedUser.username}}</p>
+                                            <span style="color:slategrey;font-size: 13px;margin-left:5px">
+                                                {{LoggedUser.profile.BioDescription}}
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputUsername" >Biography</label>
-                                            <textarea rows="2" class="form-control" id="inputBio" placeholder="Tell something about yourself"></textarea>
+                                            <textarea [(ngModel)]="post_updated_data.BioDescription" rows="2" class="form-control" id="inputBio" name="user_bio" placeholder="Tell something about yourself" #user_info="ngModel"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="text-center">
-                                            <img src="http://127.0.0.1:8000/media/user_27/profile/IMG_20190331_144239.jpg" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                            <img src="{{LoggedUser.profile.profile_picture | TransalateImageUrl}}" class="rounded-circle img-responsive mt-2" width="128" height="128">
                                             <div class="mt-2">
                                                 <div id="fileupload" >
                                                     <div class="myfileupload-buttonbar ">
@@ -68,8 +71,8 @@
                                                             <span class="icofont-upload"></span>
                                                             <input (change)="onProfileChange($event)" id="file1" type="file" name="profile_pic" />
                                                         </label>
-                                                        <div *ngIf="profile_img" class="col-sm-8" style="margin-top:5px">
-                                                            <span align="center" style="color:midnightblue;font-size: 18px;" class="icofont-attachment"><small id="file-upload-filename1">{{profile_img}}</small></span>
+                                                        <div *ngIf="profile_uploaded_file" class="col-sm-8" style="margin-top:5px">
+                                                            <span align="center" style="color:midnightblue;font-size: 18px;" class="icofont-attachment"><small id="file-upload-filename1">{{profile_uploaded_file}}</small></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,7 +82,7 @@
                                     </div>
                                 </div>
 
-                                <a class="btn-get-started scrollto" style="margin-top:10px">Save Changes</a>
+                                <button (click)="UpdatePublicUserInformation(LoggedUser.id)" class="btn-get-started scrollto" style="margin-top:10px">Save Changes</button>
                             </form>
 
                         </div>
@@ -95,19 +98,19 @@
                             <form>
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                    <input (change)="UserInfoChange()" type="text" [(ngModel)]="post_updated_data.full_name" name="full_name" class="form-control" id="inputName" value="{{LoggedUser.profile.full_name}}" #full_name="ngModel">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail4">Email</label>
-                                    <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <input disabled type="email" class="form-control" id="inputEmail4" placeholder="{{LoggedUser.email}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputMobile">Mobile</label>
-                                    <input type="text" class="form-control" id="inputMobile" placeholder="Mobile">
+                                    <input (change)="UserInfoChange()" [(ngModel)]="post_updated_data.mobile" name="mobile" type="text" class="form-control" id="inputMobile" placeholder="{{LoggedUser.profile.mobile}}" #mobile="ngModel">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDOB">Date Of Birth</label>
-                                    <input type="date" class="form-control" id="inputDOB" value="12/10/2020">
+                                    <input (change)="UserInfoChange()" name="date_of_birth" [(ngModel)]="post_updated_data.date_of_birth" type="date" class="form-control" id="inputDOB" value="{{LoggedUser.profile.date_of_birth}}" #date_of_birth="ngModel">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Background Profile</label>
@@ -117,11 +120,11 @@
                                                 <div class="col-sm-1">
                                                     <label class="myui-button">
                                                         <span class="icofont-upload"></span>
-                                                        <input (change)="onFileChange($event)" id="file-upload" type="file" name="profile_pic" />
+                                                        <input (change)="onBackgroundProfileChange($event)" id="file-upload" type="file" name="background_profile" />
                                                     </label>
                                                 </div>
-                                                <div *ngIf="file_name" class="col-sm-8" style="margin-top:5px">
-                                                    <span style="color:midnightblue;font-size: 20px;" class="icofont-attachment"><small id="file-upload-filename">{{file_name}}</small></span>
+                                                <div *ngIf="background_uploaded_file" class="col-sm-8" style="margin-top:5px">
+                                                    <span style="color:midnightblue;font-size: 20px;" class="icofont-attachment"><small id="file-upload-filename">{{background_uploaded_file}}</small></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,22 +133,20 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="inputState">Gender</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected="">Male</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                        <select (change)="UserInfoChange()" [(ngModel)]="post_updated_data.gender" id="gender" name="gender" class="form-control" #gender="ngModel">
+                                            <option >M</option>
+                                            <option >F</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputState">Account</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected="">Public</option>
+                                        <select (change)="UserInfoChange()" [(ngModel)]="post_updated_data.account_type" name="account_type" id="account_type" class="form-control" #account_type="ngModel">
                                             <option>Public</option>
                                             <option>Private</option>
                                         </select>
                                     </div>
                                 </div>
-                                <a class="btn-get-started scrollto" style="margin-top:10px">Save Changes</a>
+                                <button type="button" (click)="UpdateUserInformation(LoggedUser.id)" class="btn-get-started scrollto" style="margin-top:10px">Save Changes</button>
                             </form>
 
                         </div>
@@ -182,3 +183,4 @@
     </div>
 
 </div>
+

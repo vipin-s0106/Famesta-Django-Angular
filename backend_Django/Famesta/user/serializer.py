@@ -49,6 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
     #In order to embed the one profile into other define the related_name='profile' in model of Child Table, name should be match
     profile = ProfileSerializer(read_only=True)
 
+
     class Meta:
         model = User
         fields = ["id", "username", "email", "status", 'profile', "last_login", "is_superuser", "is_staff", "is_active",

@@ -129,3 +129,10 @@ class NotificationAPIView(APIView):
 def delete_all_notification(request,user_id):
     Notification.objects.filter(user=User.objects.get(pk=user_id)).delete()
     return Response(status=200)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_notification_count(request,user_id):
+    length = len(Notification.objects.filter(user=User.objects.get(pk=user_id)))
+    return Response({"notification_count":str(length)},status=200)
+
