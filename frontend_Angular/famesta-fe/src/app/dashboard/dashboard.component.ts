@@ -4,6 +4,10 @@ import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service';
 import { NotificationService } from '../services/notification.service'
+import { FormControl } from '@angular/forms';
+
+import { map, startWith } from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -11,23 +15,28 @@ import { NotificationService } from '../services/notification.service'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+
 export class DashboardComponent implements OnInit {
 
   public LoggedUser;
   public posts;
   public suggestion_user;
   public notification_count;
+  
 
   public post_detail;
 
-  constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {
-    
-   }
+  public search_input;
+  public searched_user;
+
+  constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {}
 
   ngOnInit(): void {
+    
     this.usr_srv.getLoggedUserDetails().subscribe(
       res => {this.LoggedUser = res;
-        console.log(this.LoggedUser)
+        // console.log(this.LoggedUser)
         this.post_srv.getAllUserRelatedPost(res.id).subscribe(
           res => {this.posts = res;
             console.log(this.posts);
@@ -56,13 +65,20 @@ export class DashboardComponent implements OnInit {
         )
 
       },
-      // err => this._router.navigate(['/login'])
-      err => console.log(err)
-    )
-    
-
+      err => this._router.navigate(['/login'])
+    );
     
   }
+
+  public search_user(): any{
+    this.usr_srv.search_user(this.search_input).subscribe(
+      res => {
+        this.searched_user = res
+      },
+      err => this.searched_user=null
+    )
+  }
+
 
   likePost(user_id,post_id){
     this.post_srv.likePost(user_id,post_id).subscribe(

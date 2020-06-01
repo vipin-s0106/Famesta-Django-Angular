@@ -1,4 +1,6 @@
-
+a {
+  text-decoration: none;
+}
 .profile-banner {
     width: 100%;
     height: 300px;

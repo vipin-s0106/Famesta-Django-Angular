@@ -1,6 +1,9 @@
 a:hover{
   color:midnightblue;
 }
+a {
+  text-decoration: none;
+}
 
 
 .profile_pic{

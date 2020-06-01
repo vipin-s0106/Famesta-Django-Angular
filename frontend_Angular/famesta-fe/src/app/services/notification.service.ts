@@ -36,4 +36,7 @@ export class NotificationService {
     return this.http.get(this._getNotification_count_url+user_id+"/")
   }
 
+
+
+
 }

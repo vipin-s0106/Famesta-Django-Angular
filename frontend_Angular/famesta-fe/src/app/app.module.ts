@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,17 +21,23 @@ import { TokenInterceptorService } from './interceptor/token-interceptor.service
 
 //importing Authguard
 import { AuthGuard } from './guard/auth.guard';
+
+//Imoporting Pipe
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationCountPipe } from './pipes/notification-count.pipe';
 
 
 //import material module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 
 
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
-import { ProfileComponent } from './profile/profile.component';
+
+
+//importing ngPopover
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -41,15 +47,18 @@ import { ProfileComponent } from './profile/profile.component';
     RoutingComponent,
     DateAgoPipe,
     ImageUrlPipe,
+    NotificationCountPipe,
   ],
   entryComponents:[UnAuthorizedComponenetComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    NgbModule,
   ],
   providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
   {

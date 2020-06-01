@@ -145,10 +145,10 @@ Things need to complete in API
 11) develop the proper comment section layout -Fixed
 12) user can edit the profile section -Fixed
 12.1) Notification count should be populated - Fixed
-13) develop the search result should be properly auto populated
-14) include pagination in dashboard page
-15) enhanced the navigation bar properly include home notification
-16) develop chat page
+13) develop the search result should be properly auto populated - Fixed
+14) enhanced the navigation bar properly include home notification
+15) develop chat page
+16) include pagination in dashboard page
 17) change the password
 18) contact support page
 

@@ -1,6 +1,9 @@
 /*--------------------------------------------------------------
 # Post
 --------------------------------------------------------------*/
+a {
+  text-decoration: none;
+}
 #dashboard {
     margin-top:50px;
     background-color: white;
@@ -62,7 +65,7 @@
     font-size: 25px;
   }
 
-
+/* 
 #search input{
     border: 0;
     padding: 4px 12px 4px 12px;
@@ -71,7 +74,7 @@
     margin:5px;
     width: calc(90% - 100px);
     outline-width: 0;
-}
+} */
 
 
 #search {
@@ -176,6 +179,14 @@
   width: 45px;
   height: 45px;
 }
+
+/* Search User */
+.profile_pic2 img{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
 /* Blog Sidebar
 -------------------*/
 
@@ -240,4 +251,19 @@
 {
 width: 0px;
 background-color: #F5F5F5;
+}
+
+
+.search-modal{
+  border-radius: 5px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.search-modal::-webkit-scrollbar
+{
+width: 0px;
 }

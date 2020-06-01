@@ -23,6 +23,8 @@ from .models import User,UserProfile
 from followers.models import Follower
 
 
+from django.db.models import Q
+
 
 
 #Login to the application
@@ -177,6 +179,13 @@ class OtherUserProfileAPIView(APIView):
             # else:
             serializer = UserSerializer(user)
             return Response(serializer.data, status=200)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def SearchUser(request,filter_value):
+    users = User.objects.filter(Q(profile__full_name__icontains=filter_value) | Q(username__icontains=filter_value))
+    serializer = UserSerializer(users,many=True)
+    return Response(serializer.data, status=200)
 
 
 
