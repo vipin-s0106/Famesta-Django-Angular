@@ -1,6 +1,6 @@
 <!-- ======= Schedule Section ======= -->
 <br>
-<section *ngIf="notifications?.length > 0" id="schedule" class="section-with-bg">
+<section *ngIf="notifications?.length > 0; else ElseBlock5" id="schedule" class="section-with-bg">
     <div class="container wow fadeInUp">
       <div class="section-header">
         <h3 style="font-size:18px;font-weight:bold;margin-top:10px;margin-bottom:0px;margin-left:500px">Notification <span><a (click)="deleteAllUserNotification(user_id)"  class="btn-get-started scrollto" style="margin-left:500px"><span  class="icofont-ui-delete"></span> Clear All</a></span></h3>
@@ -60,3 +60,11 @@
     </div>
 
   </section><!-- End Schedule Section -->
+  <ng-template #ElseBlock5>
+    <div align="CENTER">
+      <img id="notification_img" src="/assets/img/no_notification.png">
+    </div>
+    <h3  style="color:#213b52" align="CENTER">
+      No Notification found for you
+    </h3>
+  </ng-template>

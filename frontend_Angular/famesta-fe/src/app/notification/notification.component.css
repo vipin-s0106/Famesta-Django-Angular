@@ -210,3 +210,9 @@ a {
     color: #213b52;
     border: 2px solid tomato;
   }
+
+  #notification_img{
+    margin-top:40px;
+    width:700px;
+    height:500px;
+  }
