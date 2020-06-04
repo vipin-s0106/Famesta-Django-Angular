@@ -22,20 +22,15 @@ export class AppComponent {
 
 
   constructor(public usr_srv: UserService,public not_srv: NotificationService,public authSrv: AuthService,private route:ActivatedRoute,private router: Router){
-    // if(this.authSrv.loggedIn()){
-    //   this.usr_srv.getLoggedUserDetails().subscribe(
-    //     res => {
-    //       this.logged_user_id = res.id;
-    //       this.not_srv.getNotificationCount(res.id).subscribe(
-    //         res => {
-    //           this.notification_count = res;
-    //           this.router.navigate['/dashboard']
-    //         },
-    //         err => this.router.navigate(['/bad-request'])
-    //       )
-    //     }
-    //   )
-    // }
+    this.logged_user_id = this.usr_srv.LoggedUserId.subscribe(
+      res => {
+        this.logged_user_id = res
+        this.notification_count = this.not_srv.notification_count.subscribe(
+          res => this.notification_count = res
+        )
+      }
+    )
+    
   }
 
 

@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 
 import { map, startWith } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -33,9 +34,15 @@ export class DashboardComponent implements OnInit {
   constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {}
 
   ngOnInit(): void {
-    
+
     this.usr_srv.getLoggedUserDetails().subscribe(
-      res => {this.LoggedUser = res;
+      res => {
+        this.LoggedUser = res;
+
+        //this line for to passing the user id to subject so that it can be used by other component
+        this.usr_srv.LoggedUserId.next(res.id)
+
+
         // console.log(this.LoggedUser)
         this.post_srv.getAllUserRelatedPost(res.id).subscribe(
           res => {this.posts = res;
@@ -60,6 +67,7 @@ export class DashboardComponent implements OnInit {
           res => {
             console.log(res);
             this.notification_count = res;
+            this.not_srv.notification_count.next(res.notification_count)
           },
           err => console.log(err)
         )

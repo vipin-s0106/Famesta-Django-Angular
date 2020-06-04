@@ -40,9 +40,8 @@
 
             <!-- Profile Widget -->
             <div *ngIf="checkCommentPresent(post.post_detail)">
-                <div class="widget widget-latest-post">
+                <div id="commentBody" class="widget widget-latest-post">
                     <div class="widget-body">
-                        
                         <div class="be-comment-block">
                             <div *ngFor="let comment of post.post_detail" class="be-comment">
                                 <div *ngIf="comment.comment">

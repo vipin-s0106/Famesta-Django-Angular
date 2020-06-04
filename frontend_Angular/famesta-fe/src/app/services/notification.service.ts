@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class NotificationService {
   private _deleteAllUserNotification_url: string = "http://127.0.0.1:8000/api/notification/delete_all/"; //append the user id
   private _getNotification_count_url: string = "http://127.0.0.1:8000/api/notification/count/"  //append user id with this
 
+
+  notification_count = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 

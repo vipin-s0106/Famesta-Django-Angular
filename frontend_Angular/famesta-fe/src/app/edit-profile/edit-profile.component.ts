@@ -39,6 +39,10 @@ export class EditProfileComponent implements OnInit {
         this.post_updated_data.date_of_birth = this.LoggedUser.profile.date_of_birth;
         this.post_updated_data.account_type = this.LoggedUser.profile.account_type;
         this.post_updated_data.gender = this.LoggedUser.profile.gender;
+
+        //updating the subject
+        // this.usr_srv.LoggedUserId.next(res.id)
+        
       },
       err => console.log(err)
     )

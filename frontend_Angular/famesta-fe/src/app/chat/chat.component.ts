@@ -10,6 +10,12 @@ export class ChatComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.loadScript()
+  }
+
+  loadScript(){
+    var messageBody = document.getElementById('messageBody');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   }
 
 }

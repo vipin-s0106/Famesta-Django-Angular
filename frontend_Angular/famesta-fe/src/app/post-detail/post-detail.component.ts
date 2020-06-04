@@ -24,6 +24,7 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.post_id = id;
+    // this.loadScript()
     this.post_srv.getStoryDetailView(this.post_id).subscribe(
       res => {
         console.log(res);
@@ -39,6 +40,11 @@ export class PostDetailComponent implements OnInit {
       },
       err => console.log(err)
     )
+  }
+
+  loadScript(){
+    var commentBody = document.getElementById('commentBody');
+    commentBody.scrollTop = commentBody.scrollHeight - commentBody.clientHeight;
   }
 
   postComment(user_id,post_id){
