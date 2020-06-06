@@ -1,4 +1,6 @@
-
+a {
+  text-decoration: none;
+}s
 .candidates-listing-bg {
   padding: 210px 0px 60px 0px;
   background-size: cover;

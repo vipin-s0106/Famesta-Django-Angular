@@ -25,6 +25,7 @@ urlpatterns = [
     url('^',include('post.urls')),
     url('^',include('followers.urls')),
     url('^',include('notification.urls')),
+    url('^',include('chat.urls')),
 ]
 
 

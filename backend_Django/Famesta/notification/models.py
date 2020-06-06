@@ -14,12 +14,13 @@ class Notification(models.Model):
         ('follow', 'follow'),
         ('unfollow', 'unfollow'),
         ('like', 'like'),
-        ('comment', 'comment')
+        ('comment', 'comment'),
+        ('request_accepted','request_accepted')
     )
     notification_type = models.CharField(_('notification_type'),max_length=300, choices=notification_type_choice,null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,null=True)
-    other_user = models.ForeignKey(User,related_name="other_user", on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User,related_name="notification_user",on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,related_name="post", on_delete=models.CASCADE,null=True)
+    other_user = models.ForeignKey(User,related_name="notification_other_user", on_delete=models.CASCADE,null=True)
     timestamp = models.DateTimeField(_('timestamp'), default=timezone.now)
 
     def __str__(self):

@@ -131,5 +131,28 @@ Method -
 List all
 
 
+Things need to complete in API
+1) fix the suggestion API if user request sent it should not come to the suggestion  - Fixed
+2) fix followers and following  page it should display like people in post detail - Fixed
+3) suggestion should be display like list Change the view - Fixed
+4) same followers and following should be display modal in other user profile section also - Fixed
+5) logged user should not be able to see the other user notification -Fixed
+6) if user account is private do not allow to see -Fixed
+7) echanced the dashboard page when user click on like of any post it should display a modal like in post-detail page - Fixed
+8) User can like his post but notification should not be generated edit in backend server -Fixed
+9) Delete Post should be completed -Fixed
+10) complete the user should post the story -Fixed
+11) develop the proper comment section layout -Fixed
+12) user can edit the profile section -Fixed
+12.1) Notification count should be populated - Fixed
+13) develop the search result should be properly auto populated - Fixed
+14) enhanced the navigation bar properly include home notification - Question already posted to Stack OverFlow
+15) develop chat page - Frontend Developed
+16) include pagination in dashboard page
+17) change the password
+18) contact support page
+
+
+
 
 

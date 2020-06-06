@@ -16,9 +16,9 @@ export class DateAgoPipe implements PipeTransform {
                 'month': 2592000,
                 'week': 604800,
                 'day': 86400,
-                'hour': 3600,
-                'minute': 60,
-                'second': 1
+                'hr': 3600,
+                'min': 60,
+                'sec': 1
             };
             let counter;
             for (const i in intervals) {
@@ -27,7 +27,7 @@ export class DateAgoPipe implements PipeTransform {
                     if (counter === 1) {
                         return counter + ' ' + i + ' ago'; // singular (1 day ago)
                     } else {
-                        return counter + ' ' + i + 's ago'; // plural (2 days ago)
+                        return counter + ' ' + i + ' ago'; // plural (2 days ago)
                     }
             }
         }

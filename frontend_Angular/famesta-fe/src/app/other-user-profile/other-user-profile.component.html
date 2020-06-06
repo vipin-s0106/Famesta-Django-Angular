@@ -3,115 +3,273 @@
 <br><br>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-<div class="content-page">
-    <div *ngIf="background_image; else ElseBlock">
-        <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
-            <div class="col-sm-3 avatar-container">
-                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+    <div class="content-page">
+        <div *ngIf="background_image; else ElseBlock">
+            <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
+                <div class="col-sm-3 avatar-container">
+                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                        alt="User avatar">
+                </div>
+                <div class="col-sm-12 profile-actions text-right">
+                    <a (click)="sendMessage(User.username)" type="button" *ngIf="userFollowerStatus.followed_status" 
+                         class="btn btn-sm btn-primary" style="margin-right:35px;color:white">
+                        <i class="icofont-ui-message"></i> Send Message
+                    </a>
+                    <a (click)="unfollowUser(LoggedUser.id,User.id)" *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-reply"></i> Unfollow
+                    </a>
+                    <ng-template #ElseBlock1>
+                        <a *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
+                            class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                            <i class="fa fa-check"></i> Requested
+                        </a>
+                        <ng-template #ElseBlock2>
+                            <a (click)="followUser(User.id,LoggedUser.id,LoggedUser.username)" type="button" class="btn btn-primary btn-sm" style="margin-right:10px;color:white;padding:3.5px 14px 3.5px 14px">
+                                <i class="fa fa-plus"></i> Follow
+                            </a>
+                        </ng-template>
+                    </ng-template>
+                </div>
             </div>
-            <div class="col-sm-12 profile-actions text-right">
-                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
+        </div>
+        <ng-template #ElseBlock>
+            <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
+                <div class="col-sm-3 avatar-container">
+                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                        alt="User avatar">
+                </div>
+                <div class="col-sm-12 profile-actions text-right">
+                    <a (click)="sendMessage(User.username)" type="button" *ngIf="userFollowerStatus.followed_status" 
+                         class="btn btn-sm btn-primary" style="margin-right:35px;color:white">
+                        <i class="icofont-ui-message"></i> Send Message
+                    </a>
+                    <a (click)="unfollowUser(LoggedUser.id,User.id)" *ngIf="userFollowerStatus.followed_status; else ElseBlock1" type="button"
+                        class="btn btn-primary btn-sm" style="margin-right:10px;color:white">
+                        <i class="fa fa-reply"></i> Unfollow
+                    </a>
+                    <ng-template #ElseBlock1>
+                        <a  *ngIf="userFollowerStatus.follow_request_sent; else ElseBlock2" type="button"
+                            class="btn btn-success btn-sm" style="margin-right:10px;color:white">
+                            <i class="fa fa-check"></i> Requested
+                        </a>
+                        <ng-template #ElseBlock2>
+                            <a (click)="followUser(User.id,LoggedUser.id,LoggedUser.username)" type="button" class="btn btn-primary btn-sm" style="margin-right:10px;color:white;padding:3.5px 14px 3.5px 14px">
+                                <i class="fa fa-plus"></i> Follow
+                            </a>
+                        </ng-template>
+                    </ng-template>
+                </div>
+            </div>
+        </ng-template>
+
+
+
+        <div *ngIf="User.profile.account_type!='Private' || userFollowerStatus.followed_status; else ElseBlock5" class="content">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Begin user profile -->
+                    <div class="text-center user-profile-2" style="margin-top:120px">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h4 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h4>
+                                <small style="color:black">{{User.username}}</small><br>
+                            </li>
+                            <li class="list-group-item" style="color:black">
+                                <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal">
+                                    <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
+                                    Followers
+                                </a>
+                            </li>
+                            <li class="list-group-item" style="color:black">
+                                <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal1">
+                                    <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
+                                    Following
+                                </a>
+                            </li>
+                            <li class="list-group-item" style="color:midnightblue">
+                                <span class="badge" style="color:darkblue">{{posts?.length}}</span>
+                                Posts
+                            </li>
+                        </ul>
+                    </div><!-- End div .box-info -->
+                    <br>
+                    <!-- Begin user profile -->
+                </div><!-- End div .col-sm-4 -->
+
+                <div class="col-sm-9">
+                    <div class="widget widget-tabbed">
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+
+
+                            <!-- Tab timeline -->
+                            <div class="tab-pane animated active fadeInRight" id="my-timeline">
+                                <div class="user-profile-content">
+                                    <br><br>
+                                    <!-- Begin timeline -->
+                                    <div class="the-timeline">
+                                        <!-- Post will Go here -->
+
+                                        <!-- ======= Portfolio Section ======= -->
+                                        <section id="portfolio" class="portfolio section-bg" style="margin-top:20px">
+                                            <div class="container" id="user_post">
+
+                                                <div class="section-title">
+                                                    <h2 data-aos="fade-in">Post</h2>
+                                                    <p data-aos="fade-in"></p>
+                                                </div>
+
+                                                <div class="row portfolio-container" data-aos="fade-up">
+
+                                                    <div *ngFor="let post of posts"
+                                                        class="col-lg-4 col-md-6 portfolio-item filter-web">
+                                                        <div class="portfolio-wrap">
+                                                            <img src="{{ post.file | TransalateImageUrl }}"
+                                                                class="img-fluid">
+                                                            <div class="portfolio-links">
+                                                                <a href="/post-detail/{{post.id}}"  class="venobox"
+                                                                    title="{{post.post_info}}"
+                                                                    ><i
+                                                                        class="icofont-link"></i></a>
+                                                                <a href="" title="More Details"><i
+                                                                        class="icofont-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                        </section>
+
+
+
+                                    </div><!-- End div .the-timeline -->
+                                    <!-- End timeline -->
+                                </div><!-- End div .user-profile-content -->
+                            </div><!-- End div .tab-pane -->
+                            <!-- End Tab timeline -->
+                        </div><!-- End div .tab-content -->
+                    </div><!-- End div .box-info -->
+                </div>
+            </div>
+        </div>
+        <ng-template #ElseBlock5>
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Begin user profile -->
+                    <div class="text-center user-profile-2" style="margin-top:120px">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h5>
+                                <small style="color:black">{{User.username}}</small>
+                            </li>
+                        </ul>
+                    </div><!-- End div .box-info -->
+                    <br>
+                    <!-- Begin user profile -->
+                </div><!-- End div .col-sm-4 -->
+                <div align="center" class="col-sm-9" style="margin-top:55px;color:black">
+                    <span style="margin-top:50px;color:black;font-size: 40px;" class="icofont-lock"></span>
+                    <h3 style="margin-top:20px;">This Account is Private</h3>
+                    <p style="color:slategrey">Follow this account to see their photos and videos.</p>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+
+
+    
+<!-- Followers Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followers</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followers?.length > 0; else Else">
+                    <div *ngFor="let follower of followers" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{follower.user.profile.profile_picture}}" alt=""><a href="/user/{{follower.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{follower.user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 110px;">
+                                <span *ngIf="follower.user.id==LoggedUser.id; else ElseBlock2"></span>
+                                <ng-template #ElseBlock2>
+                                    <a (click)="unfollowUser(LoggedUser.id,follower.user.id)" *ngIf="follower.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                    <ng-template #ElseBlock>
+                                        <a *ngIf="follower.follow_request_sent; else ElseBlock1" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                        <ng-template #ElseBlock1>
+                                            <a (click)="followUser(follower.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No followers found
+                    </p>
+                </ng-template>
             </div>
         </div>
     </div>
-    <ng-template #ElseBlock>
-        <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
-            <div class="col-sm-3 avatar-container">
-                <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
-            </div>
-            <div class="col-sm-12 profile-actions text-right">
-                <a type="button" class="btn btn-success btn-sm" style="margin-right:10px;color:white"><i class="fa fa-check"></i> Following</a>
+</div>
+
+
+
+<!-- Following Modal -->
+<div class="modal fade" id="basicExampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followings</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followings?.length > 0; else Else1">
+                    <div *ngFor="let following of followings" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{following.followed_user.profile.profile_picture}}" alt=""><a href="/user/{{following.followed_user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;">{{following.followed_user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 130px;">
+                                <span *ngIf="following.followed_user.id==LoggedUser.id; else ElseBlock3"></span>
+                                <ng-template #ElseBlock3>
+                                    <a (click)="unfollowUser(LoggedUser.id,following.followed_user.id)" *ngIf="following.followed_status; else ElseBlock4" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                    <ng-template #ElseBlock4>
+                                        <a *ngIf="following.follow_request_sent; else ElseBlock5" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                        <ng-template #ElseBlock5>
+                                            <a (click)="followUser(following.followed_user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else1>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No following found
+                    </p>
+                </ng-template>
             </div>
         </div>
-    </ng-template>
-
-
-
-    <div class="content">
-
-		<div class="row">
-			<div class="col-sm-3">
-				<!-- Begin user profile -->
-				<div class="text-center user-profile-2" style="margin-top:120px">
-					<ul class="list-group">
-                      <li class="list-group-item">
-                            <h4 style="color:darkblue"><b>{{User.profile.full_name | uppercase}}</b></h4>
-                            <small style="color:black">{{User.username}}</small>
-					  </li>
-                      <li class="list-group-item" style="color:black">
-                        <a class="link" href="/followers/{{ User.id }}">
-                            <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
-                            Followers
-                        </a>
-					  </li>
-                      <li class="list-group-item" style="color:black">
-                        <a class="link" href="/following/{{ User.id }}">
-                            <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
-                            Following
-                        </a>
-                      </li>
-                      <li class="list-group-item" style="color:midnightblue">
-						<span class="badge" style="color:darkblue">{{posts?.length}}</span>
-						Posts
-					  </li>
-					</ul>
-                </div><!-- End div .box-info -->
-                <br>
-				<!-- Begin user profile -->
-			</div><!-- End div .col-sm-4 -->
-			
-			<div class="col-sm-9">
-				<div class="widget widget-tabbed">
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						
-						
-						<!-- Tab timeline -->
-						<div class="tab-pane animated active fadeInRight" id="my-timeline">
-							<div class="user-profile-content">
-								<br><br>
-								<!-- Begin timeline -->
-								<div class="the-timeline">
-                                    <!-- Post will Go here -->
-                                    
-                                    <!-- ======= Portfolio Section ======= -->
-                                    <section id="portfolio" class="portfolio section-bg" style="margin-top:20px">
-                                        <div class="container" id="user_post">
-
-                                            <div class="section-title">
-                                            <h2 data-aos="fade-in">Post</h2>
-                                            <p data-aos="fade-in"></p>
-                                            </div>
-
-                                            <div class="row portfolio-container" data-aos="fade-up">
-
-                                                <div *ngFor="let post of posts" class="col-lg-4 col-md-6 portfolio-item filter-web">
-                                                    <div class="portfolio-wrap">
-                                                        <img src="{{ post.file | TransalateImageUrl }}" class="img-fluid">
-                                                        <div class="portfolio-links">
-                                                            <a data-gall="portfolioGallery" class="venobox" title="{{post.post_info}}" href="{{ post.file | TransalateImageUrl }}" ><i class="icofont-link"></i></a>
-                                                            <a href="" title="More Details"><i class="icofont-trash"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                    </section>
-
-
-
-								</div><!-- End div .the-timeline -->
-								<!-- End timeline -->
-							</div><!-- End div .user-profile-content -->
-						</div><!-- End div .tab-pane -->
-						<!-- End Tab timeline -->
-					</div><!-- End div .tab-content -->
-                </div><!-- End div .box-info -->
-			</div>
-		</div>
-	</div>	
+    </div>
 </div>
+

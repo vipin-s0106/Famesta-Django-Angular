@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'followers.apps.FollowersConfig',
     'notification.apps.NotificationConfig',
     'post.apps.PostConfig',
-    'rest_framework'
+    'chat.apps.ChatConfig',
+    'rest_framework',
 ]
 
 REST_FRAMEWORK = {

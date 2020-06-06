@@ -1,6 +1,9 @@
 /*--------------------------------------------------------------
 # Post
 --------------------------------------------------------------*/
+a {
+  text-decoration: none;
+}
 #dashboard {
     margin-top:50px;
     background-color: white;
@@ -62,7 +65,7 @@
     font-size: 25px;
   }
 
-
+/* 
 #search input{
     border: 0;
     padding: 4px 12px 4px 12px;
@@ -71,7 +74,7 @@
     margin:5px;
     width: calc(90% - 100px);
     outline-width: 0;
-}
+} */
 
 
 #search {
@@ -156,7 +159,8 @@
   }
   
 .member .social a:hover {
-    color: #fdc134;
+    color: midnightblue;
+    font-style: bold;
   }
   
 .member .social i {
@@ -164,3 +168,102 @@
     margin: 0 2px;
   }
   
+
+.card-img-top{
+  max-height: 620px;
+}
+
+/* Suggestions*/
+.profile_pic1 img{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+
+/* Search User */
+.profile_pic2 img{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+/* Blog Sidebar
+-------------------*/
+
+.widget {
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+  border-radius: 5px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.widget::-webkit-scrollbar
+{
+	width: 1px;
+	background-color: #F5F5F5;
+}
+
+
+.widget-body {
+  padding: 8px;
+  margin-top:8px;
+}
+
+
+
+
+/* Suggestions Modal  */
+
+.profile_pic1 img{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+  
+.modal-header{
+  height: 10px;
+  border: none;
+}
+
+.modal-dialog{
+  width: 400px;
+  margin-top:100px;
+}
+
+.like-modal{
+  border-radius: 5px;
+  /* width: 100%; */
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.media-body a:hover{
+    color:midnightblue;
+    font-size: 16px;
+}
+
+.like-modal::-webkit-scrollbar
+{
+width: 0px;
+background-color: #F5F5F5;
+}
+
+
+.search-modal{
+  border-radius: 5px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.search-modal::-webkit-scrollbar
+{
+width: 0px;
+}

@@ -17,15 +17,26 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ChatComponent } from './chat/chat.component';
 import { OtherUserProfileComponent } from './other-user-profile/other-user-profile.component';
+import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
 
 //construction of route
 const routes: Routes = [
-  {path: '',redirectTo:'/dashboard',pathMatch:'full'},
-  {path:'login',component:LoginComponent},
-  {path: 'register',component:RegisterComponent},
+  {
+    path: '',
+    redirectTo:'/dashboard',
+    pathMatch:'full',
+  },
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path: 'register',
+    component:RegisterComponent
+  },
   {
     path:'dashboard',
     component:DashboardComponent,
@@ -36,16 +47,60 @@ const routes: Routes = [
     component:LogoutComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'notification/:id',component:NotificationComponent},
-  {path: 'profile',component:ProfileComponent},
-  {path: 'search',component:SearchComponent},
-  {path: 'followers/:id',component:FollowersComponent},
-  {path: 'following/:id',component:FollowingComponent},
-  {path: 'edit-profile/:id',component:EditProfileComponent},
-  {path: 'post-detail/:id',component:PostDetailComponent},
-  {path: 'chat/:id',component:ChatComponent},
-  {path: 'user/:username',component:OtherUserProfileComponent},
-  {path:'**',component:PageNotFoundComponent}
+  {
+    path: 'notification/:id',
+    component:NotificationComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    component:ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search',
+    component:SearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'followers/:id',
+    component:FollowersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'following/:id',
+    component:FollowingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-profile',
+    component:EditProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'post-detail/:id',
+    component:PostDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat',
+    component:ChatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat/:username',
+    component:ChatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/:username',
+    component:OtherUserProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'**',
+    component:PageNotFoundComponent
+  }
 ];
 
 @NgModule({
@@ -68,4 +123,5 @@ export const RoutingComponent = [
   PostDetailComponent,
   ChatComponent,
   OtherUserProfileComponent,
+  UnAuthorizedComponenetComponent,
 ]

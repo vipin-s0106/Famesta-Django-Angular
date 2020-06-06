@@ -1,4 +1,4 @@
-      
+
   <!-- Page Content -->
   <div id = "dashboard" class="container">
     <div class="row">
@@ -13,21 +13,32 @@
             <div class="card mb-4" id="post">
               <div class="card-header">
                   <div class="row">
-                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture | TransalateImageUrl}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></div>
+                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
                   </div>
               </div>
-              <img class="card-img-top" src="{{post.file | TransalateImageUrl}}"alt="Card image cap">
+              <a href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
               <div class="card-body">
-                <a href=""><i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i></a><a href=""><i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i></a>
-                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="">others</a> </small></p>
-                <p class="card-text">{{post.post_info}}</p>
+                <a *ngIf="post.like_by_you; else ElseBlock1">
+                  <i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i>
+                </a>
+                <ng-template #ElseBlock1>
+                  <a (click)="likePost(LoggedUser.id,post.id)" href="">
+                    <i style="font-size: 23px;color:thistle;margin-right: 10px;" class="icofont-heart"></i>
+                  </a>
+                </ng-template>
+                <a href="/post-detail/{{post.id}}">
+                  <i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i>
+                </a>
+                
+                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="" (click)="getPostLikeDetail(post.id)" data-toggle="modal" data-target="#LikeModal">others</a> </small></p>
+                <p class="card-text" style="color:darkblue">{{post.post_info}}</p>
                 <div *ngIf="post.total_comment > 1; else ElseBlock">
-                  <a style="color:grey;font-weight: bold;" href="">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#d2e0ed" href="">more</a> 
+                  <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#8C8D89" href="/post-detail/{{post.id}}">more</a> 
                   </a>
                 </div>
                 <ng-template #ElseBlock>
                   <div *ngIf="post.comment_usr != null">
-                    <a style="color:grey;font-weight: bold;" href="">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                    <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
                     </a>
                   </div>
                 </ng-template>
@@ -72,14 +83,43 @@
                   
                 </div>
                 <div class="col-sm-2">
-                  <a href="/notification/{{LoggedUser.id}}"><i style="color:midnightblue" class="icofont-notification"><span class="badge badge-light" style="font-size:10px;background:slategrey;color:white">5</span></i></a>
+                  <a href="/notification/{{LoggedUser.id}}"><i style="color:midnightblue" class="icofont-notification"><span class="badge badge-light" style="font-size:10px;background:slategrey;color:white">{{notification_count.notification_count}}</span></i></a>
                 </div>
               </div>
               <div class="row">
-              <input type="text" name="search" placeholder="Search for...">
-              <span class="input-group-btn">
-                <a class="btn-get-started scrollto">Search</a>
-              </span>
+                <form style="margin-left:18px">
+                  <mat-form-field [style.width.px]=327>
+                    <span class="icofont-search"><input [(ngModel)]="search_input" type="text" style="margin-left:6px" autocomplete="off" #search="ngModel" name="search" matInput (keyup)="search_user()"
+                      placement="bottom" [ngbPopover]="popContent"
+                      /></span>
+                    <ng-template #popContent>
+                      <div class="search-modal" *ngIf="searched_user?.length > 0; else NoResultFound">
+                        
+                          <div *ngFor="let user of searched_user" class="latest-post-aside media">
+                            <div class="lpa-left media-body">
+                                <div class="row" style="margin-top:5px">
+                                  <div class="col-sm-1">
+                                    <a href="/user/{{user.username}}"> 
+                                      <div class="profile_pic2"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                    </a>
+                                  </div>
+                                  <div class="col-sm-1" style="margin-left: 15px;margin-top:4px">
+                                    <div style="white-space: pre;">
+                                      <a href="/user/{{user.username}}"><span style="font-size: 13px;font-weight: bold">{{user.username}}</span></a>
+                                      <a style="font-size: 15px;color:slategrey;font-weight: bold;"> {{(user.profile.full_name.length > 11)? (user.profile.full_name | slice:0:14)+'..':(user.profile.full_name) }}</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr *ngIf="searched_user?.length > 1">
+                            </div>
+                          </div> 
+                      </div>
+                      <ng-template #NoResultFound>
+                        <strong>No Result Found</strong>
+                      </ng-template>
+                    </ng-template>
+                  </mat-form-field>
+                </form>
             </div>
             </div>
           </div>
@@ -105,25 +145,136 @@
         </div>
 
         <!-- Side Widget -->
-        <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="background: white;border: none;">
-          <h5 class="card-header">Suggestions</h5>
+        <!-- <div *ngIf="suggestion_user?.length > 0" class="card my-4" style="border: none;">
+          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a><span style="margin-left:90px;color:black;font-weight: bold;">view all</span></a></h5>
           <div class="card-body">
                 <div class="row">
                     <div class="col-md-4" *ngFor="let user of suggestion_user">
                       <div class="member" data-aos="fade-up">
                         <div class="pic"><img src="{{user.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
-                        <span>{{user.username}}</span>
+                        <span><a href="/user/{{user.username}}">{{user.username}}</a></span>
                         <div class="social">
-                          <a href=""><i class="icofont-instagram"></i>follow</a>
+                          <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)"><i class="icofont-instagram"></i>follow</a>
                         </div>
                       </div>
                     </div>
                 </div>
           </div>
+        </div> -->
+        <!-- Suggestions -->
+        <div *ngIf="suggestion_user?.length > 0; else ElseBlock2">
+          <h5  style="font-size: 14px;margin-left:12px;font-weight: bold;">Suggestions for you <a *ngIf="suggestion_user?.length > 6" href="" data-toggle="modal" data-target="#SuggestionsModal"><span style="margin-left:140px;color:black;font-weight: bold;">view all</span></a></h5>
+          <div class="widget widget-latest-post">
+              <div class="widget-body">
+                  <div *ngFor="let user of suggestion_user | slice:0:6">
+                      <div class="latest-post-aside media">
+                          <div class="lpa-left media-body">
+                              <div class="row" style="margin-top:8px">
+                                <div class="col-sm-2">
+                                  <a href="/user/{{user.username}}"> 
+                                    <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                  </a>
+                                </div>
+                                <div class="col-sm-10" style="margin-top: 0;">
+                                  <div>
+                                    <a style="font-size: 12px;color:midnightblue;font-weight: bold;padding:0px;white-space: nowrap;width: 71px; ">{{user.profile.full_name}}</a>
+                                  </div>
+                                  <div>
+                                    <a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;padding:0px;white-space: nowrap;width: 71px;">{{user.username}}</span></a>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="lpa-right">
+                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:8px;padding-right:8px;margin-top:15px"><span style="font-size: 12px;" class="icofont-plus"></span> Follow</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
+        <ng-template #ElseBlock2>
+          <h5 style="font-size: 14px;font-weight: bold;margin-left:20px">No suggestions found for you</h5>
+        </ng-template>
       </div>
     </div>
     <!-- /.row -->
   </div>
   <!-- /.container -->
+
+
+
+   
+<!-- Suggestions Modal -->
+<div class="modal fade" id="SuggestionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Suggestions</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="like-modal" *ngIf="suggestion_user?.length > 0; else Else">
+                  <div *ngFor="let user of suggestion_user" class="widget-body1">
+                      <div class="latest-post-aside media">
+                          <div class="lpa-left media-body" style="margin-top:5px">
+                              
+                                  <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""><a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{user.username}}</span></a></div>
+                          </div>
+                          <div class="lpa-right" style="margin-top:15px;margin-left: 120px;">
+                            <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span style="font-size: 12px;" class="icofont-plus"> </span> Follow</a>     
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <ng-template #Else>
+                  <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                      No suggestions found
+                  </p>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- Like Modal -->
+<div class="modal fade" id="LikeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body">
+              <div class="like-modal">
+                  <div *ngFor="let like of post_detail" class="widget-body1">
+                      <div *ngIf="like.like" class="latest-post-aside media">
+                          <div class="lpa-left media-body" style="margin-top:3px">
+                              
+                                  <div class="profile_pic1"><img src="{{like.user.profile.profile_picture}}" alt=""><a href="/user/{{like.user.username}}" style="white-space: nowrap;width: 10px;overflow: hidden;text-overflow: ellipsis;"><span style="font-size: 12px;font-weight: bold;margin-left:5px;"> {{like.user.username}}</span></a></div>
+                          </div>
+                          <div class="lpa-right" style="margin-top:15px;margin-left: 120px;">
+                              <span *ngIf="like.user.id==LoggedUser.id; else ElseBlock2"></span>
+                              <ng-template #ElseBlock2>
+                                  <a (click)="unfollowUser(LoggedUser.id,like.user.id)" *ngIf="like.followed_status; else ElseBlock" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply">Unfollow</span></a>
+                                  <ng-template #ElseBlock>
+                                      <a *ngIf="like.follow_request_sent; else ElseBlock1" class="btn btn-success btn-sm" style="color:white"><span class="icofont-check">Requested</span></a>
+                                      <ng-template #ElseBlock1>
+                                          <a (click)="followUser(like.user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left:17px;padding-right:17px"><span style="font-size: 12px;" class="icofont-plus"></span>Follow</a>
+                                      </ng-template>
+                                  </ng-template>
+                              </ng-template>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 

@@ -2,6 +2,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 
 from .models import User, UserProfile
+from notification.models import Notification
+from followers.models import Follower
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -46,6 +48,7 @@ class RegisterSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     #In order to embed the one profile into other define the related_name='profile' in model of Child Table, name should be match
     profile = ProfileSerializer(read_only=True)
+
 
     class Meta:
         model = User

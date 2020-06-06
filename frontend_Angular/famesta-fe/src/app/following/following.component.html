@@ -2,9 +2,9 @@
 <br>
 <div class="container">
     <div class="row" style="margin-top:20px">
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
             <a href="/profile"><i style="font-size:24px" class="icofont-circled-left"></i> Profile</a>
-        </div>
+        </div> -->
         <div class="col-sm-4" style="margin-left:150px;margin-top:30px">
             <h2>Following</h2>
         </div>
@@ -20,8 +20,8 @@
                                 <img src="{{ following.followed_user.profile.profile_picture | TransalateImageUrl }}" alt="">
                             </div>
                             <div class="candidates-list-desc job-single-meta  pt-2">
-                                <h5 class="mb-2 f-19"><a href="#" class="text-dark">{{ following.followed_user.profile.full_name | titlecase }}</a></h5>
-                                <p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>{{ following.followed_user.username }}</p>
+                                <h5 class="mb-2 f-19"><a href="/user/{{ following.followed_user.username }}" class="text-dark">{{ following.followed_user.profile.full_name | titlecase }}</a></h5>
+                                <a href="/user/{{ following.followed_user.username }}"><p class="text-muted f-15 mb-0" style="color:blue;font-weight: bold;"><i class="mdi mdi-account mr-1"></i>{{ following.followed_user.username }}</p></a>
                                 <div class="candidates-item-desc">
                                     <hr>
                                     <p class="text-muted mb-2 f-14">{{following.followed_user.profile.BioDescription}}</p>

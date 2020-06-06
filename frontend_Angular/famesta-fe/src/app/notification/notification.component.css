@@ -1,4 +1,6 @@
-
+a {
+  text-decoration: none;
+}
 /*--------------------------------------------------------------
 # Schedule Section
 --------------------------------------------------------------*/
@@ -7,7 +9,7 @@
 }
 
 #schedule {
-    padding: 60px 0 60px 0;
+    padding: 50px 0 50px 0;
   }
   
   #schedule .nav-tabs {
@@ -26,11 +28,12 @@
   
   #schedule .nav-tabs a {
     border: none;
+    font-size: 14px;
     border-radius: 50px;
-    font-weight: 600;
+    font-weight: 300;
     background-color: #0e1b4d;
     color: #fff;
-    padding: 10px 100px;
+    /* padding: 10px 100px; */
   }
   
   @media (max-width: 991px) {
@@ -206,4 +209,10 @@
     background: tomato;
     color: #213b52;
     border: 2px solid tomato;
+  }
+
+  #notification_img{
+    margin-top:40px;
+    width:700px;
+    height:500px;
   }

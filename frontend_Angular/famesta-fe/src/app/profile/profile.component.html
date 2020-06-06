@@ -10,7 +10,7 @@
                 <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
-                <a href="/edit-profile/{{ LoggedUser.id }}" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
+                <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
             </div>
         </div>
     </ng-template>
@@ -39,13 +39,13 @@
                             <small style="color:black">{{LoggedUser.username}}</small>
 					  </li>
                       <li class="list-group-item" style="color:black">
-                        <a class="link" href="/followers/{{ LoggedUser.id }}">
+                        <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal">
                             <span class="badge" style="color:darkblue">{{ followers?.length}}</span>
                             Followers
                         </a>
 					  </li>
                       <li class="list-group-item" style="color:black">
-                        <a class="link" href="/following/{{ LoggedUser.id }}">
+                        <a class="link" href="" data-toggle="modal" data-target="#basicExampleModal1">
                             <span class="badge" style="color:darkblue">{{ followings?.length}}</span>
                             Following
                         </a>
@@ -74,13 +74,22 @@
 								<!-- Begin timeline -->
 								<div class="the-timeline">
 									<form role="form" class="post-to-timeline">
-										<textarea class="form-control" style="height: 70px;margin-bottom:10px;" placeholder="Whats on your mind..."></textarea>
+                                        <textarea [(ngModel)]="new_post_data.post_info" class="form-control" style="height: 70px;margin-bottom:10px;" name="post_info" placeholder="Whats on your mind..." #post_info="ngModel" required></textarea>
+                                        <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="post_info.errors?.required && post_info.touched">post tag/info is required.</span>
 										<div class="row">
 										<div class="col-sm-6">
-											<a class="btn btn-sm btn-default"><i class="fa fa-camera"></i></a>
-											<div id="attached-file"></div>
+											<div class="myfileupload-buttonbar ">
+                                                <label class="myui-button">
+                                                    <span style="color: black;" class="icofont-camera"></span>
+                                                    <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
+                                                    <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
+                                                        <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
+                                                    </span>
+                                                </label>
+                                                
+                                            </div>
 										</div>
-										<div class="col-sm-6 text-right"><button type="submit" class="btn btn-primary">Post</button></div>
+										<div class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button></div>
 										</div>
 									</form>
                                     <!-- Post will Go here -->
@@ -100,8 +109,12 @@
                                                     <div class="portfolio-wrap">
                                                         <img src="{{ post.file | TransalateImageUrl }}" class="img-fluid">
                                                         <div class="portfolio-links">
-                                                            <a data-gall="portfolioGallery" class="venobox" title="{{post.post_info}}" href="{{ post.file | TransalateImageUrl }}" ><i class="icofont-link"></i></a>
-                                                            <a href="" title="More Details"><i class="icofont-trash"></i></a>
+                                                            <a href="/post-detail/{{post.id}}"  
+                                                                    title="{{post.post_info}}"
+                                                                    ><i
+                                                                        class="icofont-link"></i></a>
+                                                                <a (click)="deletePost(post.id)" title="More Details"><i
+                                                                        class="icofont-trash"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,4 +137,75 @@
 			</div>
 		</div>
 	</div>	
+</div>
+
+
+<!-- Followers Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followers</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followers?.length > 0; else Else">
+                    <div *ngFor="let follower of followers" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{follower.user.profile.profile_picture}}" alt=""><a href="/user/{{follower.user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{follower.user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 110px;">
+                                <a (click)="remove_Follower(LoggedUser.id,follower.user.id)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-close-line">Remove</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No followers found
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Following Modal -->
+<div class="modal fade" id="basicExampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p  style="color:black;font-size: 18px;font-weight: bold;margin-left:135px"class="modal-title">Followings</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="like-modal" *ngIf="followings?.length > 0; else Else">
+                    <div *ngFor="let following of followings" class="widget-body1">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body" style="margin-top:5px">
+                                
+                                    <div class="profile_pic1"><img src="{{following.followed_user.profile.profile_picture}}" alt=""><a href="/user/{{following.followed_user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;">{{following.followed_user.username}}</span></a></div>
+                            </div>
+                            <div class="lpa-right" style="margin-top:15px;margin-left: 130px;">
+                                <a (click)="unfollowUser(LoggedUser.id,following.followed_user.id)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span class="icofont-reply"> Unfollow</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #Else>
+                    <p style="color:black;font-size: 15px;margin-left:110px;margin-top:20px">
+                        No followings found
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
 </div>

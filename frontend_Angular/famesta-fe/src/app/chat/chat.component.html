@@ -1,1 +1,108 @@
-<p>chat works!</p>
+<br>
+<br>
+<br>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <!-- Content wrapper start -->
+    <div class="content-wrapper">
+
+        <!-- Row start -->
+        <div class="row gutters">
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                <div class="card m-0">
+
+                    <!-- Row start -->
+                    <div class="row no-gutters">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
+                            <div class="users-container">
+                                <div class="chat-search-box">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Search">
+                                        <!-- <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <ul class="users" *ngFor="let user of chatInstanceList">
+                                    <div *ngIf="chatWindowUser; else ElseBlock">
+                                        <li *ngIf="user.other_user.username===chatWindowUser.username; else NonActiveBlock" class="person active-user" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                            <div class="user">
+                                                <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                <span class="status busy"></span>
+                                            </div>
+                                            <p class="name-time">
+                                                <span class="name">{{user.other_user.username}}</span>
+                                            </p>
+
+                                        
+                                        </li>
+                                        <ng-template #NonActiveBlock>
+                                            <li class="person" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                                <div class="user">
+                                                    <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                    <span class="status busy"></span>
+                                                </div>
+                                                <p class="name-time">
+                                                    <span class="name">{{user.other_user.username}}</span>
+                                                </p>   
+                                            </li>
+                                        </ng-template> 
+                                    </div>
+                                    <ng-template #ElseBlock>
+                                        <li class="person" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                            <div class="user">
+                                                <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                <span class="status busy"></span>
+                                            </div>
+                                            <p class="name-time">
+                                                <span class="name">{{user.other_user.username}}</span>
+                                            </p>   
+                                        </li>
+                                    </ng-template>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" *ngIf="chatWindowUser">
+                            <div class="selected-user" >
+                                <div class="user" >
+                                    <img src="{{chatWindowUser.profile.profile_picture | TransalateImageUrl}}" alt="Retail Admin"><strong style="color:midnightblue"> <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}}</a></strong>
+                                    <button (click)="getAllUserMessages(chatWindowUser.username)" class="btn btn-success btn-sm" style="float:right;margin-top: 18px;"><span class="icofont-refresh"></span></button>
+                                </div>
+                            </div>
+                           
+                            <div class="chat-container chatContainerScroll" id='messageBody'>
+                                <div *ngFor="let msg of ChatMessages"  class="chat-box">
+                                    <li class="chat-left" *ngIf="msg.sender===chatWindowUser.username">
+                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} </small></div>
+                                        <div class="chat-hour"><span class="fa fa-check-circle"></span></div>
+                                    </li>
+                                    <li class="chat-right" *ngIf="msg.sender!=chatWindowUser.username">
+                                        <div class="chat-hour"><span class="fa fa-check-circle"></span></div>
+                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} </small></div>
+                                    </li>
+                                </div>
+                                
+                            </div>
+                            <br>
+                            <div class="form">
+                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="10" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row end -->
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Content wrapper end -->
+
+</div>

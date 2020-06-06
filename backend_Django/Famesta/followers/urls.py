@@ -13,4 +13,5 @@ urlpatterns = [
 	url('^api/followers/get_followings/(?P<user_id>[0-9]+)/$',views.GetUserFollowings().as_view(),name="get_followings"), #Completed
 	url('^api/followers/blocked_user/(?P<user_id>[0-9]+)/(?P<follower_id>[0-9]+)/$',views.BlockedUser().as_view(),name="blocked_user"), #completed
 	url('^api/followers/unblocked_user/(?P<user_id>[0-9]+)/(?P<follower_id>[0-9]+)/$',views.UnblockedUser().as_view(),name="unblocked_user"), #completed
+	url('^api/user/follower_status/(?P<other_user_id>[0-9]+)/$',views.FollowStatusAPIView().as_view(),name="follower_status"), #completed
 ]
