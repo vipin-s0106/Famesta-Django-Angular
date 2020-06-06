@@ -21,7 +21,7 @@ class ChatMessage(models.Model):
     sender = models.CharField(_('sender'),max_length=350,null=False)
     receiver = models.CharField(_('receiver'),max_length=350,null=False)
     message = models.CharField(_("message"), max_length=450, null=True)
-    image = models.FileField(_("image"), null=True)
+    image = models.FileField(_("image"), null=True,blank=True)
     timestamp = models.DateTimeField(_('timestamp'), default=timezone.now)
     seen = models.BooleanField(_("seen"), default=False)
 

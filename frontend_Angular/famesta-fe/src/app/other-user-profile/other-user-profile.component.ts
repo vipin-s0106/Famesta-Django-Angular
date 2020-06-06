@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service'
 import { NotificationService } from '../services/notification.service';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-other-user-profile',
@@ -22,7 +23,7 @@ export class OtherUserProfileComponent implements OnInit {
   public LoggedUser;
 
 
-  constructor(public usr_srv: UserService,private _router:Router,public not_srv: NotificationService,public post_srv: PostService,public follower_srv: FollowerService,private route:ActivatedRoute) { }
+  constructor(public chat_srv:ChatService,public usr_srv: UserService,private _router:Router,public not_srv: NotificationService,public post_srv: PostService,public follower_srv: FollowerService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     let username = this.route.snapshot.paramMap.get('username');
@@ -88,6 +89,14 @@ export class OtherUserProfileComponent implements OnInit {
       err => console.log(err)
     )
   }
+
+  sendMessage(username){
+    console.log('coming to send msg')
+    this.chat_srv.createChatInstance(username).subscribe(
+      res => this._router.navigate(['/chat/'+username+'/'])
+    )
+  }
+
 
   getBackgroundImgURL(image_url){
     return this.usr_srv._base_url+image_url

@@ -126,7 +126,7 @@ class ChatMessageView(APIView):
     def get(self,request,other_username):
         logged_username = request.user.username
         chat_messages = ChatMessage.objects.filter(Q(sender=logged_username,receiver=other_username) |
-                                                   Q(sender=other_username,receiver=logged_username)).order_by('-timestamp')
+                                                   Q(sender=other_username,receiver=logged_username)).order_by('timestamp')
         serializer = ChatMessageSerializer(chat_messages,many=True)
         return Response(serializer.data,status=200)
 

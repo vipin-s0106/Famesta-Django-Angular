@@ -1,3 +1,9 @@
+.card{
+    height: 550px;
+    max-height: 550px;
+    overflow: auto;
+}
+
 .chat-search-box {
     -webkit-border-radius: 3px 0 0 0;
     -moz-border-radius: 3px 0 0 0;
@@ -77,15 +83,15 @@
     /* Fallback Color */
     background-image: -webkit-gradient(linear, left top, left bottom, from(#e9eff5), to(#ffffff));
     /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(right, #e9eff5, #ffffff);
+    background-image: -webkit-linear-gradient(to left, #e9eff5, #ffffff);
     /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(right, #e9eff5, #ffffff);
+    background-image: -moz-linear-gradient(to left, #e9eff5, #ffffff);
     /* FF3.6 */
-    background-image: -ms-linear-gradient(right, #e9eff5, #ffffff);
+    background-image: -ms-linear-gradient(to left, #e9eff5, #ffffff);
     /* IE10 */
-    background-image: -o-linear-gradient(right, #e9eff5, #ffffff);
+    background-image: -o-linear-gradient(to left, #e9eff5, #ffffff);
     /* Opera 11.10+ */
-    background-image: linear-gradient(right, #e9eff5, #ffffff);
+    background-image: linear-gradient(to left, #e9eff5, #ffffff);
 }
 
 .users .person.active-user {
@@ -93,15 +99,15 @@
     /* Fallback Color */
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f9fb), to(#ffffff));
     /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(right, #f7f9fb, #ffffff);
+    background-image: -webkit-linear-gradient(to left, #f7f9fb, #ffffff);
     /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(right, #f7f9fb, #ffffff);
+    background-image: -moz-linear-gradient(to left, #f7f9fb, #ffffff);
     /* FF3.6 */
-    background-image: -ms-linear-gradient(right, #f7f9fb, #ffffff);
+    background-image: -ms-linear-gradient(to left, #f7f9fb, #ffffff);
     /* IE10 */
-    background-image: -o-linear-gradient(right, #f7f9fb, #ffffff);
+    background-image: -o-linear-gradient(to left, #f7f9fb, #ffffff);
     /* Opera 11.10+ */
-    background-image: linear-gradient(right, #f7f9fb, #ffffff);
+    background-image: linear-gradient(to left, #f7f9fb, #ffffff);
 }
 
 .users .person:last-child {
@@ -188,13 +194,14 @@
   overflow-x: hidden;
   display: inline-block;
   vertical-align: top;
-  max-height: 380px;
+  height: 410px;
+  max-height: 410px;
   overflow: auto;
 }
 
 .chatContainerScroll::-webkit-scrollbar
 {
-	width: 1px;
+  width: 1px;
   background-color: #F5F5F5;
   
 }
