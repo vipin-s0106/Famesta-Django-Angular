@@ -377,3 +377,34 @@ textarea {
     color:black;
     margin-bottom:-10px
 }
+
+
+
+.profile_pic2 img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  #close_chat_instance1{
+    display: inline-block;
+    position: relative;
+    float:right;
+}
+
+  #close_chat_instance{
+      display: none;
+      margin-top:15px;
+  }
+
+  #person_list:hover #close_chat_instance{
+
+    display: inline-block;
+    color: slategray;
+    font-weight: bold;
+
+  }
+
+  #close_chat_instance:hover{
+    font-size: 18px;
+}

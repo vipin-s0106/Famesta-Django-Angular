@@ -88,6 +88,10 @@ export class OtherUserProfileComponent implements OnInit {
       },
       err => console.log(err)
     )
+
+    //updating to navbar
+    this.updateNavBar()
+
   }
 
   sendMessage(username){
@@ -130,6 +134,18 @@ export class OtherUserProfileComponent implements OnInit {
       err => console.log(err)
     )
   }
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
 
 
 }

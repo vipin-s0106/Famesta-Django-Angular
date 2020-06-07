@@ -2,6 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NotificationService } from '../services/notification.service';
 
 
 export interface DialogData {
@@ -27,7 +28,7 @@ export class EditProfileComponent implements OnInit {
 
   post_updated_data = {"BioDescription":"","full_name":"","mobile":"","date_of_birth":"","gender":"","account_type":""}
 
-  constructor(private route:ActivatedRoute,private router: Router,private usr_srv: UserService,public dialog: MatDialog) { }
+  constructor(private route:ActivatedRoute,private router: Router,private usr_srv: UserService,public dialog: MatDialog,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
     this.LoggedUser = this.usr_srv.getLoggedUserDetails().subscribe(
@@ -46,6 +47,9 @@ export class EditProfileComponent implements OnInit {
       },
       err => console.log(err)
     )
+
+    //updating navbar
+    this.updateNavBar()
   }
 
   onBackgroundProfileChange(event){
@@ -145,6 +149,19 @@ export class EditProfileComponent implements OnInit {
       }
     }
   }
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
+
 }
 
 

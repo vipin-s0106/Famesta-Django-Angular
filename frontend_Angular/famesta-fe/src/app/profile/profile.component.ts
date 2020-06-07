@@ -3,6 +3,7 @@ import { Router, ParamMap } from '@angular/router'
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service'
+import { NotificationService } from '../services/notification.service';
 
 
 
@@ -23,7 +24,7 @@ export class ProfileComponent implements OnInit {
   public upload_post_file: File;
   public new_post_data = {"post_info":""}
 
-  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) { }
+  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
     this.usr_srv.getLoggedUserDetails().subscribe(
@@ -70,6 +71,8 @@ export class ProfileComponent implements OnInit {
       err => this._router.navigate(['/login'])
     )
    
+    //updating navbar
+    this.updateNavBar()
   }
 
 
@@ -124,5 +127,18 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     )
   }
+
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
 
 }

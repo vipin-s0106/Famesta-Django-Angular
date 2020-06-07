@@ -67,6 +67,8 @@ export class DashboardComponent implements OnInit {
           res => {
             console.log(res);
             this.notification_count = res;
+
+            //this is also for the subject to pass on navbar
             this.not_srv.notification_count.next(res.notification_count)
           },
           err => console.log(err)
