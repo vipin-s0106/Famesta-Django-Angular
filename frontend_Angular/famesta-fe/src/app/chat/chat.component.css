@@ -408,3 +408,17 @@ textarea {
   #close_chat_instance:hover{
     font-size: 18px;
 }
+
+
+#person_list .badge {
+    position: absolute;
+    top: 0px;
+    right: 1px;
+    padding: 4px 6px;
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+  }
+
+
+/* Chat Window username */

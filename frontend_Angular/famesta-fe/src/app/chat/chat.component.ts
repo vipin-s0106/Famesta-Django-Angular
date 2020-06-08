@@ -66,6 +66,7 @@ export class ChatComponent implements OnInit {
             res => {
               this.chatWindowUser = res;
               console.log(this.chatWindowUser)
+              this.updateChatInstanceList()
               this.loadScript()     
           }
         )

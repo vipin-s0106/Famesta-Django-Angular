@@ -58,7 +58,10 @@
                                         <li id="person_list" *ngIf="user.other_user.username===chatWindowUser.username; else NonActiveBlock" class="person active-user" data-chat="person1" >
                                             <div class="user">
                                                 <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                <span class="status busy"></span>
+                                                <span *ngIf="user.other_user.status; else StatusBlock1" class="status online"></span>
+                                                <ng-template #StatusBlock1>
+                                                    <span class="status away"></span>
+                                                </ng-template>
                                             </div>
                                             <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
                                                 <span class="name">{{user.other_user.username}}</span>    
@@ -66,13 +69,16 @@
                                             <div id ="close_chat_instance1">
                                                 <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
                                             </div>
-                                        
+                                            <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                         </li>
                                         <ng-template #NonActiveBlock>
                                             <li id="person_list" class="person" data-chat="person1" >
                                                 <div class="user">
                                                     <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                    <span class="status busy"></span>
+                                                    <span *ngIf="user.other_user.status; else StatusBlock2" class="status online"></span>
+                                                    <ng-template #StatusBlock2>
+                                                        <span class="status away"></span>
+                                                    </ng-template>
                                                 </div>
                                                 <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
                                                     <span class="name">{{user.other_user.username}}</span>    
@@ -80,6 +86,7 @@
                                                 <div id ="close_chat_instance1">
                                                     <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
                                                 </div>
+                                                <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                             </li>
                                         </ng-template> 
                                     </div>
@@ -87,7 +94,10 @@
                                         <li id="person_list" class="person" data-chat="person1">
                                             <div class="user">
                                                 <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                <span class="status busy"></span>
+                                                <span *ngIf="user.other_user.status; else StatusBlock3" class="status online"></span>
+                                                <ng-template #StatusBlock3>
+                                                    <span class="status away"></span>
+                                                </ng-template>
                                             </div>
                                             <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
                                                 <span class="name">{{user.other_user.username}}</span>    
@@ -95,6 +105,7 @@
                                             <div id ="close_chat_instance1">
                                                 <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
                                             </div> 
+                                            <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                         </li>
                                     </ng-template>
                                 </ul>
@@ -103,7 +114,16 @@
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" *ngIf="userWindowFlag">
                             <div class="selected-user" >
                                 <div class="user" >
-                                    <img src="{{chatWindowUser.profile.profile_picture | TransalateImageUrl}}" alt="Retail Admin"><strong style="color:midnightblue"> <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}}</a></strong>
+                                    <img src="{{chatWindowUser.profile.profile_picture | TransalateImageUrl}}" alt="Retail Admin">
+                                    <strong style="color:midnightblue">
+                                         <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}} </a>
+                                         <span *ngIf="chatWindowUser.status; else StatusBlock4" style="color: green;font-size: 11px;">
+                                            online
+                                         </span>
+                                         <ng-template #StatusBlock4>
+                                            <span style="color: orange;font-size: 11px;">away</span>
+                                         </ng-template>
+                                    </strong>
                                     <button (click)="getAllUserMessages(chatWindowUser.username)" class="btn btn-success btn-sm" style="float:right;margin-top: 18px;"><span class="icofont-refresh"></span></button>
                                 </div>
                             </div>
