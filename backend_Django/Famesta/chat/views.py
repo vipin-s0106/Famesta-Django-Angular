@@ -9,6 +9,9 @@ from  django.db.models import Q
 
 from .serializer import PostChatUserSerializer,ChatMessageSerializer,ChatUserSerializer
 
+from django.core.cache import cache
+from django.conf import settings
+
 class CreateUserChatInstance(APIView):
 
     def post(self,request,other_username):
@@ -93,6 +96,12 @@ class DeleteChatUserInstance(APIView):
 class PostUserMessage(APIView):
 
     def post(self,request,other_username):
+        #setting the current chat window
+        cache.set('chat_window_%s' % (request.user.username), other_username,
+                  settings.USER_CHAT_WINDOW_TIMEOUT)
+
+
+
         data = request.data
         logged_user_id = request.user.id
         other_userid = User.objects.get(username=other_username).id
@@ -107,8 +116,58 @@ class PostUserMessage(APIView):
             serializer = PostChatUserSerializer(data=data1)
             if serializer.is_valid():
                 serializer.save()
+
+                ####################################################################
+                # check if user on other chat window then update the unseen_msg_count
+                other_user_object = User.objects.get(username=other_username)
+                instance = ChatUser.objects.filter(user=other_userid, other_user=logged_user_id).first()
+                unseen_data = {
+                    'user': other_userid,
+                    'other_user': logged_user_id,
+                    "unseen_message_count": instance.unseen_message_count + 1
+                }
+                unseen_serializer = PostChatUserSerializer(instance,data=unseen_data,partial=True)
+                if other_user_object.online():
+                    # print(cache.get('chat_window_%s' % (other_username)))
+                    if str(cache.get('chat_window_%s' % (other_username))) != str(request.user.username):
+                        if unseen_serializer.is_valid():
+                            unseen_serializer.save()
+                else:
+                    # print(other_user_object.online())
+
+                    if unseen_serializer.is_valid():
+                        unseen_serializer.save()
+
+                ####################################################################
+
+
             else:
                 return Response({"error":"Not able to create the chat window of other user"}, status=400)
+        else:
+            ####################################################################
+            # check if user on other chat window then update the unseen_msg_count
+            other_user_object = User.objects.get(username=other_username)
+            # instance = ChatUser.objects.filter(user=other_userid, other_user=logged_user_id).first()
+            unseen_data = {
+                'user': other_userid,
+                'other_user': logged_user_id,
+                "unseen_message_count": instance.unseen_message_count + 1
+            }
+            # print(unseen_data)
+            unseen_serializer = PostChatUserSerializer(instance,data=unseen_data,partial=True)
+            if other_user_object.online():
+                # print(cache.get('chat_window_%s' % (other_username)))
+                if str(cache.get('chat_window_%s' % (other_username))) != str(request.user.username):
+                    if unseen_serializer.is_valid():
+                        unseen_serializer.save()
+            else:
+                # print(other_user_object.online())
+                if unseen_serializer.is_valid():
+                    unseen_serializer.save()
+                else:
+                    print(unseen_serializer.error_messages)
+
+            ####################################################################
 
 
         data['sender'] = request.user.username
@@ -121,9 +180,32 @@ class PostUserMessage(APIView):
         else:
             return Response(serializer.error_messages,status=400)
 
+
+
 class ChatMessageView(APIView):
 
     def get(self,request,other_username):
+        #setting the current user chat windows
+
+        cache.set('chat_window_%s' % (request.user.username), other_username,
+                  settings.USER_CHAT_WINDOW_TIMEOUT)
+
+        ##############################################################
+        #Setting the unseen msg count zero for this user
+        other_user_object = User.objects.get(username=other_username)
+        instance = ChatUser.objects.filter(user=request.user.id, other_user=other_user_object.id).first()
+        if instance.unseen_message_count > 0:
+            unseen_data = {
+                'user': request.user.id,
+                'other_user': other_user_object.id,
+                "unseen_message_count": 0
+            }
+            unseen_serializer = PostChatUserSerializer(instance,data=unseen_data,partial=True)
+            if unseen_serializer.is_valid():
+                unseen_serializer.save()
+        ##############################################################
+
+
         logged_username = request.user.username
         chat_messages = ChatMessage.objects.filter(Q(sender=logged_username,receiver=other_username) |
                                                    Q(sender=other_username,receiver=logged_username)).order_by('timestamp')
