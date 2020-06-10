@@ -172,6 +172,11 @@ class PostUserMessage(APIView):
 
         data['sender'] = request.user.username
         data['receiver'] = other_username
+
+        #if other user is on your chat window then make msg as seen
+        if str(cache.get('chat_window_%s' % (other_username))) == str(request.user.username):
+            data["seen"] = True
+
         print(data)
         serializer = ChatMessageSerializer(data=data)
         if serializer.is_valid():
@@ -209,6 +214,22 @@ class ChatMessageView(APIView):
         logged_username = request.user.username
         chat_messages = ChatMessage.objects.filter(Q(sender=logged_username,receiver=other_username) |
                                                    Q(sender=other_username,receiver=logged_username)).order_by('timestamp')
+
+        ##############################################################################
+        # if user going to see the msg of other user then make update of seen of msgs
+        if other_user_object.online() and cache.get('chat_window_%s' % (other_username)) == request.user.username:
+            for msg in chat_messages[::-1]:
+                print(msg)
+                if msg.seen == True and msg.sender == other_username:
+                    break
+                elif msg.sender == other_username:
+                    chat = ChatMessage.objects.get(id=msg.id)
+                    data = {"seen": True}
+                    serializer = ChatMessageSerializer(chat, data=data, partial=True)
+                    if serializer.is_valid():
+                        serializer.save()
+        ###############################################################################
+
         serializer = ChatMessageSerializer(chat_messages,many=True)
         return Response(serializer.data,status=200)
 

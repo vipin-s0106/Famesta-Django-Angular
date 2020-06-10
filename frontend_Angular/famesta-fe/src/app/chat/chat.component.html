@@ -131,11 +131,23 @@
                             <div class="chat-container chatContainerScroll" id='messageBody'>
                                 <div *ngFor="let msg of ChatMessages"  class="chat-box">
                                     <li class="chat-left" *ngIf="msg.sender===chatWindowUser.username">
-                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} </small></div>
+                                        <div class="chat-text">{{msg.message}}<br>
+                                            <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
+                                            </small>
+                                        </div>
                                         
                                     </li>
                                     <li class="chat-right" *ngIf="msg.sender!=chatWindowUser.username">
-                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} <span style="font-size: 12px;color:green" class="fa fa-check"></span></small></div>
+                                        <div class="chat-text">{{msg.message}}<br>
+                                            <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
+                                                <span *ngIf="msg.seen; else SeenBlock" style="font-size: 12px;color:green" class="fa fa-check">
+                                                </span>
+                                                <ng-template #SeenBlock>
+                                                    <span style="font-size: 12px;color:slategrey" class="fa fa-check">
+                                                    </span>
+                                                </ng-template>
+                                            </small>
+                                        </div>
                                     </li>
                                 </div>
                                 

@@ -74,6 +74,9 @@ export class ChatComponent implements OnInit {
     if(this.subscription){
       this.subscription.unsubscribe();
     }
+
+    let ideal_timer = 0
+
     this.subscription = timer(0, 3000).pipe(
       switchMap(() => this.chat_srv.getChatMsgs(username))
     ).subscribe(
@@ -86,7 +89,13 @@ export class ChatComponent implements OnInit {
                 this.chatWindowUser = res;
                 console.log(this.chatWindowUser)
                 this.updateChatInstanceList()
-                this.loadScript()     
+                this.loadScript()  
+                ideal_timer = ideal_timer + 1
+                console.log(ideal_timer)
+                if (ideal_timer == 55){
+                  this.subscription.unsubscribe();
+                }
+
             }
           )
           

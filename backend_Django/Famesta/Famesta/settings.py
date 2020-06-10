@@ -88,7 +88,7 @@ USER_ONLINE_TIMEOUT = 240
 # their last seen is removed from the cache
 USER_LASTSEEN_TIMEOUT = 60 * 60 * 24 * 7
 
-USER_CHAT_WINDOW_TIMEOUT = 5   #5 seconds
+USER_CHAT_WINDOW_TIMEOUT = 10   #5 seconds
 
 
 
