@@ -4,6 +4,10 @@ import { UserService } from '../services/user.service';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router'
 import { NotificationService } from '../services/notification.service';
 
+import { Subscription, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -22,6 +26,9 @@ export class ChatComponent implements OnInit {
   public userWindowFlag=false
 
   public message = {"message":""}
+
+
+  subscription: Subscription;
 
   constructor(public chat_srv:ChatService,public usr_srv:UserService,private route:ActivatedRoute,public not_srv:NotificationService) { }
 
@@ -46,6 +53,13 @@ export class ChatComponent implements OnInit {
 
   }
 
+
+  ngOnDestroy() {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
+
   public search_user(): any{
     this.usr_srv.search_user(this.search_input).subscribe(
       res => {
@@ -57,22 +71,43 @@ export class ChatComponent implements OnInit {
 
 
   getAllUserMessages(username){
-    this.chat_srv.getChatMsgs(username).subscribe(
-      res =>{
-        this.userWindowFlag=true;
-        this.ChatMessages = res;
-        console.log(this.ChatMessages)
-        this.usr_srv.getUserProfile(username).subscribe(
-            res => {
-              this.chatWindowUser = res;
-              console.log(this.chatWindowUser)
-              this.updateChatInstanceList()
-              this.loadScript()     
-          }
-        )
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+    this.subscription = timer(0, 3000).pipe(
+      switchMap(() => this.chat_srv.getChatMsgs(username))
+    ).subscribe(
+        res =>{
+          this.userWindowFlag=true;
+          this.ChatMessages = res;
+          console.log(this.ChatMessages)
+          this.usr_srv.getUserProfile(username).subscribe(
+              res => {
+                this.chatWindowUser = res;
+                console.log(this.chatWindowUser)
+                this.updateChatInstanceList()
+                this.loadScript()     
+            }
+          )
+          
+        }
+      )
+    // this.chat_srv.getChatMsgs(username).subscribe(
+    //   res =>{
+    //     this.userWindowFlag=true;
+    //     this.ChatMessages = res;
+    //     console.log(this.ChatMessages)
+    //     this.usr_srv.getUserProfile(username).subscribe(
+    //         res => {
+    //           this.chatWindowUser = res;
+    //           console.log(this.chatWindowUser)
+    //           this.updateChatInstanceList()
+    //           this.loadScript()     
+    //       }
+    //     )
         
-      }
-    )
+    //   }
+    // )
     
   }
 
@@ -92,7 +127,9 @@ export class ChatComponent implements OnInit {
     if (this.message.message != ""){
       this.chat_srv.sendUserMessage(username,this.message).subscribe(
         res => {
-          this.getAllUserMessages(username)
+          this.getAllUserMessages(username),
+          this.message.message = ""
+
         }
       )
     }
@@ -101,8 +138,8 @@ export class ChatComponent implements OnInit {
   createUserInstance(username){
     this.chat_srv.createChatInstance(username).subscribe(
       res => {
-        this.getAllUserMessages(username);
         this.updateChatInstanceList();
+        this.getAllUserMessages(username);
         this.search_input=""
         this.userWindowFlag=true
       }
@@ -114,17 +151,19 @@ export class ChatComponent implements OnInit {
       res =>{
         
         if(this.userWindowFlag){
+          this.updateChatInstanceList();
           if(this.chatWindowUser.username === username){
             this.userWindowFlag=false
+            if(this.subscription){
+              this.subscription.unsubscribe();
+            }
           }
           else{
             this.userWindowFlag=true
             this.getAllUserMessages(this.chatWindowUser.username);
-          }
-          this.updateChatInstanceList();
+          } 
         }
         else{
-          console.log("coming to last else Block")
           this.userWindowFlag=false
           this.updateChatInstanceList();
         }
