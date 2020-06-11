@@ -30,6 +30,8 @@ export class ChatComponent implements OnInit {
 
   subscription: Subscription;
 
+  toggled: boolean = false;
+
   constructor(public chat_srv:ChatService,public usr_srv:UserService,private route:ActivatedRoute,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
@@ -60,6 +62,11 @@ export class ChatComponent implements OnInit {
     }
   }
 
+
+  handleSelection(event) {
+    this.message.message += event.char;
+  }
+
   public search_user(): any{
     this.usr_srv.search_user(this.search_input).subscribe(
       res => {
@@ -77,7 +84,7 @@ export class ChatComponent implements OnInit {
 
     let ideal_timer = 0
 
-    this.subscription = timer(0, 3000).pipe(
+    this.subscription = timer(0, 300000).pipe(
       switchMap(() => this.chat_srv.getChatMsgs(username))
     ).subscribe(
         res =>{

@@ -36,6 +36,8 @@ import { MaterialModule } from './material/material.module';
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
 
 
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+
 //importing ngPopover
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -59,6 +61,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule,
+    NgxEmojiPickerModule.forRoot(),
   ],
   providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
   {

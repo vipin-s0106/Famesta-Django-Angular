@@ -154,8 +154,16 @@
                             </div>
                             <br>
                             <div class="form">
-                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="10" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
-                                
+                                <a class="button"
+                                    (click)="toggled = !toggled"
+                                    [(emojiPickerIf)]="toggled"
+                                    [emojiPickerDirection]="'top'"
+                                    (emojiPickerSelect)="handleSelection($event)"
+                                    style="font-size: 22px;margin-top:9px;margin-right:10px;margin-left:5px"
+                                >
+                                    <span class="icofont-simple-smile"></span>
+                                </a>
+                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="9" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
                             </div>
                         </div>
                     </div>
