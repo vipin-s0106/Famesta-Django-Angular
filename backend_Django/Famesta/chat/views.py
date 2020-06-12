@@ -168,10 +168,19 @@ class PostUserMessage(APIView):
                     print(unseen_serializer.error_messages)
 
             ####################################################################
-
-
+        _mutable = data._mutable
+        #
+        # # set to mutable
+        data._mutable = True
+        #
+        # # сhange the values you want
         data['sender'] = request.user.username
         data['receiver'] = other_username
+        #
+        # # set mutable flag back
+        data._mutable = _mutable
+
+        
 
         #if other user is on your chat window then make msg as seen
         if str(cache.get('chat_window_%s' % (other_username))) == str(request.user.username):
@@ -230,7 +239,7 @@ class ChatMessageView(APIView):
                         serializer.save()
         ###############################################################################
 
-        serializer = ChatMessageSerializer(chat_messages,many=True)
+        serializer = ChatMessageSerializer(chat_messages,many=True,context={'request':request})
         return Response(serializer.data,status=200)
 
     def delete(self,request,other_username):

@@ -81,7 +81,7 @@
                                                 <a class="button"
                                                     (click)="toggled = !toggled"
                                                     [(emojiPickerIf)]="toggled"
-                                                    [emojiPickerDirection]="'bottom'"
+                                                    [emojiPickerDirection]="'left'"
                                                     (emojiPickerSelect)="handleSelection($event)"
                                                     style="font-size: 22px;margin-top:9px;margin-right:10px;margin-left:5px"
                                                 >
@@ -92,10 +92,8 @@
                                                 <div class="myfileupload-buttonbar ">
                                                     <label class="myui-button" style="font-size: 25px;">
                                                         <span style="color: black;" class="icofont-camera"></span>
-                                                        <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
-                                                        <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
-                                                            <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
-                                                        </span>
+                                                        <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/>
+                                                        
                                                     </label>
                                                     
                                                 </div>
@@ -103,7 +101,11 @@
                                             </div>
                                             <div style="margin-left:340px" class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button>
                                             </div>
-										</div>
+                                        </div>
+                                        <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
+                                        <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
+                                            <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
+                                        </span>
 									</form>
                                     <!-- Post will Go here -->
                                     

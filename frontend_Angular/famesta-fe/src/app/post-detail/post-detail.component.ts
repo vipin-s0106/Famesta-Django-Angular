@@ -19,6 +19,8 @@ export class PostDetailComponent implements OnInit {
 
   public postData = {"comment":""}
 
+  toggled: boolean = false;
+
   constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,public not_srv: NotificationService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {

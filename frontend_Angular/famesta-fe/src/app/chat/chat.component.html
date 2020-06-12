@@ -131,14 +131,20 @@
                             <div class="chat-container chatContainerScroll" id='messageBody'>
                                 <div *ngFor="let msg of ChatMessages"  class="chat-box">
                                     <li class="chat-left" *ngIf="msg.sender===chatWindowUser.username">
-                                        <div class="chat-text">{{msg.message}}<br>
+                                        <div class="chat-text">
+                                            <img id="{{msg.id}}" (click)="openImgModal(msg.image)" *ngIf="msg.image" src="{{msg.image}}" style="border-radius: 4px;margin-bottom: 3px;margin-top: 3px;max-width: 300px;max-height: 250px;" data-toggle="modal" data-target="#ImageModal"><br>
+                                            {{msg.message}}<br>
                                             <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
                                             </small>
                                         </div>
                                         
+                                        
                                     </li>
+                                    
                                     <li class="chat-right" *ngIf="msg.sender!=chatWindowUser.username">
-                                        <div class="chat-text">{{msg.message}}<br>
+                                        <div class="chat-text">
+                                            <img id="{{msg.id}}" (click)="openImgModal(msg.image)" *ngIf="msg.image" src="{{msg.image}}" style="border-radius: 4px;margin-bottom: 3px;margin-top: 3px;max-width: 300px;max-height: 250px;" data-toggle="modal" data-target="#ImageModal"><br>
+                                            {{msg.message}}<br>
                                             <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
                                                 <span *ngIf="msg.seen; else SeenBlock" style="font-size: 12px;color:green" class="fa fa-check">
                                                 </span>
@@ -163,7 +169,14 @@
                                 >
                                     <span class="icofont-simple-smile"></span>
                                 </a>
-                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="9" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
+                                <div class="myfileupload-buttonbar " style="margin-top: 5px;">
+                                    <label class="myui-button" style="font-size: 25px;">
+                                        <span style="color: black;" class="icofont-camera"></span>
+                                        <input (change)="onSendMsgImg($event)" id="file1" type="file" name="new_post">
+                                    </label>
+                                    
+                                </div>
+                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="8.5" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
                             </div>
                         </div>
                     </div>
@@ -177,5 +190,18 @@
 
     </div>
     <!-- Content wrapper end -->
+
+</div>
+
+
+<div id="ImageModal" class="modal">
+    <div class="modal-dialog" role="document">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <img class="modal-content" src="{{modal_img}}" id="img01" style="border-radius: 10px;">
+            </div>
+    </div>
 
 </div>

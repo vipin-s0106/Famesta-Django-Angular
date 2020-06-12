@@ -24,6 +24,9 @@ export class ProfileComponent implements OnInit {
   public upload_post_file: File;
   public new_post_data = {"post_info":""}
 
+  toggled: boolean = false;
+
+
   constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
@@ -127,6 +130,7 @@ export class ProfileComponent implements OnInit {
     this.post_srv.postStory(uploadData,user_id).subscribe(
       res => {
         // console.log(res);
+        this.new_post_file = null;
         this.ngOnInit();
       },
       err => console.log(err)

@@ -25,12 +25,17 @@ export class ChatComponent implements OnInit {
 
   public userWindowFlag=false
 
+  public send_msg_file: File;
+  public upload_msg_img;
+
   public message = {"message":""}
 
 
   subscription: Subscription;
 
   toggled: boolean = false;
+
+  public modal_img;
 
   constructor(public chat_srv:ChatService,public usr_srv:UserService,private route:ActivatedRoute,public not_srv:NotificationService) { }
 
@@ -138,17 +143,27 @@ export class ChatComponent implements OnInit {
     )
   }
 
+  onSendMsgImg(event){
+    this.send_msg_file = event.target.files[0];
+    console.log(this.send_msg_file.name)
+  }
+
 
   sendUserMessage(username){
-    if (this.message.message != ""){
-      this.chat_srv.sendUserMessage(username,this.message).subscribe(
-        res => {
-          this.getAllUserMessages(username),
-          this.message.message = ""
-
-        }
-      )
+    const uploadData = new  FormData();
+    if (this.message.message){
+      uploadData.append('message',this.message.message)
     }
+    if(this.send_msg_file){
+      uploadData.append('image',this.send_msg_file,this.send_msg_file.name)
+    }
+    this.chat_srv.sendUserMessage(username,uploadData).subscribe(
+      res => {
+        this.getAllUserMessages(username),
+        this.message.message = "";
+        this.send_msg_file = null;
+      }
+    )
   }
 
   createUserInstance(username){
@@ -208,6 +223,11 @@ export class ChatComponent implements OnInit {
         )
       }
     )
+  }
+
+  openImgModal(image){
+    // modalImg.src = image
+    this.modal_img = image
   }
 
 }
