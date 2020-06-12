@@ -71,7 +71,16 @@
             </div>
             <div class="card my-4 reply">
                 <div class="row">
-                    <div class="col-sm-9 col-xs-9 reply-main">
+                    <a class="button col-sm-1 col-xs-1"
+                                    (click)="toggled = !toggled"
+                                    [(emojiPickerIf)]="toggled"
+                                    [emojiPickerDirection]="'left'"
+                                    (emojiPickerSelect)="handleSelection($event)"
+                                    style="font-size: 22px;margin-top:6px;margin-left:5px;font-style: bold;"
+                                >
+                                    <span class="icofont-simple-smile"></span>
+                    </a>
+                    <div class="col-sm-8 col-xs-8 reply-main">
                         <textarea [(ngModel)]="postData.comment" name="comment" class="form-control" rows="1" id="comment" #comment="ngModel"></textarea>
                     </div>
                     <div class="col-sm-1 col-xs-1 reply-send">

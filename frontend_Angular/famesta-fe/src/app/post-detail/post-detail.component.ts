@@ -24,7 +24,6 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.post_id = id;
-    // this.loadScript()
     this.post_srv.getStoryDetailView(this.post_id).subscribe(
       res => {
         console.log(res);
@@ -43,6 +42,10 @@ export class PostDetailComponent implements OnInit {
 
     //updating to navbar
     this.updateNavBar()
+  }
+
+  handleSelection(event) {
+    this.postData.comment += event.char;
   }
 
   loadScript(){

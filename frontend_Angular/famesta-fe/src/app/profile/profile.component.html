@@ -77,19 +77,32 @@
                                         <textarea [(ngModel)]="new_post_data.post_info" class="form-control" style="height: 70px;margin-bottom:10px;" name="post_info" placeholder="Whats on your mind..." #post_info="ngModel" required></textarea>
                                         <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="post_info.errors?.required && post_info.touched">post tag/info is required.</span>
 										<div class="row">
-										<div class="col-sm-6">
-											<div class="myfileupload-buttonbar ">
-                                                <label class="myui-button">
-                                                    <span style="color: black;" class="icofont-camera"></span>
-                                                    <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
-                                                    <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
-                                                        <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
-                                                    </span>
-                                                </label>
-                                                
+                                            <div class="col-xs-2" style="margin-left: 15px;">
+                                                <a class="button"
+                                                    (click)="toggled = !toggled"
+                                                    [(emojiPickerIf)]="toggled"
+                                                    [emojiPickerDirection]="'bottom'"
+                                                    (emojiPickerSelect)="handleSelection($event)"
+                                                    style="font-size: 22px;margin-top:9px;margin-right:10px;margin-left:5px"
+                                                >
+                                                    <span class="icofont-simple-smile"></span>
+                                                </a>
                                             </div>
-										</div>
-										<div class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button></div>
+										    <div class="col-xs-10">
+                                                <div class="myfileupload-buttonbar ">
+                                                    <label class="myui-button" style="font-size: 25px;">
+                                                        <span style="color: black;" class="icofont-camera"></span>
+                                                        <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
+                                                        <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
+                                                            <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
+                                                        </span>
+                                                    </label>
+                                                    
+                                                </div>
+
+                                            </div>
+                                            <div style="margin-left:340px" class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button>
+                                            </div>
 										</div>
 									</form>
                                     <!-- Post will Go here -->

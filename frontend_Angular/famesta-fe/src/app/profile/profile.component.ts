@@ -76,6 +76,11 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  handleSelection(event) {
+    this.new_post_data.post_info += event.char;
+  }
+
+
 
   getBackgroundImgURL(image_url){
     return this.usr_srv._base_url+image_url
