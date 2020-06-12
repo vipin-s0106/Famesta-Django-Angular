@@ -55,6 +55,15 @@ export class PostDetailComponent implements OnInit {
     commentBody.scrollTop = commentBody.scrollHeight - commentBody.clientHeight;
   }
 
+  public checkFileisVideo(filename:string){
+    let extension  = filename.split('.').pop()
+    extension = extension.toLowerCase()
+    if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
+      return true
+    }
+    return false
+  }
+
   postComment(user_id,post_id){
     console.log(this.postData)
     if (this.postData.comment.length >= 1){

@@ -80,6 +80,15 @@ export class DashboardComponent implements OnInit {
     
   }
 
+  public checkFileisVideo(filename:string){
+    let extension  = filename.split('.').pop()
+    extension = extension.toLowerCase()
+    if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
+      return true
+    }
+    return false
+  }
+
   public search_user(): any{
     this.usr_srv.search_user(this.search_input).subscribe(
       res => {

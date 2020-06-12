@@ -101,6 +101,15 @@ export class OtherUserProfileComponent implements OnInit {
     )
   }
 
+  public checkFileisVideo(filename:string){
+    let extension  = filename.split('.').pop()
+    extension = extension.toLowerCase()
+    if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
+      return true
+    }
+    return false
+  }
+
 
   getBackgroundImgURL(image_url){
     return this.usr_srv._base_url+image_url

@@ -137,6 +137,15 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  public checkFileisVideo(filename:string){
+    let extension  = filename.split('.').pop()
+    extension = extension.toLowerCase()
+    if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
+      return true
+    }
+    return false
+  }
+
 
   updateNavBar(){
     this.usr_srv.getLoggedUserDetails().subscribe(

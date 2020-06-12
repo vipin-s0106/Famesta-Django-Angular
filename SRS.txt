@@ -50,9 +50,10 @@ Things need to complete in API
 14) enhanced the navigation bar properly include home notification - Fixed
 15) develop chat page - Fixed
 16) Emoji added - Fixed
-17) include pagination in dashboard page
-18) change the password
-19) contact support page
+17) User can send Image and Gif to chat box - Fixed
+18) include pagination in dashboard page
+19) change the password
+20) contact support page
 
 
 

@@ -16,7 +16,12 @@
                     <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
                   </div>
               </div>
-              <a href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
+              <a *ngIf="!checkFileisVideo(post.file); else VideoBlock" href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
+              <ng-template #VideoBlock>
+                 <video width="720" height="420" style="margin:1px" controls>
+                    <source src="{{post.file}}" type="video/mp4">
+                 </video>
+              </ng-template>
               <div class="card-body">
                 <a *ngIf="post.like_by_you; else ElseBlock1">
                   <i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i>
