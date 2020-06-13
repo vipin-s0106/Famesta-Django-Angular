@@ -25,6 +25,10 @@ export class PostService {
     return this.http.get(this._listStoryUrl+user_id+"/");
   }
 
+  getNextUserRelatedPost(nextPost_url): Observable<any>{
+    return this.http.get(nextPost_url);
+  }
+
 
   getUserPost(user_id): Observable<any>{
     return this.http.get(this._list_usr_story+user_id+"/");

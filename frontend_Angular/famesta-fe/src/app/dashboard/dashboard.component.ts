@@ -10,6 +10,8 @@ import { map, startWith } from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import { AppComponent } from '../app.component';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +26,8 @@ export class DashboardComponent implements OnInit {
 
   public posts;
   public next_posturl;
+  public notEmptyPost=true;
+  public notscrolly=true;
 
   public suggestion_user;
   public notification_count;
@@ -35,7 +39,7 @@ export class DashboardComponent implements OnInit {
   public search_input;
   public searched_user;
 
-  constructor(public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {}
+  constructor(public spinner:NgxSpinnerService,public not_srv: NotificationService,public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) {}
 
   ngOnInit(): void {
 
@@ -85,6 +89,42 @@ export class DashboardComponent implements OnInit {
     );
     
   }
+
+  onScroll(nextPostURL){
+    if (this.notscrolly && this.notEmptyPost) {
+      console.log(nextPostURL)
+      this.spinner.show();
+      this.notscrolly = false;
+      if (nextPostURL){
+        this.loadNextPost(nextPostURL);
+      }
+      else{
+        this.spinner.hide();
+      }
+      
+    }
+    
+  }
+
+  loadNextPost(nextPostURL){
+    this.post_srv.getNextUserRelatedPost(nextPostURL).subscribe(
+      res =>{
+        let new_posts = res.results;
+        this.next_posturl = res.next
+
+        this.spinner.hide();
+
+        if (new_posts.length === 0){
+            this.notEmptyPost = false;
+            this.notscrolly = false;
+        }
+        this.posts = this.posts.concat(new_posts);
+        this.notscrolly = true;
+      }
+    )
+  }
+
+
 
   public checkFileisVideo(filename:string){
     let extension  = filename.split('.').pop()

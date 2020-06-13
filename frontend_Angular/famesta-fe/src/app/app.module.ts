@@ -42,6 +42,10 @@ import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 
 @NgModule({
   declarations: [
@@ -62,6 +66,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MaterialModule,
     NgbModule,
     NgxEmojiPickerModule.forRoot(),
+    InfiniteScrollModule,
+    NgxSpinnerModule,
   ],
   providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
   {

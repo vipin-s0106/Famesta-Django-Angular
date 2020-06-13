@@ -7,59 +7,80 @@
       <div class="col-md-8" style="margin-top:45px">
 
         <!-- <div *ngIf="posts?.length > 0; else ElseBlock"> -->
-        <div>
-          <div *ngFor="let post of posts"> 
-            <!-- Blog Post -->
-            <div class="card mb-4" id="post">
-              <div class="card-header">
-                  <div class="row">
-                    <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
-                  </div>
-              </div>
-              <a *ngIf="!checkFileisVideo(post.file); else VideoBlock" href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
-              <ng-template #VideoBlock>
-                 <video width="720" height="420" style="margin:1px" controls>
-                    <source src="{{post.file}}" type="video/mp4">
-                 </video>
-              </ng-template>
-              <div class="card-body">
-                <a *ngIf="post.like_by_you; else ElseBlock1">
-                  <i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i>
-                </a>
-                <ng-template #ElseBlock1>
-                  <a (click)="likePost(LoggedUser.id,post.id)" href="">
-                    <i style="font-size: 23px;color:thistle;margin-right: 10px;" class="icofont-heart"></i>
-                  </a>
-                </ng-template>
-                <a href="/post-detail/{{post.id}}">
-                  <i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i>
-                </a>
-                
-                <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="" (click)="getPostLikeDetail(post.id)" data-toggle="modal" data-target="#LikeModal">others</a> </small></p>
-                <p class="card-text" style="color:darkblue">{{post.post_info}}</p>
-                <div *ngIf="post.total_comment > 1; else ElseBlock">
-                  <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#8C8D89" href="/post-detail/{{post.id}}">more</a> 
-                  </a>
+        <!-- infinite scroll div -->
+        <div
+        class="search-results"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll(next_posturl)">
+          <div>
+            <div *ngFor="let post of posts"> 
+              <!-- Blog Post -->
+              <div class="card mb-4" id="post">
+                <div class="card-header">
+                    <div class="row">
+                      <div class="profile_pic col-xs-2"><img src="{{post.user.profile.profile_picture}}" height="45px" weight="45px" alt=""></div><div class="col-xs-2" style="margin-top:9px;margin-left:10px"><a href="/user/{{post.user.username}}"><span style="font-size: 15px;font-weight: bold;">{{post.user.username}}</span></a></div>
+                    </div>
                 </div>
-                <ng-template #ElseBlock>
-                  <div *ngIf="post.comment_usr != null">
-                    <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                <a *ngIf="!checkFileisVideo(post.file); else VideoBlock" href="/post-detail/{{post.id}}"><img class="card-img-top" src="{{post.file}}"alt="Card image cap"></a>
+                <ng-template #VideoBlock>
+                  <video width="720" height="420" style="margin:1px" controls>
+                      <source src="{{post.file}}" type="video/mp4">
+                  </video>
+                </ng-template>
+                <div class="card-body">
+                  <a *ngIf="post.like_by_you; else ElseBlock1">
+                    <i style="font-size: 23px;color:red;margin-right: 10px;" class="icofont-heart"></i>
+                  </a>
+                  <ng-template #ElseBlock1>
+                    <a (click)="likePost(LoggedUser.id,post.id)" href="">
+                      <i style="font-size: 23px;color:thistle;margin-right: 10px;" class="icofont-heart"></i>
+                    </a>
+                  </ng-template>
+                  <a href="/post-detail/{{post.id}}">
+                    <i style="font-size: 23px;color:lightseagreen" class="icofont-comment"></i>
+                  </a>
+                  
+                  <p style="color:grey;font-weight: bold;" class="liked" *ngIf="post.liked_by != null">Liked by <small>{{post.liked_by}} .. <a style="color:slategrey;font-weight: bold;" href="" (click)="getPostLikeDetail(post.id)" data-toggle="modal" data-target="#LikeModal">others</a> </small></p>
+                  <p class="card-text" style="color:darkblue">{{post.post_info}}</p>
+                  <div *ngIf="post.total_comment > 1; else ElseBlock">
+                    <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View all {{post.total_comment}} comments<br><small>{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small> ... <a style="color:#8C8D89" href="/post-detail/{{post.id}}">more</a> 
                     </a>
                   </div>
-                </ng-template>
-                <small style="color:#8C8D89;font-weight: bold;">{{post.post_time_stamp | dateAgo}}</small>
+                  <ng-template #ElseBlock>
+                    <div *ngIf="post.comment_usr != null">
+                      <a style="color:grey;font-weight: bold;" href="/post-detail/{{post.id}}">View comment<br><small style="font-weight: bold;">{{post.comment_usr[0]}} {{post.comment_usr[2]}}</small>
+                      </a>
+                    </div>
+                  </ng-template>
+                  <small style="color:#8C8D89;font-weight: bold;">{{post.post_time_stamp | dateAgo}}</small>
+                </div>
+              </div>
+            </div>
+            <!-- Pagination -->
+            <!-- <ul class="pagination justify-content-center mb-4">
+              <li class="page-item">
+                <a class="page-link" href="#">&larr; Older</a>
+              </li>
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+              </li>
+            </ul> -->
+            <div class="row pb-5">
+              <div class="col-md-12 p-5">
+                <ngx-spinner
+                bdOpacity = 0.9
+                bdColor = ""
+                size = "default"
+                color = "#581f87"
+                type = "ball-pulse-sync"
+                [fullScreen] = "false"
+                >
+                </ngx-spinner>
               </div>
             </div>
           </div>
-           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-              <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-          </ul>
         </div>
         <!-- <ng-template #ElseBlock>
           <div class="card mb-4" id="post" style="border:none;">
