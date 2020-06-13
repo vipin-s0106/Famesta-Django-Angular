@@ -28,6 +28,11 @@ export class EditProfileComponent implements OnInit {
 
   post_updated_data = {"BioDescription":"","full_name":"","mobile":"","date_of_birth":"","gender":"","account_type":""}
 
+
+  public password_data = {"password":"","new_password":"","confirm_new_password":""}
+  public typing_confirm_password = false;
+  public confirm_new_password_match = false;
+
   constructor(private route:ActivatedRoute,private router: Router,private usr_srv: UserService,public dialog: MatDialog,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
@@ -159,6 +164,55 @@ export class EditProfileComponent implements OnInit {
         )
       }
     )
+  }
+
+  verfiyConfirmPasswordMatch(){
+    this.typing_confirm_password = true;
+    if(this.password_data.new_password === this.password_data.confirm_new_password){
+      this.confirm_new_password_match = true;
+    }
+    else{
+      this.confirm_new_password_match = false;
+    }
+  }
+
+  SetNewPassword(){
+    if(this.password_data['password'] === this.password_data['new_password']){
+      this.dialog.open(DialogDataExampleDialog,{
+        data: {
+          msg: "New password can't be same with past password",
+          color:"tomato"
+        }
+      });
+    }
+    else if(this.password_data['new_password'] != this.password_data['confirm_new_password']){
+      this.dialog.open(DialogDataExampleDialog,{
+        data: {
+          msg: "Confirm password does not match with new password",
+          color:"tomato"
+        }
+      });
+    }
+    else{
+      this.usr_srv.setPassword(this.password_data).subscribe(
+        res => {
+          this.dialog.open(DialogDataExampleDialog,{
+            data: {
+              msg: 'You Password has been successfully changed 😇',color:"green"
+            }
+          });
+        },
+        error =>{
+          console.log(error)
+          this.dialog.open(DialogDataExampleDialog,{
+            data: {
+              msg: error.error.error,
+              color:"tomato"
+            }
+          });
+        }
+      )
+    }
   }
 
 

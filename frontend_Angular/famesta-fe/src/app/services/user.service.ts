@@ -16,6 +16,7 @@ export class UserService {
   private _LoggedUserUrl: string = "http://127.0.0.1:8000/api/loggedUser/";
   private _otherUserProfile_url: string = "http://127.0.0.1:8000/api/otheruser/" //append the username here
   private _otherUserFollowerStatus_url: string = "http://127.0.0.1:8000/api/user/follower_status/" //append the username here
+  private _setNewPassword_url = "/api/set_new_password/"
 
   constructor(private http: HttpClient) { }
 
@@ -48,5 +49,9 @@ export class UserService {
   //     })
   //   )
   // }
+
+  setPassword(data): Observable<any>{
+    return this.http.put<any>(this._base_url+this._setNewPassword_url,data)
+  }
 
 }

@@ -59,14 +59,13 @@
               </div>
             </div>
             <!-- Pagination -->
-            <!-- <ul class="pagination justify-content-center mb-4">
-              <li class="page-item">
-                <a class="page-link" href="#">&larr; Older</a>
-              </li>
-              <li class="page-item disabled">
-                <a class="page-link" href="#">Newer &rarr;</a>
-              </li>
-            </ul> -->
+            <!-- <div *ngIf="!next_posturl">
+              <ul *ngIf="notEmptyPost" class="pagination justify-content-center mb-4">
+                <li class="page-item">
+                  <a class="page-link"><b>No more post found for you</b></a>
+                </li>
+              </ul>
+            </div> -->
             <div class="row pb-5">
               <div class="col-md-12 p-5">
                 <ngx-spinner

@@ -51,9 +51,11 @@ Things need to complete in API
 15) develop chat page - Fixed
 16) Emoji added - Fixed
 17) User can send Image and Gif to chat box - Fixed
-18) include pagination in dashboard page
+18) include pagination in dashboard page - Fixed
 19) change the password
-20) contact support page
+20) add the OTP password
+21) add the Feed page
+21) contact support page
 
 
 

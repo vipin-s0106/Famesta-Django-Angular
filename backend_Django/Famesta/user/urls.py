@@ -14,5 +14,6 @@ urlpatterns = [
    url('^api/user/(?P<id>[0-9]+)/$',views.UserAction.as_view(),name='user_action'),
    url('^api/user/(?P<id>[0-9]+)/profile/$',views.UserProfileAction.as_view(),name='user_profile_action'),
    url('^api/otheruser/(?P<username>[\w]+)/$',views.OtherUserProfileAPIView.as_view(),name="other_user_profile"),
-   url('^api/search_user/filter/(?P<filter_value>[\w\s]+)/$',views.SearchUser,name="search user")
+   url('^api/search_user/filter/(?P<filter_value>[\w\s]+)/$',views.SearchUser,name="search user"),
+   url('^api/set_new_password/$',views.setNewPassword,name="set_new_password")
 ]

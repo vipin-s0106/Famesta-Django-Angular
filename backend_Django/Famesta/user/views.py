@@ -188,6 +188,26 @@ def SearchUser(request,filter_value):
     return Response(serializer.data, status=200)
 
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def setNewPassword(request):
+    data = request.data
+    user = request.user
+    if user is not None:
+        if user.check_password(data['password']):
+            user.set_password(data['new_password'])
+            #print(user.password)
+            user.save()
+            return Response(200)
+        else:
+            return Response({"error": "Wrong password, please try again"}, status=400)
+    else:
+        return Response({"error": "Something went wrong, please try again after sometime"}, status=404)
+
+
+
+
+
 
 
 
