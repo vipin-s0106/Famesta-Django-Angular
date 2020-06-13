@@ -52,7 +52,7 @@ Things need to complete in API
 16) Emoji added - Fixed
 17) User can send Image and Gif to chat box - Fixed
 18) include pagination in dashboard page - Fixed
-19) change the password
+19) change the password - Fixed
 20) add the OTP password
 21) add the Feed page
 21) contact support page

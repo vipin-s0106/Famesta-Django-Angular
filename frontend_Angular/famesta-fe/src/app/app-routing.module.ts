@@ -17,7 +17,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ChatComponent } from './chat/chat.component';
 import { OtherUserProfileComponent } from './other-user-profile/other-user-profile.component';
-import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
+import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component';
+import { FeedComponent } from './feed/feed.component';
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
@@ -98,6 +99,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'feed',
+    component:FeedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path:'**',
     component:PageNotFoundComponent
   }
@@ -124,4 +130,5 @@ export const RoutingComponent = [
   ChatComponent,
   OtherUserProfileComponent,
   UnAuthorizedComponenetComponent,
+  FeedComponent,
 ]

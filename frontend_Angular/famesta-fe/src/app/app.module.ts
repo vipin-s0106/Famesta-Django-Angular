@@ -17,6 +17,7 @@ import { UserService } from './services/user.service';
 import { FollowerService } from './services/follower.service';
 import { NotificationService } from './services/notification.service';
 import { ChatService } from './services/chat.service';
+import { FeedService } from './services/feed.service';
 import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
 //importing Authguard
@@ -47,6 +48,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     InfiniteScrollModule,
     NgxSpinnerModule,
   ],
-  providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
+  providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,FeedService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

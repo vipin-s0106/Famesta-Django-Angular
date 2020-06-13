@@ -1,0 +1,69 @@
+<br>
+<br>
+<br>
+<!-- ======= Portfolio Section ======= -->
+
+<section id="portfolio" class="portfolio section-bg" style="margin-top:20px">
+    <div style="margin-left:90px;margin-bottom: 15px;">
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip (click)="searchFeed('shop')">Shop</mat-chip>
+            <mat-chip (click)="searchFeed('Decor')">Decor</mat-chip>
+            <mat-chip (click)="searchFeed('Travel')">Travel</mat-chip>
+            <mat-chip (click)="searchFeed('Architecture')">Architecture</mat-chip>
+            <mat-chip (click)="searchFeed('Food')">Food</mat-chip>
+            <mat-chip (click)="searchFeed('Art')">Art</mat-chip>
+            <mat-chip (click)="searchFeed('Style')">Style</mat-chip>
+            <mat-chip (click)="searchFeed('TV')">TV</mat-chip>
+            <mat-chip (click)="searchFeed('Music')">Music</mat-chip>
+            <mat-chip (click)="searchFeed('Movie')">Movie</mat-chip>
+            <mat-chip (click)="searchFeed('Bollyowood')">Bollyowood</mat-chip>
+            <mat-chip (click)="searchFeed('Hollywood')">Hollywood</mat-chip>
+            <mat-chip (click)="searchFeed('Joke')">Joke</mat-chip>
+            <mat-chip (click)="searchFeed('Comics')">Comics</mat-chip>
+            <mat-chip (click)="searchFeed('Beauty')">Beauty</mat-chip>
+            <mat-chip (click)="searchFeed('DIY')">DIY</mat-chip>
+        </mat-chip-list>
+    </div>
+            
+    <div class="container" id="user_post" style="margin-left: 150px;">
+        <div class="row portfolio-container" data-aos="fade-up">
+            <div
+            class="search-results row"
+            infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50"
+            (scrolled)="onScroll(next_offset_value)">
+
+                <div *ngFor="let feed of feeds">
+                    <div class="portfolio-wrap" >
+                        <img src="{{feed.images.original.url}}" style="position: relative;margin:5px">
+                    </div>
+                </div>
+                
+                <div class="row pb-5">
+                    <div class="col-md-12 p-5">
+                        <ngx-spinner
+                        bdOpacity = 0.9
+                        bdColor = ""
+                        size = "default"
+                        color = "#581f87"
+                        type = "ball-pulse-sync"
+                        [fullScreen] = "false"
+                        >
+                </ngx-spinner>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+           
+    
+        
+
+</section>
+
+
+
+

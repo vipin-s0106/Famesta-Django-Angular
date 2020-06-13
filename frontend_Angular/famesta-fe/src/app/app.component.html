@@ -16,6 +16,7 @@
         </ul>
         <ul *ngIf="authSrv.loggedIn()">
             <li><a href="/dashboard"><i style="color:midnightblue;font-size: 25px;" class="icofont-home"></i></a></li>
+            <li><a href="/feed"><i style="color:midnightblue;font-size: 25px;" class="icofont-pixels"></i></a></li>
             <li><a href="/chat"><i class="icofont-chat" style="color:midnightblue;font-size: 25px;"></i></a></li>
             <li><a href="/notification/{{logged_user_id}}"><i style="color:midnightblue;font-size: 25px;" class="icofont-notification"><span class="badge badge-light" style="font-size:10px;background:slategrey;color:white;padding: 2px 4px 2px 4px" *ngIf="notification_count > 0">{{notification_count}}</span></i></a></li>
             <li><a href="/profile"><i style="color:midnightblue;font-size: 25px;;margin-right:50px" class="icofont-ui-user"></i></a></li>  
