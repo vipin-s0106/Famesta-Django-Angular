@@ -52,6 +52,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+
+#User Post Pagination Settings
+PAGE_SIZE = 3
+
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),

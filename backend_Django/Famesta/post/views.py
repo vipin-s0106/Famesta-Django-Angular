@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from rest_framework.response import Response
+from django.conf import settings
 
 from rest_framework.views import APIView
 
@@ -10,7 +11,7 @@ from rest_framework.decorators import api_view,permission_classes,authentication
 from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import generics
-from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import LimitOffsetPagination
 
 #importing Serializer
 from.serializer import PostLikeCommentSerializer,PostDetailSerializer,PostListSerializer,PostSerializer,PostLikeCommentCreateSerializer
@@ -67,8 +68,38 @@ class GetAllUserStoryListView(APIView):
         return Response(serializer.data)
 
 
+class GetAllUserStoryListViewTest(APIView,LimitOffsetPagination):
+
+    permission_classes = (IsAuthenticated,)
 
 
+    def get_object(self,user_id):
+        user = User.objects.filter(id = user_id).first()
+        posts = Post.objects.filter(user = user)
+        return posts
+
+    def get(self,request,user_id):
+        posts = self.get_object(user_id)
+        followers_list = Follower.objects.filter(user = User.objects.filter(id = user_id).first())
+        for follower in followers_list:
+            posts = posts.union(Post.objects.filter(user = User.objects.filter(id = follower.followed_user.id).first()))
+        posts = posts.order_by('-post_time_stamp')
+        #if len(posts) == 0:
+            #return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
+
+        '''
+        this serializer context is very important if you want to access the request data into the serializer class and method
+        '''
+
+        #setting the limit of this user post pagination
+        LimitOffsetPagination.default_limit = settings.PAGE_SIZE
+        posts = self.paginate_queryset(posts, request)
+        serializer_context = {
+            'request': request,
+        }
+        serializer = PostListSerializer(posts,many=True,context=serializer_context)
+        # return Response(serializer.data)
+        return self.get_paginated_response(serializer.data)
 
 
 

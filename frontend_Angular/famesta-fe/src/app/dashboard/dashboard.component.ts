@@ -21,9 +21,13 @@ import { AppComponent } from '../app.component';
 export class DashboardComponent implements OnInit {
 
   public LoggedUser;
+
   public posts;
+  public next_posturl;
+
   public suggestion_user;
   public notification_count;
+
   
 
   public post_detail;
@@ -45,8 +49,10 @@ export class DashboardComponent implements OnInit {
 
         // console.log(this.LoggedUser)
         this.post_srv.getAllUserRelatedPost(res.id).subscribe(
-          res => {this.posts = res;
-            console.log(this.posts);
+          res => {
+            console.log(res);
+            this.posts = res.results;
+            this.next_posturl = res.next
           },
           err =>{
             console.log(err);

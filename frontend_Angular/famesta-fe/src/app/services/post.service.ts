@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private _listStoryUrl: string = "http://127.0.0.1:8000/api/list_all_story/";//append userd id with this url
+  private _listStoryUrl: string = "http://127.0.0.1:8000/api/list_all_story_test/";//append userd id with this url
   private _list_usr_story: string = "http://127.0.0.1:8000/api/list_user_story/";//append userd id with this url
   private _getStoryDetail_url: string = "http://127.0.0.1:8000/api/story/"  //append post id with this url
   private _getCommentList_url: string = "http://127.0.0.1:8000/api/story_comment/"  //append post id with this url
