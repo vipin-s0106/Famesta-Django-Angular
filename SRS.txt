@@ -55,7 +55,7 @@ Things need to complete in API
 19) change the password - Fixed
 20) add the Feed page - Fixed
 21) add the Reset link password to set the new password - Fixed
-22) contact support page
+22) contact support page - Fixed
 
 
 

@@ -19,4 +19,5 @@ urlpatterns = [
    url('^api/send_forgot_pwd_mail/$',views.sendForgotPasswordMail,name="send_forgot_password_mail"),
    url('^api/verify_mailSecretKey/$',views.verifyMailSecretKey,name="verify_mailSecretKey"),
    url('^api/setForgotPasswordWithNewPwd/$',views.setForgotPasswordWithNewPassword,name="setForgotPasswordWithNewPassword"),
+   url('^api/send_contact_mail/$',views.sendContactMail,name="sendContactMail"),
 ]

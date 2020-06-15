@@ -8,9 +8,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
         <ul *ngIf="!authSrv.loggedIn()">
-            <li ><a href="#header">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li class="get-started"><a href="contact"><span style="font-size: 15px;" class="icofont-phone"></span> Contact Us</a></li>
             <li class="get-started"><a href="/login">Login</a></li>
             <li class="get-started"><a href="/register">New User ?</a></li>
         </ul>

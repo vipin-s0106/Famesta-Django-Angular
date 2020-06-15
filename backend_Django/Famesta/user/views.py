@@ -23,7 +23,7 @@ from .models import User,UserProfile
 from followers.models import Follower
 
 #Email
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives,EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.cache import cache
@@ -297,6 +297,27 @@ def setForgotPasswordWithNewPassword(request):
     else:
         return Response({"error": "Your password link has been expired, please try again"}, status=403)
     return Response({"msg":"successfully executed view"})
+
+
+@api_view(['POST'])
+@permission_classes([])
+def sendContactMail(request):
+    try:
+        email_id = request.data['email']
+        msg = request.data['msg']
+        name = request.data['name']
+
+        body = '''Hi SupportTeam,\n\n\n
+                  '''+name+''' has contacted regarding below message\n\n\n
+                  '''+msg+'''\n\n\n
+                  for reference emailID - '''+email_id+'''
+        '''
+        email = EmailMessage("Contact Support Team :"+name+" | Email "+email_id,body,settings.EMAIL_HOST_USER,[settings.EMAIL_HOST_USER])
+        email.send()
+        return Response(200)
+    except Exception as e:
+        str(e)
+        return Response(500)
 
 
 

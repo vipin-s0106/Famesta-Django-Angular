@@ -11,6 +11,7 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   private _base_url = "http://127.0.0.1:8000/"
+  
   private _create_chat_instance_url = "api/chat/create_chat_instance/" //appned the other username here
   private _update_unseen_msg_count = "api/chat/update_unseen_msg_count/"  //appned the other username here
   private _reset_unseen_msg_count = "api/chat/reset_unseen_msg_count/" //appned the other username here

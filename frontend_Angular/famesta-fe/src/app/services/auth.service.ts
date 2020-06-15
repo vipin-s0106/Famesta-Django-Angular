@@ -9,10 +9,12 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private _registerUrl: string = "http://127.0.0.1:8000/api/register/";
-  private _loginUrl: string = "http://127.0.0.1:8000/api/login/";
-  private _logout_url: string = "http://127.0.0.1:8000/api/logout/";
-  private _refresh_token: string = "http://127.0.0.1:8000/api/token/refresh/";
+  private _baseurl = "http://127.0.0.1:8000"
+
+  private _registerUrl: string = this._baseurl+"/api/register/";
+  private _loginUrl: string = this._baseurl+"/api/login/";
+  private _logout_url: string = this._baseurl+"/api/logout/";
+  private _refresh_token: string = this._baseurl+"/api/token/refresh/";
 
   constructor(private http: HttpClient) { }
 

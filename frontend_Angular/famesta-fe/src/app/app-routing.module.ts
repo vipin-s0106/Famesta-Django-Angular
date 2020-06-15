@@ -20,6 +20,7 @@ import { OtherUserProfileComponent } from './other-user-profile/other-user-profi
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component';
 import { FeedComponent } from './feed/feed.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ContactSupportComponent } from './contact-support/contact-support.component';
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: '',
     redirectTo:'/dashboard',
     pathMatch:'full',
+  },
+  {
+    path:'contact',
+    component:ContactSupportComponent
   },
   {
     path:'login',
@@ -137,4 +142,5 @@ export const RoutingComponent = [
   UnAuthorizedComponenetComponent,
   FeedComponent,
   ForgotPasswordComponent,
+  ContactSupportComponent
 ]
