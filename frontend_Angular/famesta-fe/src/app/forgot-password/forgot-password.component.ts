@@ -29,15 +29,15 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
     let secret_key = this.route.snapshot.paramMap.get('secretkey');
     let username = this.route.snapshot.paramMap.get('username');
-    console.log(secret_key)
-    console.log(username)
+    // console.log(secret_key)
+    // console.log(username)
     //verify the secret key with backend
     if(!this.verify_flag){
       this.usr_srv.verfiySecretKey(username,secret_key).subscribe(
         res =>{
           this.verify_flag = true;
           this.data.secretkey = secret_key;
-          console.log("Key Verified")
+          // console.log("Key Verified")
         },
         err =>{
           let dialogRef = this.dialog.open(DialogDataExampleDialog,{
@@ -61,10 +61,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   setPassword(secretkey){
     this.data.secretkey = secretkey
-    console.log(this.data)
+    // console.log(this.data)
     this.usr_srv.setForgotPassword(this.data).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         let dialogRef = this.dialog.open(DialogDataExampleDialog,{
           data: {msg: 'Your password has been successfully set',color:"green"}
         });

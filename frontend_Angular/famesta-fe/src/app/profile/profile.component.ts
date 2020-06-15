@@ -36,11 +36,11 @@ export class ProfileComponent implements OnInit {
         if(res.profile.background_picture){
           this.background_image = this.getBackgroundImgURL(res.profile.background_picture)
         } 
-        console.log(this.LoggedUser)
+        // console.log(this.LoggedUser)
         this.post_srv.getUserPost(res.id).subscribe(
           res => {
             this.posts = res;
-            console.log(this.posts);
+            // console.log(this.posts);
           },
           err =>{
             console.log(err);
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
         this.follower_srv.getFollowersList(res.id).subscribe(
           res => {
             this.followers = res;
-            console.log(this.followers)
+            // console.log(this.followers)
           },
           err => {
             console.log(err);
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
         this.follower_srv.getFollowingList(res.id).subscribe(
           res => {
             this.followings = res;
-            console.log(this.followings)
+            // console.log(this.followings)
           },
           err => {
             console.log(err);
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
   remove_Follower(user_id,follower_user_id){
     this.follower_srv.removeFollower(user_id,follower_user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
   unfollowUser(user_id,following_user_id){
     this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)

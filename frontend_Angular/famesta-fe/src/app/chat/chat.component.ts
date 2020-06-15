@@ -95,15 +95,15 @@ export class ChatComponent implements OnInit {
         res =>{
           this.userWindowFlag=true;
           this.ChatMessages = res;
-          console.log(this.ChatMessages)
+          // console.log(this.ChatMessages)
           this.usr_srv.getUserProfile(username).subscribe(
               res => {
                 this.chatWindowUser = res;
-                console.log(this.chatWindowUser)
+                // console.log(this.chatWindowUser)
                 this.updateChatInstanceList()
                 this.loadScript()  
                 ideal_timer = ideal_timer + 1
-                console.log(ideal_timer)
+                // console.log(ideal_timer)
                 if (ideal_timer == 55){
                   this.subscription.unsubscribe();
                 }
@@ -145,7 +145,7 @@ export class ChatComponent implements OnInit {
 
   onSendMsgImg(event){
     this.send_msg_file = event.target.files[0];
-    console.log(this.send_msg_file.name)
+    // console.log(this.send_msg_file.name)
   }
 
 

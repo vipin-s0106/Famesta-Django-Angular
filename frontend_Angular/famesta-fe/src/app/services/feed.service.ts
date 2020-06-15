@@ -22,13 +22,13 @@ export class FeedService {
 
   public getSearchGiphyAPI(api_type,searchfilter,limit,offset,ln): Observable<any>{
     let url = this._base_url+api_type+"?api_key="+this.api_key+"&q="+searchfilter+"&limit="+limit+"&offset="+offset+"&rating=G&lang="+ln
-    console.log(url)
+    // console.log(url)
     return this.http.get(url)
   }
 
   public getTrendinggif(api_type,limit,ln): Observable<any>{
     let url = this._base_url+api_type+"?api_key="+this.api_key+"&limit="+limit+"&rating=G"
-    console.log(url)
+    // console.log(url)
     return this.http.get(url)
   }
 

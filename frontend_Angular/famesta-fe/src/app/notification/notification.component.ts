@@ -31,7 +31,7 @@ export class NotificationComponent implements OnInit {
     this.not_srv.getUserNotification(this.user_id).subscribe(
       res => {
         this.notifications = res;
-        console.log(this.notifications);
+        // console.log(this.notifications);
 
         
       },
@@ -55,7 +55,7 @@ export class NotificationComponent implements OnInit {
     this.not_srv.getUserNotification(this.user_id).subscribe(
       res => {
         this.notifications = res;
-        console.log(this.notifications);
+        // console.log(this.notifications);
       },
       err => {
         if (err.status === 403){
@@ -73,7 +73,7 @@ export class NotificationComponent implements OnInit {
   deleteNotification(notification_id){
     this.not_srv.deleteNotification(notification_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -83,7 +83,7 @@ export class NotificationComponent implements OnInit {
   deleteAllUserNotification(user_id){
     this.not_srv.deleteAllNotification(user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)

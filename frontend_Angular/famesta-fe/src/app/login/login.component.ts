@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   LoginUser(){
     this._auth.loginUser(this.user_credential).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem('token',res.access);
         localStorage.setItem('refresh',res.refresh);
         this.router.navigate(['/dashboard']);
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.usr_srv.sendRestPasswordMail(this.user_mail).subscribe(
       res => {
         this.spinner_display = false;
-        console.log(res)
+        // console.log(res)
         this.msg = res.msg;
         this.msg_color = "green"
         

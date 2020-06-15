@@ -39,7 +39,7 @@ export class EditProfileComponent implements OnInit {
     this.LoggedUser = this.usr_srv.getLoggedUserDetails().subscribe(
       res => {
         this.LoggedUser = res;
-        console.log(this.LoggedUser)
+        // console.log(this.LoggedUser)
         this.post_updated_data.full_name=this.LoggedUser.profile.full_name;
         this.post_updated_data.mobile = this.LoggedUser.profile.mobile;
         this.post_updated_data.date_of_birth = this.LoggedUser.profile.date_of_birth;
@@ -60,7 +60,7 @@ export class EditProfileComponent implements OnInit {
   onBackgroundProfileChange(event){
     this.background_uploaded_file = event.target.files[0].name;
     this.background_profile = event.target.files[0]
-    console.log(this.background_uploaded_file)
+    // console.log(this.background_uploaded_file)
     this.enabled_button_flag = true;
   }
 
@@ -85,7 +85,7 @@ export class EditProfileComponent implements OnInit {
     if(this.post_updated_data.BioDescription || this.profile_uploaded_file){
       this.usr_srv.updateUserInfo(user_id,uploadData).subscribe(
         res =>{
-          console.log(res),
+          // console.log(res),
           this.post_updated_data.BioDescription ="";
           this.profile_uploaded_file="";
           this.ngOnInit();
@@ -108,7 +108,7 @@ export class EditProfileComponent implements OnInit {
 
 
   UpdateUserInformation(user_id){
-    console.log(this.enabled_button_flag)
+    // console.log(this.enabled_button_flag)
     if (this.enabled_button_flag){
       const uploadData = new  FormData();
       if(this.post_updated_data.full_name){
@@ -133,7 +133,7 @@ export class EditProfileComponent implements OnInit {
         || this.post_updated_data.account_type || this.post_updated_data.date_of_birth){
         this.usr_srv.updateUserInfo(user_id,uploadData).subscribe(
           res =>{
-            console.log(res),
+            // console.log(res),
             this.background_uploaded_file="";
             this.ngOnInit();
             this.enabled_button_flag = false;
@@ -143,7 +143,8 @@ export class EditProfileComponent implements OnInit {
               }
             });
           },
-          err => {console.log(err);
+          err => {
+            console.log(err);
             this.dialog.open(DialogDataExampleDialog,{
               data: {
                 msg: 'Some error occured while updating your profile',color:"#F5C5AE"

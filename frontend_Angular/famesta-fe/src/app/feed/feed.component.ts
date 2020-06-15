@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit {
     this.search_filter = this.shuffleArray(this.search_filter)
     this.feed_srv.getSearchGiphyAPI("search",this.search_filter,this.limit,this.next_offset_value*this.limit,"en").subscribe(
       res =>{
-        console.log(res);
+        // console.log(res);
         this.feeds = res.data
         this.next_offset_value = this.next_offset_value +1
       },
@@ -55,7 +55,7 @@ export class FeedComponent implements OnInit {
     this.search_filter = searchFilter
     this.feed_srv.getSearchGiphyAPI("search",this.search_filter,this.limit,this.next_offset_value*this.limit,"en").subscribe(
       res =>{
-        console.log(res);
+        // console.log(res);
         this.feeds = res.data
         this.next_offset_value = this.next_offset_value +1
       },
@@ -67,7 +67,7 @@ export class FeedComponent implements OnInit {
   }
 
   onScroll(next_offset_value){
-    console.log(this.notscrolly,this.notEmptyFeed)
+    // console.log(this.notscrolly,this.notEmptyFeed)
     if (this.notscrolly && this.notEmptyFeed) {
       this.spinner.show();
       timer(9000).subscribe(x =>{
@@ -84,7 +84,7 @@ export class FeedComponent implements OnInit {
       this.feed_srv.getSearchGiphyAPI("search",this.search_filter,this.limit,nextOffset,"en").subscribe(
         res =>{
           let new_feeds = res.data;
-          console.log(new_feeds)
+          // console.log(new_feeds)
           if (new_feeds.length === 0){
               this.notEmptyFeed = false;
               this.notscrolly = false;

@@ -45,16 +45,6 @@ export class UserService {
     return this.http.get(this._searchUser_url+filter_text+"/");
   }
 
-  // getLoggedUserID():any{
-  //   let id;
-
-  //   return this.getLoggedUserDetails().subscribe(
-  //     map( res => {
-  //       console.log(res)
-  //     })
-  //   )
-  // }
-
   setPassword(data): Observable<any>{
     return this.http.put<any>(this._setNewPassword_url,data)
   }

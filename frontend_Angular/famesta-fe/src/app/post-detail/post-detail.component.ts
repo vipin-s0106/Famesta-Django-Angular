@@ -28,12 +28,12 @@ export class PostDetailComponent implements OnInit {
     this.post_id = id;
     this.post_srv.getStoryDetailView(this.post_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.post = res;
         this.usr_srv.getLoggedUserDetails().subscribe(
           res => {
             this.LoggedUser = res;
-            console.log(this.LoggedUser);
+            // console.log(this.LoggedUser);
           },
           err => console.log(err)
         )
@@ -65,11 +65,11 @@ export class PostDetailComponent implements OnInit {
   }
 
   postComment(user_id,post_id){
-    console.log(this.postData)
+    // console.log(this.postData)
     if (this.postData.comment.length >= 1){
       this.post_srv.postComment(user_id,post_id,this.postData).subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.ngOnInit()
         },
         err => console.log(err)
@@ -81,7 +81,7 @@ export class PostDetailComponent implements OnInit {
 
   followUser(user_id,follower_user_id,user_name){
     let postData = {"message":user_name+" has requested to follow you","notification_type":"follow","other_user":follower_user_id}
-    console.log(postData)
+    // console.log(postData)
     this.not_srv.createFollowRequest(user_id,postData).subscribe(
       res => this.ngOnInit(),
       err => console.log(err)
@@ -91,7 +91,7 @@ export class PostDetailComponent implements OnInit {
   likePost(user_id,post_id){
     this.post_srv.likePost(user_id,post_id).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         this.ngOnInit();
       },
       err => console.log(err)
@@ -117,7 +117,7 @@ export class PostDetailComponent implements OnInit {
   unfollowUser(user_id,following_user_id){
     this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
