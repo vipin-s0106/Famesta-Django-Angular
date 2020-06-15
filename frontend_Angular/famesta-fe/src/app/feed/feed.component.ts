@@ -17,7 +17,7 @@ export class FeedComponent implements OnInit {
   public notscrolly=true;
 
   public next_offset_value = 0;
-  public limit = 25;
+  public limit = 15;
 
   public search_filter = ['shop','decor','travel','bollywood','art','movies','music','fun','joke','comics','tv','style','hot','girl','bike','car','MT15','yamaha']
 

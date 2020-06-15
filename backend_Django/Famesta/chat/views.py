@@ -42,7 +42,7 @@ class CreateUserChatInstance(APIView):
         }
         instance = ChatUser.objects.filter(user=logged_user_id, other_user=other_userid).first()
         data['unseen_message_count'] = instance.unseen_message_count + 1
-        print(data)
+        # print(data)
         serializer = PostChatUserSerializer(instance,data=data)
         if serializer.is_valid():
             serializer.save()
@@ -61,7 +61,7 @@ def reset_unseen_notification_count(request,other_username):
     }
     instance = ChatUser.objects.filter(user=logged_user_id, other_user=other_userid).first()
     data['unseen_message_count'] = 0
-    print(data)
+    # print(data)
     serializer = PostChatUserSerializer(instance, data=data)
     if serializer.is_valid():
         serializer.save()
@@ -228,7 +228,7 @@ class ChatMessageView(APIView):
         # if user going to see the msg of other user then make update of seen of msgs
         if other_user_object.online() and cache.get('chat_window_%s' % (other_username)) == request.user.username:
             for msg in chat_messages[::-1]:
-                print(msg)
+                # print(msg)
                 if msg.seen == True and msg.sender == other_username:
                     break
                 elif msg.sender == other_username:

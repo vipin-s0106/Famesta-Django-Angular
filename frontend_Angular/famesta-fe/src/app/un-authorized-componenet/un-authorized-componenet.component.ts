@@ -23,6 +23,9 @@ export class UnAuthorizedComponenetComponent implements OnInit {
         this.not_srv.getNotificationCount(res.id).subscribe(
           res => this.not_srv.notification_count.next(res.notification_count)
         )
+      },
+      err =>{
+        console.log(err)
       }
     )
   }

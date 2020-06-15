@@ -19,6 +19,7 @@ import { ChatComponent } from './chat/chat.component';
 import { OtherUserProfileComponent } from './other-user-profile/other-user-profile.component';
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component';
 import { FeedComponent } from './feed/feed.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 //importing the authguard
 import { AuthGuard } from './guard/auth.guard';
@@ -104,6 +105,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'changepassowrd/:username/:secretkey',
+    component:ForgotPasswordComponent,
+  },
+  {
     path:'**',
     component:PageNotFoundComponent
   }
@@ -131,4 +136,5 @@ export const RoutingComponent = [
   OtherUserProfileComponent,
   UnAuthorizedComponenetComponent,
   FeedComponent,
+  ForgotPasswordComponent,
 ]

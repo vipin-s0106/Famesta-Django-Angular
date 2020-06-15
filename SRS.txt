@@ -53,9 +53,9 @@ Things need to complete in API
 17) User can send Image and Gif to chat box - Fixed
 18) include pagination in dashboard page - Fixed
 19) change the password - Fixed
-20) add the OTP password
-21) add the Feed page
-21) contact support page
+20) add the Feed page - Fixed
+21) add the Reset link password to set the new password - Fixed
+22) contact support page
 
 
 

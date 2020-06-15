@@ -112,7 +112,7 @@ class RemoveFollowedUser(APIView):  # Removing from the following
 class GetUserFollowings(APIView):
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
-        print(user)
+        # print(user)
         data = Follower.objects.filter(user=user)
         serilizer_context = {'request': request}
         serializer = FollowingSerializer(data, many=True,context=serilizer_context)
@@ -147,7 +147,7 @@ class BlockedUser(APIView):
 
 class UnblockedUser(APIView):
     def put(self, request, user_id, follower_id):
-        print(request.path)
+        # print(request.path)
         data = request.data
         data['block_Status'] = False
         instance = Follower.objects.filter(user=User.objects.get(pk=user_id),
@@ -167,8 +167,8 @@ class FollowStatusAPIView(APIView):
     def get(self, request, other_user_id):
         user = User.objects.get(id=request.user.id)
         other_user = User.objects.get(id=other_user_id)
-        print(user)
-        print(other_user)
+        # print(user)
+        # print(other_user)
         data = {
             'follow_request_sent': None,
             'followed_status': None

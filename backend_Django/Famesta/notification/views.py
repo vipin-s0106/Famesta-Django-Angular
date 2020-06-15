@@ -96,7 +96,7 @@ class NotificationAPIView(APIView):
         return Response(status=200)
 
     def get(self,request,user_id):
-        print(user_id,request.user.id)
+        # print(user_id,request.user.id)
         if str(user_id) == str(request.user.id):
             user = User.objects.filter(pk=user_id).first()
             if user:

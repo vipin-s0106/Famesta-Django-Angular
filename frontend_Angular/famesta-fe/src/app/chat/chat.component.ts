@@ -44,7 +44,7 @@ export class ChatComponent implements OnInit {
     this.chat_srv.getAllChatInstance().subscribe(
       res => {
         this.chatInstanceList = res;
-        console.log(this.chatInstanceList)
+        // console.log(this.chatInstanceList)
         if(username){
           this.userWindowFlag=true
           this.getAllUserMessages(username);

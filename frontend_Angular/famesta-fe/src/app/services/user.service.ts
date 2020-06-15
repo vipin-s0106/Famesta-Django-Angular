@@ -17,6 +17,9 @@ export class UserService {
   private _otherUserProfile_url: string = "http://127.0.0.1:8000/api/otheruser/" //append the username here
   private _otherUserFollowerStatus_url: string = "http://127.0.0.1:8000/api/user/follower_status/" //append the username here
   private _setNewPassword_url = "/api/set_new_password/"
+  private _sendResetMail_url = "/api/send_forgot_pwd_mail/"
+  private _setForgotPassword_url = "/api/setForgotPasswordWithNewPwd/"
+  private _verify_secretURL = "/api/verify_mailSecretKey/"
 
   constructor(private http: HttpClient) { }
 
@@ -52,6 +55,20 @@ export class UserService {
 
   setPassword(data): Observable<any>{
     return this.http.put<any>(this._base_url+this._setNewPassword_url,data)
+  }
+
+  sendRestPasswordMail(mail):Observable<any>{
+    let data = {"mail":mail}
+    return this.http.post<any>(this._base_url+this._sendResetMail_url,data)
+  }
+
+  verfiySecretKey(username,secretkey):Observable<any>{
+    let data = {"username":username,"secretkey":secretkey}
+    return this.http.post<any>(this._base_url+this._verify_secretURL,data)
+  }
+
+  setForgotPassword(data):Observable<any>{
+    return this.http.put<any>(this._base_url+this._setForgotPassword_url,data)
   }
 
 }

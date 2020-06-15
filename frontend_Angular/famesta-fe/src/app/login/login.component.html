@@ -11,8 +11,10 @@
               <small style="color:Tomato;margin-left:10px;">username is required.</small>
             </div>
             <input [(ngModel)]="user_credential.password" type="password" name="password" placeholder="Enter your Password" #password="ngModel" required>
+            <br>
+            <a  class="btn" (click)="ResetTheModal()" style="color: blue;font-style: bold;font-size: 12px;" data-toggle="modal" data-target="#ForgotPasswordModal">Forgot password ?</a>
             <div *ngIf="password.errors?.required && password.touched">
-              <small style="color:Tomato;margin-left:10px;">password is required.</small>
+              <small style="color:Tomato;margin-left:10px;" >password is required.</small>
             </div>
             <br>
             
@@ -26,3 +28,45 @@
     </div> 
 </section>
 <!-- End Login --> 
+
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="ForgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 style="font-size: 18px;margin-left:130px">Forgot your password?</h4>
+              <button (click)="clearSuccessMsg()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body">
+              <div *ngIf="resetModalFalg; else ElseBlock" class="password-rest-modal">
+                <p><b>
+                  Change your password in three easy steps.
+                </b>
+                </p>
+                <div>
+                  <p>1. Fill in your email address below.</p>
+                  <p>2. We'll email you a temporary link.</p>
+                  <p>3. Use the link to change your password.</p>
+                </div>
+                <input [(ngModel)]="user_mail" type="email" name="email" placeholder="Enter your Email" required #email="ngModel"><br>
+                <div *ngIf="email.errors?.required && email.touched">
+                  <small style="color:slategray;margin-left:10px;">email is required</small>
+                </div>
+                <button (click)="sendMail()" class="btn-get-started scrollto" style="margin-top:10px">Submit</button>
+              </div>
+              <ng-template #ElseBlock>
+                <div *ngIf="spinner_display" align="center">
+                  <mat-spinner style="font-size: 22px;"></mat-spinner>
+                </div>
+                <div class="password-rest-modal">
+                  <p align="center" [style.color]="msg_color" style="margin-left:70px">{{msg}}</p>
+                </div>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>
+

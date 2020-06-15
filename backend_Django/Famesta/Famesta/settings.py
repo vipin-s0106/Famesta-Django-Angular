@@ -93,7 +93,10 @@ USER_ONLINE_TIMEOUT = 240
 # their last seen is removed from the cache
 USER_LASTSEEN_TIMEOUT = 60 * 60 * 24 * 7
 
-USER_CHAT_WINDOW_TIMEOUT = 10   #5 seconds
+USER_CHAT_WINDOW_TIMEOUT = 10   #10 seconds
+
+USER_RESET_PASSWORD_LINK_TIMEOUT = 240 # 5 min timeout
+USER_RESET_PASSWORD_LINK_HOST = "http://localhost:4200/"
 
 
 
@@ -177,6 +180,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+#Email settings
+#Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'famesta.app@gmail.com'
+EMAIL_HOST_PASSWORD = 'Famesta@123'
+
 
 
 # Static files (CSS, JavaScript, Images)

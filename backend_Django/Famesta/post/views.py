@@ -251,10 +251,10 @@ class LikeCreateView(APIView):
     def post(self,request,user_id,post_id):
         post_data = request.data
         post_username = Post.objects.get(id=post_id).user.username
-        print(post_data)
+        # print(post_data)
         post_data['user'] = user_id
         post_data['post'] = post_id
-        print(post_data)
+        # print(post_data)
         serializer = PostLikeCommentCreateSerializer(data=post_data)
         if serializer.is_valid():
             if post_username != request.user.username:
