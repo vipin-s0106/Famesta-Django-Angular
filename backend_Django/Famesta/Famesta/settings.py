@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'chat.apps.ChatConfig',
     'rest_framework',
+    'storages'
 ]
 
 REST_FRAMEWORK = {
@@ -189,8 +190,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'famesta.app@gmail.com'
-EMAIL_HOST_PASSWORD = 'XXXXXXXXXX'
-
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
 # Static files (CSS, JavaScript, Images)

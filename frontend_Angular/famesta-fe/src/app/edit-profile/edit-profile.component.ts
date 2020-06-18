@@ -139,7 +139,7 @@ export class EditProfileComponent implements OnInit {
             this.enabled_button_flag = false;
             this.dialog.open(DialogDataExampleDialog,{
               data: {
-                msg: 'You have successfully updated your Profile',color:"#CCF5AE"
+                msg: 'You have successfully updated your Profile',color:"green"
               }
             });
           },

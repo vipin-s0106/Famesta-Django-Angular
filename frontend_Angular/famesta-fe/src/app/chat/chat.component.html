@@ -33,7 +33,7 @@
                                                       <div class="row" style="margin-top:5px">
                                                         <div class="col-sm-1">
                                                           <a type="button" (click)="createUserInstance(user.username)"> 
-                                                            <div class="profile_pic2"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                                            <div class="profile_pic2"><img src="{{user.profile.profile_picture}}" alt=""></div>
                                                           </a>
                                                         </div>
                                                         <div class="col-sm-1" style="margin-left: 15px;margin-top:4px">
@@ -114,7 +114,7 @@
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" *ngIf="userWindowFlag">
                             <div class="selected-user" >
                                 <div class="user" >
-                                    <img src="{{chatWindowUser.profile.profile_picture | TransalateImageUrl}}" alt="Retail Admin">
+                                    <img src="{{chatWindowUser.profile.profile_picture}}" alt="Retail Admin">
                                     <strong style="color:midnightblue">
                                          <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}} </a>
                                          <span *ngIf="chatWindowUser.status; else StatusBlock4" style="color: green;font-size: 11px;">

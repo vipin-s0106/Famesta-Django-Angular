@@ -56,7 +56,7 @@ export class PostDetailComponent implements OnInit {
   }
 
   public checkFileisVideo(filename:string){
-    let extension  = filename.split('.').pop()
+    let extension  = filename.split('?')[0].split('.').pop()
     extension = extension.toLowerCase()
     if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
       return true

@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
 
 
   getBackgroundImgURL(image_url){
-    return this.usr_srv._base_url+image_url
+    return image_url
   }
 
   remove_Follower(user_id,follower_user_id){
@@ -138,7 +138,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public checkFileisVideo(filename:string){
-    let extension  = filename.split('.').pop()
+    let extension  = filename.split('?')[0].split('.').pop()
     extension = extension.toLowerCase()
     if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
       return true

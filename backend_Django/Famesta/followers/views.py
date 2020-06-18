@@ -41,7 +41,8 @@ class GetSuggestion(APIView):
                         if suggested_user.followed_user not in suggestion_user_list:
                             suggestion_user_list.append(suggested_user.followed_user)
             if len(suggestion_user_list) > 0:
-                suggestion_serializer = UserSerializer(suggestion_user_list, many=True)
+                serializer_context = {'request':request}
+                suggestion_serializer = UserSerializer(suggestion_user_list, many=True,context=serializer_context)
                 return Response(suggestion_serializer.data, status=200)
             else:
                 return Response({"msg": "No Suggestion found"}, status=200)

@@ -59,5 +59,14 @@ Things need to complete in API
 
 
 
+Deployment
+1) Setup AWS S3 to store and upload file
+
+
+
+#after complete Deployment make sure that add CORS origin under permission tab of S3 bucket
+
+
+
 
 

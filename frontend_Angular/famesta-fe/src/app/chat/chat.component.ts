@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   public chatWindowUser;
   public chatInstanceList;
   public ChatMessages;
+  public scroll_flag = false;
   
 
   public search_input;
@@ -89,22 +90,39 @@ export class ChatComponent implements OnInit {
 
     let ideal_timer = 0
 
-    this.subscription = timer(0, 300000).pipe(
+    this.subscription = timer(0, 5000).pipe(
       switchMap(() => this.chat_srv.getChatMsgs(username))
     ).subscribe(
         res =>{
           this.userWindowFlag=true;
-          this.ChatMessages = res;
+          if(this.ChatMessages && username==this.chatWindowUser.username){
+            if(this.ChatMessages.length != res.length){
+              let extra_msg_length = res.length - this.ChatMessages.length
+              let extra_msg = res.slice(res.length-extra_msg_length,res.length)
+              // this.ChatMessages = res;
+              // console.log(extra_msg)
+              this.ChatMessages = this.ChatMessages.concat(extra_msg)
+            }        
+          }
+          else{
+            this.ChatMessages = res;
+            this.scroll_flag = true;
+          }
+
+          
           // console.log(this.ChatMessages)
           this.usr_srv.getUserProfile(username).subscribe(
               res => {
                 this.chatWindowUser = res;
                 // console.log(this.chatWindowUser)
-                this.updateChatInstanceList()
-                this.loadScript()  
+                this.updateChatInstanceList() 
+                if(this.scroll_flag){
+                  this.loadScript();
+                  this.scroll_flag = false;
+                }
                 ideal_timer = ideal_timer + 1
                 // console.log(ideal_timer)
-                if (ideal_timer == 55){
+                if (ideal_timer == 25){
                   this.subscription.unsubscribe();
                 }
 
@@ -135,7 +153,18 @@ export class ChatComponent implements OnInit {
   updateChatInstanceList(){
     this.chat_srv.getAllChatInstance().subscribe(
       res => {
-        this.chatInstanceList = res;
+        // console.log(res)
+        if(this.chatInstanceList.length != res.length){
+          this.chatInstanceList = res;
+        }
+        else{
+          for(let i = 0;i < this.chatInstanceList.length; i++){
+            if(this.chatInstanceList[i].id == res[i].id && this.chatInstanceList[i].unseen_message_count != res[i].unseen_message_count){
+              this.chatInstanceList = res;
+              break;
+            }
+          }
+        }
       },
       err => {
         console.log(err)

@@ -125,7 +125,7 @@
                                 <div class="row" style="margin-top:5px">
                                   <div class="col-sm-1">
                                     <a href="/user/{{user.username}}"> 
-                                      <div class="profile_pic2"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                      <div class="profile_pic2"><img src="{{user.profile.profile_picture}}" alt=""></div>
                                     </a>
                                   </div>
                                   <div class="col-sm-1" style="margin-left: 15px;margin-top:4px">
@@ -157,7 +157,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="member" data-aos="fade-up">
-                  <div class="pic"><img src="{{LoggedUser.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
+                  <div class="pic"><img src="{{LoggedUser.profile.profile_picture }}" alt=""></div>
                 </div>
               </div>
               <div class="col-md-6" id="userinfo">
@@ -177,7 +177,7 @@
                 <div class="row">
                     <div class="col-md-4" *ngFor="let user of suggestion_user">
                       <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="{{user.profile.profile_picture | TransalateImageUrl }}" alt=""></div>
+                        <div class="pic"><img src="{{user.profile.profile_picture }}" alt=""></div>
                         <span><a href="/user/{{user.username}}">{{user.username}}</a></span>
                         <div class="social">
                           <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)"><i class="icofont-instagram"></i>follow</a>
@@ -198,7 +198,7 @@
                               <div class="row" style="margin-top:8px">
                                 <div class="col-sm-2">
                                   <a href="/user/{{user.username}}"> 
-                                    <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""></div>
+                                    <div class="profile_pic1"><img src="{{user.profile.profile_picture}}" alt=""></div>
                                   </a>
                                 </div>
                                 <div class="col-sm-10" style="margin-top: 0;">
@@ -249,7 +249,7 @@
                       <div class="latest-post-aside media">
                           <div class="lpa-left media-body" style="margin-top:5px">
                               
-                                  <div class="profile_pic1"><img src="{{user.profile.profile_picture | TransalateImageUrl}}" alt=""><a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{user.username}}</span></a></div>
+                                  <div class="profile_pic1"><img src="{{user.profile.profile_picture}}" alt=""><a href="/user/{{user.username}}"><span style="font-size: 12px;font-weight: bold;margin-left:5px;white-space: nowrap;width: 71px;"> {{user.username}}</span></a></div>
                           </div>
                           <div class="lpa-right" style="margin-top:15px;margin-left: 120px;">
                             <a (click)="followUser(user.id,LoggedUser.id,LoggedUser.username)" class="btn btn-primary btn-sm" style="color:white;padding-left: 10px;padding-right: 10px;"><span style="font-size: 12px;" class="icofont-plus"> </span> Follow</a>     

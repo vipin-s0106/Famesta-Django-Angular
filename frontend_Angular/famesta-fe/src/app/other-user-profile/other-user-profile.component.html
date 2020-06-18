@@ -7,7 +7,7 @@
         <div *ngIf="background_image; else ElseBlock">
             <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
                 <div class="col-sm-3 avatar-container">
-                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                    <img src="{{ User.profile.profile_picture }}" class="img-circle profile-avatar"
                         alt="User avatar">
                 </div>
                 <div class="col-sm-12 profile-actions text-right">
@@ -36,7 +36,7 @@
         <ng-template #ElseBlock>
             <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
                 <div class="col-sm-3 avatar-container">
-                    <img src="{{ User.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar"
+                    <img src="{{ User.profile.profile_picture }}" class="img-circle profile-avatar"
                         alt="User avatar">
                 </div>
                 <div class="col-sm-12 profile-actions text-right">
@@ -126,11 +126,11 @@
 
                                                     <div *ngFor="let post of posts" class="col-lg-4 col-md-6 portfolio-item filter-web">
                                                         <div class="portfolio-wrap">
-                                                            <img *ngIf="!checkFileisVideo(post.file); else VideoBlock" src="{{ post.file | TransalateImageUrl }}"
+                                                            <img *ngIf="!checkFileisVideo(post.file); else VideoBlock" src="{{ post.file }}"
                                                                 class="img-fluid">
                                                             <ng-template #VideoBlock>
                                                                 <video width="720" height="420" style="margin:1px;border:none" class="img-fluid" controls>
-                                                                    <source src="{{ post.file | TransalateImageUrl }}" type="video/mp4">
+                                                                    <source src="{{ post.file }}" type="video/mp4">
                                                                 </video>
                                                             </ng-template>
                                                             <div class="portfolio-links">

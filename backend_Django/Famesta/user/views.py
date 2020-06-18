@@ -22,6 +22,8 @@ from .exception import UserExistException,UserDoesNotExist
 from .models import User,UserProfile
 from followers.models import Follower
 
+import os
+
 #Email
 from django.core.mail import EmailMultiAlternatives,EmailMessage
 from django.template.loader import render_to_string
@@ -60,7 +62,8 @@ def user_logout(request):
 def getLoggedUser(request):
     user = request.user
     # print(user)
-    serializer = UserSerializer(user)
+    serilizer_context = {'request':request}
+    serializer = UserSerializer(user,context=serilizer_context)
     return Response(serializer.data)
 
 class HelloView(APIView):
@@ -94,7 +97,8 @@ class UserCreation(APIView):
                     return Exception("Some Error Occurred Please contact Support team")
 
                 user = User.objects.filter(id=instance.id).first()
-                serializer = UserSerializer(user)
+                serilizer_context = {'request': request}
+                serializer = UserSerializer(user,context=serilizer_context)
 
                 return Response(serializer.data,status=201) #201 for new User creation
             else:
@@ -115,14 +119,16 @@ class UserAction(APIView):
         user = self.get_object(id)
         if user is None:
             return Response({"error":"Given user_id - "+str(id)+" user object not found"},status=404)
-        serializer = UserSerializer(user)
+        serilizer_context = {'request': request}
+        serializer = UserSerializer(user,context=serilizer_context)
         return Response(serializer.data,status=200)
 
     def put(self,request,id=None):
         user = self.get_object(id)
         if user is None:
             return Response({"error":"Given user_id - "+str(id)+" user object not found"},status=404)
-        serializer = UserSerializer(user,data=request.data,partial=True)
+        serilizer_context = {'request': request}
+        serializer = UserSerializer(user,data=request.data,partial=True,context=serilizer_context)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=200)
@@ -179,20 +185,23 @@ class OtherUserProfileAPIView(APIView):
         }
         object = Follower.objects.filter(user=request.user, followed_user=user).first()
         if object:
-            serializer = UserSerializer(user)
+            serializer = UserSerializer(user,context=serializer_context)
             return Response(serializer.data, status=200)
         else:
             # if user_profile.account_type == "Private":
             #     return Response({"message":user.username+" account is private"},status=200)
             # else:
-            serializer = UserSerializer(user)
+            serializer = UserSerializer(user,context=serializer_context)
             return Response(serializer.data, status=200)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def SearchUser(request,filter_value):
     users = User.objects.filter(Q(profile__full_name__icontains=filter_value) | Q(username__icontains=filter_value))
-    serializer = UserSerializer(users,many=True)
+    serializer_context = {
+        'request': request,
+    }
+    serializer = UserSerializer(users,many=True,context=serializer_context)
     return Response(serializer.data, status=200)
 
 

@@ -116,7 +116,8 @@ class UserStoryListView(APIView):
         posts = self.get_object(user_id)
         #if len(posts) == 0:
             #return Response({"error":"for userID - "+str(user_id)+" story is not exist"},status=400)
-        serializer = PostListSerializer(posts,many=True)
+        serializer_context = {'request':request}
+        serializer = PostListSerializer(posts,many=True,context=serializer_context)
         return Response(serializer.data)
 
 

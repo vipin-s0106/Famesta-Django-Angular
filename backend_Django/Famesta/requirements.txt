@@ -4,3 +4,5 @@ djangorestframework==3.11.0
 djangorestframework-simplejwt==4.4.0
 Pillow==7.1.1
 requests
+boto3
+django-storages
