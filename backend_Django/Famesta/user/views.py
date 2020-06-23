@@ -110,6 +110,7 @@ class UserCreation(APIView):
 
 
 class UserAction(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self,id):
         user = User.objects.filter(id=id).first()
@@ -142,6 +143,7 @@ class UserAction(APIView):
         return Response(status=200)
 
 class UserProfileAction(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self,id):
         user = User.objects.filter(id=id).first()
@@ -171,6 +173,7 @@ class UserProfileAction(APIView):
 
 
 class OtherUserProfileAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get_object(self,username):
         user = User.objects.filter(username=username).first()
         return user

@@ -71,6 +71,7 @@ export class PostDetailComponent implements OnInit {
         res => {
           // console.log(res);
           this.ngOnInit()
+          this.postData.comment = ""  
         },
         err => console.log(err)
   

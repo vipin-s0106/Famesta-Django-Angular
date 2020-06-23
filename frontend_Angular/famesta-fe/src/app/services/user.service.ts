@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +12,9 @@ export class UserService {
 
   public LoggedUserId = new Subject<any>();
 
-  public _base_url = "http://127.0.0.1:8000"
+  // public _base_url = "http://127.0.0.1:8000"
+
+  public _base_url = environment.apiBaseUrl
   
   public _updateUserData_url = this._base_url+"/api/user/";  // append user_id/profile/
   private _searchUser_url = this._base_url+"/api/search_user/filter/"; //append the search filter

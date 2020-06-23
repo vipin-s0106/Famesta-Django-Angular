@@ -9,6 +9,8 @@ from .models import Follower
 from user.models import User
 from notification.models import Notification
 
+from rest_framework.permissions import IsAuthenticated
+
 # importing Serializer
 from user.serializer import UserSerializer
 from .serializer import FollowSerializer, FollowerSerializer, FollowingSerializer, FollowStatusSerializer
@@ -17,6 +19,7 @@ import requests
 
 
 class GetSuggestion(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request, user_id):
         try:
             not_required_in_list = []
@@ -51,6 +54,7 @@ class GetSuggestion(APIView):
 
 
 class AcceptFollowRequest(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, user_id, follower_id):
         post_data = request.data
@@ -95,6 +99,8 @@ class AcceptFollowRequest(APIView):
 
 
 class UnfollowUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def delete(self, request, user_id, follower_id):
         follower_obj = Follower.objects.filter(user=User.objects.get(pk=user_id),
                                                followed_user=User.objects.get(pk=follower_id)).first()
@@ -103,6 +109,8 @@ class UnfollowUser(APIView):
 
 
 class RemoveFollowedUser(APIView):  # Removing from the following
+    permission_classes = (IsAuthenticated,)
+
     def delete(self, request, user_id, followed_user_id):
         follower_obj = Follower.objects.filter(user=User.objects.get(pk=followed_user_id),
                                                followed_user=User.objects.get(pk=user_id)).first()
@@ -111,6 +119,8 @@ class RemoveFollowedUser(APIView):  # Removing from the following
 
 
 class GetUserFollowings(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
         # print(user)
@@ -121,6 +131,8 @@ class GetUserFollowings(APIView):
 
 
 class GetUserFollowers(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
         data = Follower.objects.filter(followed_user=user)
@@ -130,6 +142,8 @@ class GetUserFollowers(APIView):
 
 
 class BlockedUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def put(self, request, user_id, follower_id):
         data = request.data
         data['block_Status'] = True
@@ -147,6 +161,8 @@ class BlockedUser(APIView):
 
 
 class UnblockedUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def put(self, request, user_id, follower_id):
         # print(request.path)
         data = request.data
@@ -165,6 +181,8 @@ class UnblockedUser(APIView):
 
 
 class FollowStatusAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, other_user_id):
         user = User.objects.get(id=request.user.id)
         other_user = User.objects.get(id=other_user_id)

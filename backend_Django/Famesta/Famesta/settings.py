@@ -26,7 +26,7 @@ SECRET_KEY = 'd&hj^^_yfv*ra#%ek=_&8k0(7uro7ftpo@e#76@84@w&4h%fbu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','famestadjangoapi.herokuapp.com']
 
 
 # Application definition
@@ -97,13 +97,18 @@ USER_LASTSEEN_TIMEOUT = 60 * 60 * 24 * 7
 USER_CHAT_WINDOW_TIMEOUT = 10   #10 seconds
 
 USER_RESET_PASSWORD_LINK_TIMEOUT = 240 # 5 min timeout
-USER_RESET_PASSWORD_LINK_HOST = "http://localhost:4200/"
+if DEBUG:
+    USER_RESET_PASSWORD_LINK_HOST = "http://localhost:4200/"
+else:
+    USER_RESET_PASSWORD_LINK_HOST = "https://famesta.herokuapp.com/"
+
 
 
 
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200'
+    'http://localhost:4200',
+    'https://famesta.herokuapp.com'
 ]
 
 
@@ -193,15 +198,15 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

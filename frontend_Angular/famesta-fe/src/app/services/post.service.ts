@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private _base_url = "http://127.0.0.1:8000"
+  // private _base_url = "http://127.0.0.1:8000"
+
+  private _base_url = environment.apiBaseUrl
 
   private _listStoryUrl: string = this._base_url+"/api/list_all_story_test/";//append userd id with this url
   private _list_usr_story: string = this._base_url+"/api/list_user_story/";//append userd id with this url

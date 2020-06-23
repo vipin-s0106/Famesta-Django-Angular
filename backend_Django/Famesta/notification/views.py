@@ -125,7 +125,7 @@ class NotificationAPIView(APIView):
 
 
 @api_view(['DELETE'])
-@permission_classes([])
+@permission_classes([IsAuthenticated])
 def delete_all_notification(request,user_id):
     Notification.objects.filter(user=User.objects.get(pk=user_id)).delete()
     return Response(status=200)

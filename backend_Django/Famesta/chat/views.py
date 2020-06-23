@@ -13,6 +13,7 @@ from django.core.cache import cache
 from django.conf import settings
 
 class CreateUserChatInstance(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self,request,other_username):
         logged_user_id = request.user.id
@@ -71,6 +72,7 @@ def reset_unseen_notification_count(request,other_username):
 
 
 class ChatUserInstance(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self,user_id):
         instances = ChatUser.objects.filter(user=user_id)
@@ -86,7 +88,7 @@ class ChatUserInstance(APIView):
 
 
 class DeleteChatUserInstance(APIView):
-
+    permission_classes = (IsAuthenticated,)
     def delete(self,request,other_userid):
         instance = ChatUser.objects.get(user=request.user.id,other_user=other_userid)
         instance.delete()
@@ -94,7 +96,7 @@ class DeleteChatUserInstance(APIView):
 
 
 class PostUserMessage(APIView):
-
+    permission_classes = (IsAuthenticated,)
     def post(self,request,other_username):
         #setting the current chat window
         cache.set('chat_window_%s' % (request.user.username), other_username,
@@ -197,7 +199,7 @@ class PostUserMessage(APIView):
 
 
 class ChatMessageView(APIView):
-
+    permission_classes = (IsAuthenticated,)
     def get(self,request,other_username):
         #setting the current user chat windows
 

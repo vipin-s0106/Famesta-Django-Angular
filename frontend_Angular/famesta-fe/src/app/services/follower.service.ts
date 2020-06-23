@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FollowerService {
 
-  private _baseUrl = "http://127.0.0.1:8000"
+  // private _baseUrl = "http://127.0.0.1:8000"
+  private _baseUrl = environment.apiBaseUrl
 
   private _follower_url: string = this._baseUrl+"/api/followers/get_followers/";//append userd id with this url
   private _following_url: string = this._baseUrl+"/api/followers/get_followings/";//append userd id with this url

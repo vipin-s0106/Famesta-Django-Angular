@@ -102,7 +102,7 @@ export class ChatComponent implements OnInit {
               // this.ChatMessages = res;
               // console.log(extra_msg)
               this.ChatMessages = this.ChatMessages.concat(extra_msg)
-            }        
+            }  
           }
           else{
             this.ChatMessages = res;

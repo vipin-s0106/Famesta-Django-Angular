@@ -4,12 +4,15 @@ import { Observable } from 'rxjs';
 
 import { catchError, mapTo, tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _baseurl = "http://127.0.0.1:8000"
+  // private _baseurl = "http://127.0.0.1:8000"
+  private _baseurl = environment.apiBaseUrl
 
   private _registerUrl: string = this._baseurl+"/api/register/";
   private _loginUrl: string = this._baseurl+"/api/login/";
