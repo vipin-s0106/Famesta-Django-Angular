@@ -101,7 +101,9 @@ export class ChatComponent implements OnInit {
               let extra_msg = res.slice(res.length-extra_msg_length,res.length)
               // this.ChatMessages = res;
               // console.log(extra_msg)
+        
               this.ChatMessages = this.ChatMessages.concat(extra_msg)
+              this.scroll_flag = true;
             }  
           }
           else{

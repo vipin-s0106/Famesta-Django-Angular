@@ -112,7 +112,7 @@ export class OtherUserProfileComponent implements OnInit {
 
 
   getBackgroundImgURL(image_url){
-    return this.usr_srv._base_url+image_url
+    return image_url
   }
 
   followUser(user_id,follower_user_id,user_name){

@@ -98,7 +98,7 @@ USER_CHAT_WINDOW_TIMEOUT = 10   #10 seconds
 
 USER_RESET_PASSWORD_LINK_TIMEOUT = 240 # 5 min timeout
 if DEBUG:
-    USER_RESET_PASSWORD_LINK_HOST = "http://localhost:4200/"
+    USER_RESET_PASSWORD_LINK_HOST = "https://famesta.herokuapp.com/"
 else:
     USER_RESET_PASSWORD_LINK_HOST = "https://famesta.herokuapp.com/"
 

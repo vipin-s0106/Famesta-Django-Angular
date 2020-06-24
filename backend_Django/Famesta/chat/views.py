@@ -178,15 +178,13 @@ class PostUserMessage(APIView):
         # # сhange the values you want
         data['sender'] = request.user.username
         data['receiver'] = other_username
+
+        # if other user is on your chat window then make msg as seen
+        if str(cache.get('chat_window_%s' % (other_username))) == str(request.user.username):
+            data["seen"] = True
         #
         # # set mutable flag back
         data._mutable = _mutable
-
-        
-
-        #if other user is on your chat window then make msg as seen
-        if str(cache.get('chat_window_%s' % (other_username))) == str(request.user.username):
-            data["seen"] = True
 
         print(data)
         serializer = ChatMessageSerializer(data=data)
