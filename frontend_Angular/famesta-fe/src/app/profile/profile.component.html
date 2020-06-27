@@ -7,7 +7,7 @@
     <div *ngIf="background_image; else ElseBlock">
         <div class="profile-banner" [ngStyle]="{'background-image': 'url('+ background_image +')'}">
             <div class="col-sm-3 avatar-container">
-                <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+                <img src="{{ LoggedUser.profile.profile_picture }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
                 <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
@@ -17,7 +17,7 @@
     <ng-template #ElseBlock>
         <div class="profile-banner" [ngStyle]="{'background-image': 'url(assets/img/hero-bg.jpg)'}">
             <div class="col-sm-3 avatar-container">
-                <img src="{{ LoggedUser.profile.profile_picture | TransalateImageUrl }}" class="img-circle profile-avatar" alt="User avatar">
+                <img src="{{ LoggedUser.profile.profile_picture }}" class="img-circle profile-avatar" alt="User avatar">
             </div>
             <div class="col-sm-12 profile-actions text-right">
                 <a href="/edit-profile" type="button" class="btn btn-primary btn-sm" style="color:white;background-color: rgb(53, 204, 53);border:none"><span class="icofont-edit"></span> Edit Profile</a>
@@ -77,20 +77,35 @@
                                         <textarea [(ngModel)]="new_post_data.post_info" class="form-control" style="height: 70px;margin-bottom:10px;" name="post_info" placeholder="Whats on your mind..." #post_info="ngModel" required></textarea>
                                         <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="post_info.errors?.required && post_info.touched">post tag/info is required.</span>
 										<div class="row">
-										<div class="col-sm-6">
-											<div class="myfileupload-buttonbar ">
-                                                <label class="myui-button">
-                                                    <span style="color: black;" class="icofont-camera"></span>
-                                                    <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/><span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
-                                                    <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
-                                                        <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
-                                                    </span>
-                                                </label>
-                                                
+                                            <div class="col-xs-2" style="margin-left: 15px;">
+                                                <a class="button"
+                                                    (click)="toggled = !toggled"
+                                                    [(emojiPickerIf)]="toggled"
+                                                    [emojiPickerDirection]="'left'"
+                                                    (emojiPickerSelect)="handleSelection($event)"
+                                                    style="font-size: 22px;margin-top:9px;margin-right:10px;margin-left:5px"
+                                                >
+                                                    <span class="icofont-simple-smile"></span>
+                                                </a>
                                             </div>
-										</div>
-										<div class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button></div>
-										</div>
+										    <div class="col-xs-10">
+                                                <div class="myfileupload-buttonbar ">
+                                                    <label class="myui-button" style="font-size: 25px;">
+                                                        <span style="color: black;" class="icofont-camera"></span>
+                                                        <input [(ngModel)]="upload_post_file" (change)="onNewPostFileChange($event)" id="file1" type="file" name="new_post" #new_post="ngModel" required/>
+                                                        
+                                                    </label>
+                                                    
+                                                </div>
+
+                                            </div>
+                                            <div style="margin-left:340px" class="col-sm-6 text-right"><button (click)="addPost(LoggedUser.id)" class="btn btn-primary">Post</button>
+                                            </div>
+                                        </div>
+                                        <span style="color: tomato;font-size: 12px;margin-left: 5px;" *ngIf="new_post.errors?.required && new_post.touched && !new_post_file">post file is required.</span>
+                                        <span *ngIf="new_post_file" class="col-sm-8" style="margin-top: 0! important">
+                                            <span align="center" style="color:midnightblue;font-size: 15px;" ><small id="file-upload-filename1">{{new_post_file}}</small></span>
+                                        </span>
 									</form>
                                     <!-- Post will Go here -->
                                     
@@ -107,7 +122,12 @@
 
                                                 <div *ngFor="let post of posts" class="col-lg-4 col-md-6 portfolio-item filter-web">
                                                     <div class="portfolio-wrap">
-                                                        <img src="{{ post.file | TransalateImageUrl }}" class="img-fluid">
+                                                        <img *ngIf="!checkFileisVideo(post.file); else VideoBlock" src="{{ post.file }}" class="img-fluid">
+                                                        <ng-template #VideoBlock>
+                                                            <video width="720" height="420" style="margin:1px;border:none" class="img-fluid" controls>
+                                                               <source src="{{post.file}}" type="video/mp4">
+                                                            </video>
+                                                         </ng-template>
                                                         <div class="portfolio-links">
                                                             <a href="/post-detail/{{post.id}}"  
                                                                     title="{{post.post_info}}"

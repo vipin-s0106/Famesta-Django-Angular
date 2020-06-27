@@ -27,10 +27,13 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.user_id = id;
+
     this.not_srv.getUserNotification(this.user_id).subscribe(
       res => {
         this.notifications = res;
-        console.log(this.notifications);
+        // console.log(this.notifications);
+
+        
       },
       err => {
         console.log(err);
@@ -42,6 +45,9 @@ export class NotificationComponent implements OnInit {
         }
       }
     )
+
+    //updating the navbar
+    this.updateNavBar()
   }
 
 
@@ -49,7 +55,7 @@ export class NotificationComponent implements OnInit {
     this.not_srv.getUserNotification(this.user_id).subscribe(
       res => {
         this.notifications = res;
-        console.log(this.notifications);
+        // console.log(this.notifications);
       },
       err => {
         if (err.status === 403){
@@ -67,7 +73,7 @@ export class NotificationComponent implements OnInit {
   deleteNotification(notification_id){
     this.not_srv.deleteNotification(notification_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -77,7 +83,7 @@ export class NotificationComponent implements OnInit {
   deleteAllUserNotification(user_id){
     this.not_srv.deleteAllNotification(user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -97,6 +103,17 @@ export class NotificationComponent implements OnInit {
   declineRequest(notification_id){
     this.deleteNotification(notification_id);
     this.loadDataAgain()
+  }
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
   }
 
 }

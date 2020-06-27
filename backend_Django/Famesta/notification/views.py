@@ -96,7 +96,7 @@ class NotificationAPIView(APIView):
         return Response(status=200)
 
     def get(self,request,user_id):
-        print(user_id,request.user.id)
+        # print(user_id,request.user.id)
         if str(user_id) == str(request.user.id):
             user = User.objects.filter(pk=user_id).first()
             if user:
@@ -125,7 +125,7 @@ class NotificationAPIView(APIView):
 
 
 @api_view(['DELETE'])
-@permission_classes([])
+@permission_classes([IsAuthenticated])
 def delete_all_notification(request,user_id):
     Notification.objects.filter(user=User.objects.get(pk=user_id)).delete()
     return Response(status=200)

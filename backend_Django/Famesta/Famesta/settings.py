@@ -26,7 +26,7 @@ SECRET_KEY = 'd&hj^^_yfv*ra#%ek=_&8k0(7uro7ftpo@e#76@84@w&4h%fbu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','famestadjangoapi.herokuapp.com']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'chat.apps.ChatConfig',
     'rest_framework',
+    'storages'
 ]
 
 REST_FRAMEWORK = {
@@ -51,6 +52,11 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+
+#User Post Pagination Settings
+PAGE_SIZE = 3
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
@@ -69,10 +75,40 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user.middleware.ActiveUserMiddleware',
 ]
 
+
+# Setup caching per Django docs. In actuality, you'd probably use memcached instead of local memory.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'default-cache'
+    }
+}
+
+# Number of seconds of inactivity before a user is marked offline
+USER_ONLINE_TIMEOUT = 240
+
+# Number of seconds that we will keep track of inactive users for before
+# their last seen is removed from the cache
+USER_LASTSEEN_TIMEOUT = 60 * 60 * 24 * 7
+
+USER_CHAT_WINDOW_TIMEOUT = 10   #10 seconds
+
+USER_RESET_PASSWORD_LINK_TIMEOUT = 240 # 5 min timeout
+if DEBUG:
+    USER_RESET_PASSWORD_LINK_HOST = "https://famesta.herokuapp.com/"
+else:
+    USER_RESET_PASSWORD_LINK_HOST = "https://famesta.herokuapp.com/"
+
+
+
+
+
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200'
+    'http://localhost:4200',
+    'https://famesta.herokuapp.com'
 ]
 
 
@@ -150,6 +186,26 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+#Email settings
+#Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 
 # Static files (CSS, JavaScript, Images)

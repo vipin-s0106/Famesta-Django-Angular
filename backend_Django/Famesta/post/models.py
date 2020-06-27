@@ -10,7 +10,7 @@ def upload_user_post_path(instance, filename):
 
 
 class Post(models.Model):
-    file = models.FileField(_('file'), null=False, blank=False, upload_to=upload_user_post_path)
+    file = models.FileField(_('file'), null=False, blank=False,max_length=500, upload_to=upload_user_post_path)
     post_info = models.CharField(_('post_info'), max_length=300, null=True, blank=True)
     post_time_stamp = models.DateTimeField(_('post_time_stamp'), default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

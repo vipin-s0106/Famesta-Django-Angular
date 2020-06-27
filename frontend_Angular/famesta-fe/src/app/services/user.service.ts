@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +12,20 @@ export class UserService {
 
   public LoggedUserId = new Subject<any>();
 
-  public _base_url = "http://127.0.0.1:8000"
-  public _updateUserData_url = "http://127.0.0.1:8000/api/user/";  // append user_id/profile/
-  private _searchUser_url = "http://127.0.0.1:8000/api/search_user/filter/"; //append the search filter
-  private _LoggedUserUrl: string = "http://127.0.0.1:8000/api/loggedUser/";
-  private _otherUserProfile_url: string = "http://127.0.0.1:8000/api/otheruser/" //append the username here
-  private _otherUserFollowerStatus_url: string = "http://127.0.0.1:8000/api/user/follower_status/" //append the username here
+  // public _base_url = "http://127.0.0.1:8000"
+
+  public _base_url = environment.apiBaseUrl
+  
+  public _updateUserData_url = this._base_url+"/api/user/";  // append user_id/profile/
+  private _searchUser_url = this._base_url+"/api/search_user/filter/"; //append the search filter
+  private _LoggedUserUrl: string = this._base_url+"/api/loggedUser/";
+  private _otherUserProfile_url: string = this._base_url+"/api/otheruser/" //append the username here
+  private _otherUserFollowerStatus_url: string = this._base_url+"/api/user/follower_status/" //append the username here
+  private _setNewPassword_url = this._base_url+"/api/set_new_password/"
+  private _sendResetMail_url = this._base_url+"/api/send_forgot_pwd_mail/"
+  private _setForgotPassword_url = this._base_url+"/api/setForgotPasswordWithNewPwd/"
+  private _verify_secretURL = this._base_url+"/api/verify_mailSecretKey/"
+  private _contact_support_url = this._base_url+"/api/send_contact_mail/"
 
   constructor(private http: HttpClient) { }
 
@@ -39,14 +49,26 @@ export class UserService {
     return this.http.get(this._searchUser_url+filter_text+"/");
   }
 
-  // getLoggedUserID():any{
-  //   let id;
+  setPassword(data): Observable<any>{
+    return this.http.put<any>(this._setNewPassword_url,data)
+  }
 
-  //   return this.getLoggedUserDetails().subscribe(
-  //     map( res => {
-  //       console.log(res)
-  //     })
-  //   )
-  // }
+  sendRestPasswordMail(mail):Observable<any>{
+    let data = {"mail":mail}
+    return this.http.post<any>(this._sendResetMail_url,data)
+  }
+
+  verfiySecretKey(username,secretkey):Observable<any>{
+    let data = {"username":username,"secretkey":secretkey}
+    return this.http.post<any>(this._verify_secretURL,data)
+  }
+
+  setForgotPassword(data):Observable<any>{
+    return this.http.put<any>(this._setForgotPassword_url,data)
+  }
+
+  sendContactMail(data):Observable<any>{
+    return this.http.post<any>(this._contact_support_url,data)
+  }
 
 }

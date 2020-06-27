@@ -2,6 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NotificationService } from '../services/notification.service';
 
 
 export interface DialogData {
@@ -27,13 +28,18 @@ export class EditProfileComponent implements OnInit {
 
   post_updated_data = {"BioDescription":"","full_name":"","mobile":"","date_of_birth":"","gender":"","account_type":""}
 
-  constructor(private route:ActivatedRoute,private router: Router,private usr_srv: UserService,public dialog: MatDialog) { }
+
+  public password_data = {"password":"","new_password":"","confirm_new_password":""}
+  public typing_confirm_password = false;
+  public confirm_new_password_match = false;
+
+  constructor(private route:ActivatedRoute,private router: Router,private usr_srv: UserService,public dialog: MatDialog,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
     this.LoggedUser = this.usr_srv.getLoggedUserDetails().subscribe(
       res => {
         this.LoggedUser = res;
-        console.log(this.LoggedUser)
+        // console.log(this.LoggedUser)
         this.post_updated_data.full_name=this.LoggedUser.profile.full_name;
         this.post_updated_data.mobile = this.LoggedUser.profile.mobile;
         this.post_updated_data.date_of_birth = this.LoggedUser.profile.date_of_birth;
@@ -46,12 +52,15 @@ export class EditProfileComponent implements OnInit {
       },
       err => console.log(err)
     )
+
+    //updating navbar
+    this.updateNavBar()
   }
 
   onBackgroundProfileChange(event){
     this.background_uploaded_file = event.target.files[0].name;
     this.background_profile = event.target.files[0]
-    console.log(this.background_uploaded_file)
+    // console.log(this.background_uploaded_file)
     this.enabled_button_flag = true;
   }
 
@@ -76,7 +85,7 @@ export class EditProfileComponent implements OnInit {
     if(this.post_updated_data.BioDescription || this.profile_uploaded_file){
       this.usr_srv.updateUserInfo(user_id,uploadData).subscribe(
         res =>{
-          console.log(res),
+          // console.log(res),
           this.post_updated_data.BioDescription ="";
           this.profile_uploaded_file="";
           this.ngOnInit();
@@ -99,7 +108,7 @@ export class EditProfileComponent implements OnInit {
 
 
   UpdateUserInformation(user_id){
-    console.log(this.enabled_button_flag)
+    // console.log(this.enabled_button_flag)
     if (this.enabled_button_flag){
       const uploadData = new  FormData();
       if(this.post_updated_data.full_name){
@@ -124,17 +133,18 @@ export class EditProfileComponent implements OnInit {
         || this.post_updated_data.account_type || this.post_updated_data.date_of_birth){
         this.usr_srv.updateUserInfo(user_id,uploadData).subscribe(
           res =>{
-            console.log(res),
+            // console.log(res),
             this.background_uploaded_file="";
             this.ngOnInit();
             this.enabled_button_flag = false;
             this.dialog.open(DialogDataExampleDialog,{
               data: {
-                msg: 'You have successfully updated your Profile',color:"#CCF5AE"
+                msg: 'You have successfully updated your Profile',color:"green"
               }
             });
           },
-          err => {console.log(err);
+          err => {
+            console.log(err);
             this.dialog.open(DialogDataExampleDialog,{
               data: {
                 msg: 'Some error occured while updating your profile',color:"#F5C5AE"
@@ -145,6 +155,68 @@ export class EditProfileComponent implements OnInit {
       }
     }
   }
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
+  verfiyConfirmPasswordMatch(){
+    this.typing_confirm_password = true;
+    if(this.password_data.new_password === this.password_data.confirm_new_password){
+      this.confirm_new_password_match = true;
+    }
+    else{
+      this.confirm_new_password_match = false;
+    }
+  }
+
+  SetNewPassword(){
+    if(this.password_data['password'] === this.password_data['new_password']){
+      this.dialog.open(DialogDataExampleDialog,{
+        data: {
+          msg: "New password can't be same with past password",
+          color:"tomato"
+        }
+      });
+    }
+    else if(this.password_data['new_password'] != this.password_data['confirm_new_password']){
+      this.dialog.open(DialogDataExampleDialog,{
+        data: {
+          msg: "Confirm password does not match with new password",
+          color:"tomato"
+        }
+      });
+    }
+    else{
+      this.usr_srv.setPassword(this.password_data).subscribe(
+        res => {
+          this.dialog.open(DialogDataExampleDialog,{
+            data: {
+              msg: 'You Password has been successfully changed 😇',color:"green"
+            }
+          });
+        },
+        error =>{
+          console.log(error)
+          this.dialog.open(DialogDataExampleDialog,{
+            data: {
+              msg: error.error.error,
+              color:"tomato"
+            }
+          });
+        }
+      )
+    }
+  }
+
+
 }
 
 

@@ -1,0 +1,54 @@
+<br>
+<br>
+<br>
+<br>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<div class="container bootstrap snippet" style="margin-left:370px">
+    <section *ngIf="!spinnerFlag; else ElseBlock" id="contact" class="gray-bg padding-top-bottom">
+        <div class="container bootstrap snippet">
+            <div class="row">
+                <form id="Highlighted-form" class="col-sm-6 col-sm-offset-3" action="contact.php" method="post" novalidate="">
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="contact-name">Name</label>
+                        <div class="controls">
+                        <input [(ngModel)]="data.name"  id="contact-name" name="contactName" placeholder="Your name" class="form-control requiredField Highlighted-label" data-new-placeholder="Your name" type="text" data-error-empty="Please enter your name" #contactName="ngModel" required>
+                        <i class="fa fa-user"></i>
+                        <div *ngIf="contactName.errors?.required && contactName.touched">
+                            <small style="color:Tomato;margin-left:10px;" >contactName is required.</small>
+                        </div>
+                        </div>
+                    </div><!-- End name input -->
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="contact-mail">Email</label>
+                        <div class=" controls">
+                        <input [(ngModel)]="data.email" id="contact-mail" name="email" placeholder="Your email" class="form-control requiredField Highlighted-label" data-new-placeholder="Your email" type="email" data-error-empty="Please enter your email" data-error-invalid="Invalid email address" #email="ngModel" required>
+                        <i class="fa fa-envelope"></i>
+                        <div *ngIf="email.errors?.required && email.touched">
+                            <small style="color:Tomato;margin-left:10px;" >email is required.</small>
+                        </div>
+                        </div>
+                    </div><!-- End email input -->
+                    <div class="form-group">
+                        <label class="control-label" for="contact-message">Message</label>
+                        <div class="controls">
+                            <textarea [(ngModel)]="data.msg" id="contact-message" name="comments" placeholder="Your message" class="form-control requiredField Highlighted-label" data-new-placeholder="Your message" rows="6" data-error-empty="Please enter your message" #comments="ngModel" required></textarea>
+                            <i class="fa fa-comment"></i>
+                            <div *ngIf="comments.errors?.required && comments.touched">
+                                <small style="color:Tomato;margin-left:10px;" >message is required.</small>
+                            </div>
+                        </div>
+                    </div><!-- End textarea -->
+                    <p><button (click)="sendMail()" name="submit" type="submit" class="btn btn-info btn-block" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-location-arrow"></i>Send Message</button></p>
+                    <input type="hidden" name="submitted" id="submitted" value="true">	
+                </form><!-- End Highlighted-form -->
+            </div>	
+        </div>	
+    </section>
+    <ng-template #ElseBlock>
+        <div style="margin-top:150px;margin-left:230px">
+            <mat-spinner style="font-size: 22px;"></mat-spinner> 
+        </div>
+    </ng-template>
+</div>                    

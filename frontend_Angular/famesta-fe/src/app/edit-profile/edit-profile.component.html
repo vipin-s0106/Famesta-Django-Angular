@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="text-center">
-                                            <img src="{{LoggedUser.profile.profile_picture | TransalateImageUrl}}" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                            <img src="{{LoggedUser.profile.profile_picture}}" class="rounded-circle img-responsive mt-2" width="128" height="128">
                                             <div class="mt-2">
                                                 <div id="fileupload" >
                                                     <div class="myfileupload-buttonbar ">
@@ -160,19 +160,28 @@
 
                             <form>
                                 <div class="form-group">
-                                    <label for="inputPasswordCurrent">Current password</label>
-                                    <input type="password" class="form-control" id="inputPasswordCurrent">
+                                    <label for="inputPasswordCurrent">Current Password</label>
+                                    <input [(ngModel)]="password_data.password" type="password" class="form-control" name="CurrentPassword" #CurrentPassword="ngModel">
                                     <small><a href="#">Forgot your password?</a></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPasswordNew">New password</label>
-                                    <input type="password" class="form-control" id="inputPasswordNew">
+                                    <label for="inputPasswordNew">New Password</label>
+                                    <input [(ngModel)]="password_data.new_password" type="password" class="form-control" name="inputPasswordNew" #inputPasswordNew="ngModel">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPasswordNew2">Verify password</label>
-                                    <input type="password" class="form-control" id="inputPasswordNew2">
+                                    <label for="inputPasswordNew2">Confirm New Password  
+                                        <i *ngIf="typing_confirm_password">
+                                            <span *ngIf="confirm_new_password_match; else NotMatch" style="margin-left:15px;font-size: 23px;color:green;font-style: bold;" class="icofont-check-circled">
+                                            </span>
+                                            <ng-template #NotMatch>
+                                                <span style="margin-left:15px;font-size: 23px;color:red;font-style: bold;" class="icofont-close">
+                                                </span>    
+                                            </ng-template>
+                                        </i>
+                                    </label>
+                                    <input (keyup)="verfiyConfirmPasswordMatch()" [(ngModel)]="password_data.confirm_new_password" type="password" class="form-control" name="inputPasswordNew2" #inputPasswordNew2="ngModel">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button (click)="SetNewPassword()" type="submit" class="btn btn-primary">Save changes</button>
                             </form>
 
                         </div>

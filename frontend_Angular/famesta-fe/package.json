@@ -2,15 +2,18 @@
   "name": "famesta-fe",
   "version": "0.0.0",
   "scripts": {
+    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start":"node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e" 
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~9.1.1",
+    "@angular/compiler-cli": "~9.1.1",
     "@angular/animations": "~9.1.1",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.1",
@@ -24,18 +27,23 @@
     "@angular/router": "~9.1.1",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.4.0",
+    "express": "^4.17.1",
+    "ngx-emoji-picker": "^0.1.3",
+    "ngx-infinite-scroll": "^9.0.0",
+    "ngx-spinner": "^9.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript": "~3.8.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.1",
+    "@angular-devkit/build-angular": "^0.901.8",
     "@angular/cli": "~9.1.1",
     "@angular/compiler-cli": "~9.1.1",
     "@angular/language-service": "~9.1.1",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -48,5 +56,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": "12.16.2",
+    "npm": "6.14.4"
   }
 }

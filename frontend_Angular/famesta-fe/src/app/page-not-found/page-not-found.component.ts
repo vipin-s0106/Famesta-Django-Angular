@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(public usr_srv:UserService,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
+
+    //updating navbar
+    this.updateNavBar()
   }
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
 
 }

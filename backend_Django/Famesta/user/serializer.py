@@ -48,7 +48,7 @@ class RegisterSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     #In order to embed the one profile into other define the related_name='profile' in model of Child Table, name should be match
     profile = ProfileSerializer(read_only=True)
-
+    status = serializers.SerializerMethodField('get_user_online_status')
 
     class Meta:
         model = User
@@ -63,5 +63,11 @@ class UserSerializer(serializers.ModelSerializer):
             'is_active': {'read_only': True},
             'date_joined': {'read_only': True},
         }
+
+    def get_user_online_status(self,usr_obj):
+        if usr_obj:
+            return usr_obj.online()
+        return False
+
 
 

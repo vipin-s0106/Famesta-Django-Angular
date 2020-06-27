@@ -9,6 +9,8 @@ from .models import Follower
 from user.models import User
 from notification.models import Notification
 
+from rest_framework.permissions import IsAuthenticated
+
 # importing Serializer
 from user.serializer import UserSerializer
 from .serializer import FollowSerializer, FollowerSerializer, FollowingSerializer, FollowStatusSerializer
@@ -17,6 +19,7 @@ import requests
 
 
 class GetSuggestion(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request, user_id):
         try:
             not_required_in_list = []
@@ -41,7 +44,8 @@ class GetSuggestion(APIView):
                         if suggested_user.followed_user not in suggestion_user_list:
                             suggestion_user_list.append(suggested_user.followed_user)
             if len(suggestion_user_list) > 0:
-                suggestion_serializer = UserSerializer(suggestion_user_list, many=True)
+                serializer_context = {'request':request}
+                suggestion_serializer = UserSerializer(suggestion_user_list, many=True,context=serializer_context)
                 return Response(suggestion_serializer.data, status=200)
             else:
                 return Response({"msg": "No Suggestion found"}, status=200)
@@ -50,6 +54,7 @@ class GetSuggestion(APIView):
 
 
 class AcceptFollowRequest(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, user_id, follower_id):
         post_data = request.data
@@ -94,6 +99,8 @@ class AcceptFollowRequest(APIView):
 
 
 class UnfollowUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def delete(self, request, user_id, follower_id):
         follower_obj = Follower.objects.filter(user=User.objects.get(pk=user_id),
                                                followed_user=User.objects.get(pk=follower_id)).first()
@@ -102,6 +109,8 @@ class UnfollowUser(APIView):
 
 
 class RemoveFollowedUser(APIView):  # Removing from the following
+    permission_classes = (IsAuthenticated,)
+
     def delete(self, request, user_id, followed_user_id):
         follower_obj = Follower.objects.filter(user=User.objects.get(pk=followed_user_id),
                                                followed_user=User.objects.get(pk=user_id)).first()
@@ -110,9 +119,11 @@ class RemoveFollowedUser(APIView):  # Removing from the following
 
 
 class GetUserFollowings(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
-        print(user)
+        # print(user)
         data = Follower.objects.filter(user=user)
         serilizer_context = {'request': request}
         serializer = FollowingSerializer(data, many=True,context=serilizer_context)
@@ -120,6 +131,8 @@ class GetUserFollowings(APIView):
 
 
 class GetUserFollowers(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, user_id):
         user = User.objects.filter(id=user_id).first()
         data = Follower.objects.filter(followed_user=user)
@@ -129,6 +142,8 @@ class GetUserFollowers(APIView):
 
 
 class BlockedUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def put(self, request, user_id, follower_id):
         data = request.data
         data['block_Status'] = True
@@ -146,8 +161,10 @@ class BlockedUser(APIView):
 
 
 class UnblockedUser(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def put(self, request, user_id, follower_id):
-        print(request.path)
+        # print(request.path)
         data = request.data
         data['block_Status'] = False
         instance = Follower.objects.filter(user=User.objects.get(pk=user_id),
@@ -164,11 +181,13 @@ class UnblockedUser(APIView):
 
 
 class FollowStatusAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, other_user_id):
         user = User.objects.get(id=request.user.id)
         other_user = User.objects.get(id=other_user_id)
-        print(user)
-        print(other_user)
+        # print(user)
+        # print(other_user)
         data = {
             'follow_request_sent': None,
             'followed_status': None

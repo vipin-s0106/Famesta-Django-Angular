@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of ngx-spinner
+ */
+export * from './lib/ngx-spinner.service';
+export * from './lib/ngx-spinner.component';
+export * from './lib/ngx-spinner.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25neC1zcGlubmVyLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUNILGNBQWMsMkJBQTJCLENBQUM7QUFDMUMsY0FBYyw2QkFBNkIsQ0FBQztBQUM1QyxjQUFjLDBCQUEwQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBuZ3gtc3Bpbm5lclxuICovXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtc3Bpbm5lci5zZXJ2aWNlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL25neC1zcGlubmVyLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtc3Bpbm5lci5tb2R1bGUnO1xuIl19

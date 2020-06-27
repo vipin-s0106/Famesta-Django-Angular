@@ -17,6 +17,7 @@ import { UserService } from './services/user.service';
 import { FollowerService } from './services/follower.service';
 import { NotificationService } from './services/notification.service';
 import { ChatService } from './services/chat.service';
+import { FeedService } from './services/feed.service';
 import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
 //importing Authguard
@@ -36,8 +37,17 @@ import { MaterialModule } from './material/material.module';
 import { UnAuthorizedComponenetComponent } from './un-authorized-componenet/un-authorized-componenet.component'
 
 
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+
 //importing ngPopover
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
+
 
 
 
@@ -59,8 +69,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule,
+    NgxEmojiPickerModule.forRoot(),
+    InfiniteScrollModule,
+    NgxSpinnerModule,
   ],
-  providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,
+  providers: [AuthService,PostService,UserService,NotificationService,ChatService,FollowerService,AuthGuard,FeedService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

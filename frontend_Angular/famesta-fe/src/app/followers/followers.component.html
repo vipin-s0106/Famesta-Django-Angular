@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-9">
                             <div class="candidates-img float-left mr-4">
-                                <img src="{{ follower.user.profile.profile_picture | TransalateImageUrl }}" alt="">
+                                <img src="{{ follower.user.profile.profile_picture }}" alt="">
                             </div>
                             <div class="candidates-list-desc job-single-meta  pt-2">
                                 <h5 class="mb-2 f-19"><a href="/user/{{ follower.user.username }}" class="text-dark">{{ follower.user.profile.full_name | titlecase  }}</a></h5>

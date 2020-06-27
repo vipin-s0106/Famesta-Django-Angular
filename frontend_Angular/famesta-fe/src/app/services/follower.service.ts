@@ -2,19 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FollowerService {
 
-  private _follower_url: string = "http://127.0.0.1:8000/api/followers/get_followers/";//append userd id with this url
-  private _following_url: string = "http://127.0.0.1:8000/api/followers/get_followings/";//append userd id with this url
-  private _remove_follower_url: string = "http://127.0.0.1:8000/api/followers/remove_follower/";//append userd id and followed user id with this url
-  private _unfollow_follower_url: string = "http://127.0.0.1:8000/api/followers/unfollow_user/";//append userd id and following user id with this url 
-  private _userSuggestionUrl: string = "http://127.0.0.1:8000/api/followers/suggestion/";//append userd id with this url
-  private _accept_user_follow_request_url: string = "http://127.0.0.1:8000/api/followers/accept_request/";//append userd id and follower user id with this url
-  private _blocked_user_url: string = "http://127.0.0.1:8000/api/followers/blocked_user/";//append userd id and followed user id with this url
-  private _unblocked_user_url: string = "http://127.0.0.1:8000/api/followers/unblocked_user/";//append userd id and followed user id with this url
+  // private _baseUrl = "http://127.0.0.1:8000"
+  private _baseUrl = environment.apiBaseUrl
+
+  private _follower_url: string = this._baseUrl+"/api/followers/get_followers/";//append userd id with this url
+  private _following_url: string = this._baseUrl+"/api/followers/get_followings/";//append userd id with this url
+  private _remove_follower_url: string = this._baseUrl+"/api/followers/remove_follower/";//append userd id and followed user id with this url
+  private _unfollow_follower_url: string = this._baseUrl+"/api/followers/unfollow_user/";//append userd id and following user id with this url 
+  private _userSuggestionUrl: string = this._baseUrl+"/api/followers/suggestion/";//append userd id with this url
+  private _accept_user_follow_request_url: string = this._baseUrl+"/api/followers/accept_request/";//append userd id and follower user id with this url
+  private _blocked_user_url: string = this._baseUrl+"/api/followers/blocked_user/";//append userd id and followed user id with this url
+  private _unblocked_user_url: string = this._baseUrl+"/api/followers/unblocked_user/";//append userd id and followed user id with this url
 
   constructor(private http: HttpClient) { }
 

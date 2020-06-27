@@ -19,78 +19,164 @@
                             <div class="users-container">
                                 <div class="chat-search-box">
                                     <div class="input-group">
-                                        <input class="form-control" placeholder="Search">
+                                        <input class="form-control" [(ngModel)]="search_input" placeholder="Search" autocomplete="off" #search="ngModel" name="search" (keyup)="search_user()" placement="bottom" [ngbPopover]="popContent">
                                         <!-- <div class="input-group-btn">
                                             <button type="button" class="btn btn-info">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </div> -->
+                                        <ng-template #popContent>
+                                            <div class="search-modal" *ngIf="searched_user?.length > 0; else NoResultFound">
+                                              
+                                                <div *ngFor="let user of searched_user" class="latest-post-aside media">
+                                                  <div class="lpa-left media-body">
+                                                      <div class="row" style="margin-top:5px">
+                                                        <div class="col-sm-1">
+                                                          <a type="button" (click)="createUserInstance(user.username)"> 
+                                                            <div class="profile_pic2"><img src="{{user.profile.profile_picture}}" alt=""></div>
+                                                          </a>
+                                                        </div>
+                                                        <div class="col-sm-1" style="margin-left: 15px;margin-top:4px">
+                                                          <div style="white-space: pre;">
+                                                            <a type="button" (click)="createUserInstance(user.username)"><span style="font-size: 13px;font-weight: bold;color:midnightblue">{{user.username}}</span></a>
+                                                            <a style="font-size: 15px;color:slategrey;font-weight: bold;"> {{(user.profile.full_name.length > 11)? (user.profile.full_name | slice:0:14)+'..':(user.profile.full_name) }}</a>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <hr *ngIf="searched_user?.length > 1">
+                                                  </div>
+                                                </div> 
+                                            </div>
+                                            <ng-template #NoResultFound>
+                                              <strong>No Result Found</strong>
+                                            </ng-template>
+                                        </ng-template>
                                     </div>
                                 </div>
                                 <ul class="users" *ngFor="let user of chatInstanceList">
                                     <div *ngIf="chatWindowUser; else ElseBlock">
-                                        <li *ngIf="user.other_user.username===chatWindowUser.username; else NonActiveBlock" class="person active-user" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                        <li id="person_list" *ngIf="user.other_user.username===chatWindowUser.username; else NonActiveBlock" class="person active-user" data-chat="person1" >
                                             <div class="user">
-                                                <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                <span class="status busy"></span>
+                                                <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                <span *ngIf="user.other_user.status; else StatusBlock1" class="status online"></span>
+                                                <ng-template #StatusBlock1>
+                                                    <span class="status away"></span>
+                                                </ng-template>
                                             </div>
-                                            <p class="name-time">
-                                                <span class="name">{{user.other_user.username}}</span>
-                                            </p>
-
-                                        
+                                            <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
+                                                <span class="name">{{user.other_user.username}}</span>    
+                                            </p> 
+                                            <div id ="close_chat_instance1">
+                                                <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
+                                            </div>
+                                            <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                         </li>
                                         <ng-template #NonActiveBlock>
-                                            <li class="person" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                            <li id="person_list" class="person" data-chat="person1" >
                                                 <div class="user">
-                                                    <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                    <span class="status busy"></span>
+                                                    <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                    <span *ngIf="user.other_user.status; else StatusBlock2" class="status online"></span>
+                                                    <ng-template #StatusBlock2>
+                                                        <span class="status away"></span>
+                                                    </ng-template>
                                                 </div>
-                                                <p class="name-time">
-                                                    <span class="name">{{user.other_user.username}}</span>
-                                                </p>   
+                                                <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
+                                                    <span class="name">{{user.other_user.username}}</span>    
+                                                </p> 
+                                                <div id ="close_chat_instance1">
+                                                    <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
+                                                </div>
+                                                <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                             </li>
                                         </ng-template> 
                                     </div>
                                     <ng-template #ElseBlock>
-                                        <li class="person" data-chat="person1" (click)="getAllUserMessages(user.other_user.username)">
+                                        <li id="person_list" class="person" data-chat="person1">
                                             <div class="user">
-                                                <img src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
-                                                <span class="status busy"></span>
+                                                <img (click)="getAllUserMessages(user.other_user.username)" src="{{user.other_user.profile.profile_picture}}" alt="Retail Admin">
+                                                <span *ngIf="user.other_user.status; else StatusBlock3" class="status online"></span>
+                                                <ng-template #StatusBlock3>
+                                                    <span class="status away"></span>
+                                                </ng-template>
                                             </div>
-                                            <p class="name-time">
-                                                <span class="name">{{user.other_user.username}}</span>
-                                            </p>   
+                                            <p (click)="getAllUserMessages(user.other_user.username)" class="name-time" style="display: inline-block;">
+                                                <span class="name">{{user.other_user.username}}</span>    
+                                            </p> 
+                                            <div id ="close_chat_instance1">
+                                                <a type="button" (click)="deleteChatInstance(user.other_user.id,user.other_user.username)" id ="close_chat_instance" class="icofont-close"></a>
+                                            </div> 
+                                            <span *ngIf="user.unseen_message_count > 0" class="badge badge-light">{{user.unseen_message_count}}</span>
                                         </li>
                                     </ng-template>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" *ngIf="chatWindowUser">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" *ngIf="userWindowFlag">
                             <div class="selected-user" >
                                 <div class="user" >
-                                    <img src="{{chatWindowUser.profile.profile_picture | TransalateImageUrl}}" alt="Retail Admin"><strong style="color:midnightblue"> <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}}</a></strong>
-                                    <button (click)="getAllUserMessages(chatWindowUser.username)" class="btn btn-success btn-sm" style="float:right;margin-top: 18px;"><span class="icofont-refresh"></span></button>
+                                    <img src="{{chatWindowUser.profile.profile_picture}}" alt="Retail Admin">
+                                    <strong style="color:midnightblue">
+                                         <a href="/user/{{chatWindowUser.username}}" style="text-decoration: none;"> {{chatWindowUser.username}} </a>
+                                         <span *ngIf="chatWindowUser.status; else StatusBlock4" style="color: green;font-size: 11px;">
+                                            online
+                                         </span>
+                                         <ng-template #StatusBlock4>
+                                            <span style="color: orange;font-size: 11px;">away</span>
+                                         </ng-template>
+                                    </strong>
+                                    <!-- <button (click)="getAllUserMessages(chatWindowUser.username)" class="btn btn-success btn-sm" style="float:right;margin-top: 18px;"><span class="icofont-refresh"></span></button> -->
                                 </div>
                             </div>
                            
                             <div class="chat-container chatContainerScroll" id='messageBody'>
                                 <div *ngFor="let msg of ChatMessages"  class="chat-box">
                                     <li class="chat-left" *ngIf="msg.sender===chatWindowUser.username">
-                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} </small></div>
-                                        <div class="chat-hour"><span class="fa fa-check-circle"></span></div>
+                                        <div class="chat-text">
+                                            <img id="{{msg.id}}" (click)="openImgModal(msg.image)" *ngIf="msg.image" src="{{msg.image}}" style="border-radius: 4px;margin-bottom: 3px;margin-top: 3px;max-width: 300px;max-height: 250px;" data-toggle="modal" data-target="#ImageModal"><br>
+                                            {{msg.message}}<br>
+                                            <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
+                                            </small>
+                                        </div>
+                                        
+                                        
                                     </li>
+                                    
                                     <li class="chat-right" *ngIf="msg.sender!=chatWindowUser.username">
-                                        <div class="chat-hour"><span class="fa fa-check-circle"></span></div>
-                                        <div class="chat-text">{{msg.message}}<br><small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} </small></div>
+                                        <div class="chat-text">
+                                            <img id="{{msg.id}}" (click)="openImgModal(msg.image)" *ngIf="msg.image" src="{{msg.image}}" style="border-radius: 4px;margin-bottom: 3px;margin-top: 3px;max-width: 300px;max-height: 250px;" data-toggle="modal" data-target="#ImageModal"><br>
+                                            {{msg.message}}<br>
+                                            <small style="float: right;font-size: 9px;color: slategrey;">{{msg.timestamp | dateAgo}} 
+                                                <span *ngIf="msg.seen; else SeenBlock" style="font-size: 12px;color:green" class="fa fa-check">
+                                                </span>
+                                                <ng-template #SeenBlock>
+                                                    <span style="font-size: 12px;color:slategrey" class="fa fa-check">
+                                                    </span>
+                                                </ng-template>
+                                            </small>
+                                        </div>
                                     </li>
                                 </div>
                                 
                             </div>
                             <br>
                             <div class="form">
-                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="10" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
-                                
+                                <a class="button"
+                                    (click)="toggled = !toggled"
+                                    [(emojiPickerIf)]="toggled"
+                                    [emojiPickerDirection]="'top'"
+                                    (emojiPickerSelect)="handleSelection($event)"
+                                    style="font-size: 22px;margin-top:9px;margin-right:10px;margin-left:5px"
+                                >
+                                    <span class="icofont-simple-smile"></span>
+                                </a>
+                                <div class="myfileupload-buttonbar " style="margin-top: 5px;">
+                                    <label class="myui-button" style="font-size: 25px;">
+                                        <span style="color: black;" class="icofont-camera"></span>
+                                        <input (change)="onSendMsgImg($event)" id="file1" type="file" name="new_post">
+                                    </label>
+                                    
+                                </div>
+                                <textarea [(ngModel)]="message.message" name="chat" class="form-control" cols="8.5" rows="1.5" placeholder="Type your message ..." #chat="ngModel"></textarea><a type="button" (click)="sendUserMessage(chatWindowUser.username)" id="send_message" class="icofont-paper-plane"></a>
                             </div>
                         </div>
                     </div>
@@ -104,5 +190,18 @@
 
     </div>
     <!-- Content wrapper end -->
+
+</div>
+
+
+<div id="ImageModal" class="modal">
+    <div class="modal-dialog" role="document">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <img class="modal-content" src="{{modal_img}}" id="img01" style="border-radius: 10px;">
+            </div>
+    </div>
 
 </div>

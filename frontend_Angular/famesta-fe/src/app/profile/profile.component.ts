@@ -3,6 +3,7 @@ import { Router, ParamMap } from '@angular/router'
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { FollowerService } from '../services/follower.service'
+import { NotificationService } from '../services/notification.service';
 
 
 
@@ -23,7 +24,10 @@ export class ProfileComponent implements OnInit {
   public upload_post_file: File;
   public new_post_data = {"post_info":""}
 
-  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService) { }
+  toggled: boolean = false;
+
+
+  constructor(public usr_srv: UserService,private _router:Router,public post_srv: PostService,public follower_srv: FollowerService,public not_srv:NotificationService) { }
 
   ngOnInit(): void {
     this.usr_srv.getLoggedUserDetails().subscribe(
@@ -32,11 +36,11 @@ export class ProfileComponent implements OnInit {
         if(res.profile.background_picture){
           this.background_image = this.getBackgroundImgURL(res.profile.background_picture)
         } 
-        console.log(this.LoggedUser)
+        // console.log(this.LoggedUser)
         this.post_srv.getUserPost(res.id).subscribe(
           res => {
             this.posts = res;
-            console.log(this.posts);
+            // console.log(this.posts);
           },
           err =>{
             console.log(err);
@@ -46,7 +50,7 @@ export class ProfileComponent implements OnInit {
         this.follower_srv.getFollowersList(res.id).subscribe(
           res => {
             this.followers = res;
-            console.log(this.followers)
+            // console.log(this.followers)
           },
           err => {
             console.log(err);
@@ -57,7 +61,7 @@ export class ProfileComponent implements OnInit {
         this.follower_srv.getFollowingList(res.id).subscribe(
           res => {
             this.followings = res;
-            console.log(this.followings)
+            // console.log(this.followings)
           },
           err => {
             console.log(err);
@@ -70,18 +74,25 @@ export class ProfileComponent implements OnInit {
       err => this._router.navigate(['/login'])
     )
    
+    //updating navbar
+    this.updateNavBar()
+  }
+
+
+  handleSelection(event) {
+    this.new_post_data.post_info += event.char;
   }
 
 
 
   getBackgroundImgURL(image_url){
-    return this.usr_srv._base_url+image_url
+    return image_url
   }
 
   remove_Follower(user_id,follower_user_id){
     this.follower_srv.removeFollower(user_id,follower_user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -91,7 +102,7 @@ export class ProfileComponent implements OnInit {
   unfollowUser(user_id,following_user_id){
     this.follower_srv.unfollowUser(user_id,following_user_id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       err => console.log(err)
@@ -119,10 +130,33 @@ export class ProfileComponent implements OnInit {
     this.post_srv.postStory(uploadData,user_id).subscribe(
       res => {
         // console.log(res);
+        this.new_post_file = null;
         this.ngOnInit();
       },
       err => console.log(err)
     )
   }
+
+  public checkFileisVideo(filename:string){
+    let extension  = filename.split('?')[0].split('.').pop()
+    extension = extension.toLowerCase()
+    if( extension != "jpg" && extension != "jpeg" && extension != "png" && extension != "gif"){
+      return true
+    }
+    return false
+  }
+
+
+  updateNavBar(){
+    this.usr_srv.getLoggedUserDetails().subscribe(
+      res => { 
+        this.usr_srv.LoggedUserId.next(res.id);
+        this.not_srv.getNotificationCount(res.id).subscribe(
+          res => this.not_srv.notification_count.next(res.notification_count)
+        )
+      }
+    )
+  }
+
 
 }
