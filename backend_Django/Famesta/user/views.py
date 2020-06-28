@@ -93,6 +93,13 @@ class UserCreation(APIView):
             if serializer.is_valid():
                 instance = serializer.create(serializer.validated_data)
 
+                #Updating the User full name
+                profile_obj = UserProfile.objects.get(user=User.objects.get(username=username))
+                profile_serializer = ProfileSerializer(profile_obj,data={"full_name":user_data.get('full_name')},partial=True)
+                if profile_serializer.is_valid():
+                    profile_serializer.save()
+
+
                 if instance is None:
                     return Exception("Some Error Occurred Please contact Support team")
 

@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public registerUserData = {'username':'','email':'','password':'','confirm_password':''}; 
+  public registerUserData = {'username':'','email':'','password':'','confirm_password':'','full_name':''}; 
   public registeruserMessage;
   public register_message_color;
 

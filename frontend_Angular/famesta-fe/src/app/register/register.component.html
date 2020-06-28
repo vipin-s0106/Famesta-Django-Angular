@@ -6,6 +6,10 @@
           <h1>Register with Famesta</h1>
           <form #RegisterForm="ngForm">
             <div *ngIf="registeruserMessage" [style.color]="register_message_color" style="margin-left:10px">{{ registeruserMessage }}</div>
+            <input [(ngModel)]="registerUserData.full_name"  type="text" name="full_name" placeholder="Enter your Name" required #full_name="ngModel"><br>
+            <div *ngIf="full_name.errors?.required && full_name.touched">
+              <small style="color:Tomato;margin-left:10px;">name is required.</small>
+            </div>
             <input [(ngModel)]="registerUserData.username"  type="text" name="username" placeholder="Enter your Username" required #username="ngModel"><br>
             <div *ngIf="username.errors?.required && username.touched">
               <small style="color:Tomato;margin-left:10px;">username is required.</small>
