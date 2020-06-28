@@ -122,7 +122,7 @@
                                                     <p data-aos="fade-in"></p>
                                                 </div>
 
-                                                <div class="row portfolio-container" data-aos="fade-up">
+                                                <div *ngIf="posts.length > 0; else NoPostBlock" class="row portfolio-container" data-aos="fade-up">
 
                                                     <div *ngFor="let post of posts" class="col-lg-4 col-md-6 portfolio-item filter-web">
                                                         <div class="portfolio-wrap">
@@ -144,6 +144,11 @@
 
 
                                                 </div>
+                                                <ng-template #NoPostBlock>
+                                                    <div class="row portfolio-container" style="font-size: 21px;margin-left:4px" align="center">
+                                                        No Post Found
+                                                    </div>
+                                                </ng-template>
 
                                             </div>
                                         </section>

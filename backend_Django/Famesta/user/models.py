@@ -45,7 +45,7 @@ class UserProfile(models.Model):
     mobile = models.IntegerField(_('mobile'), null=True)
     background_picture = models.ImageField(_('background_picture'), null=True, blank=True,
                                            upload_to=upload_user_profile_path,max_length=500)
-    profile_picture = models.ImageField(_('profile_picture'), null=True, blank=True, upload_to=upload_user_profile_path,max_length=500)
+    profile_picture = models.ImageField(_('profile_picture'), null=True, blank=True,default='user.png', upload_to=upload_user_profile_path,max_length=500)
     BioDescription = models.CharField(_('bio'), max_length=300, null=True, blank=True)
     date_of_birth = models.DateField(_('dob'), null=True, blank=True)
     gender_choice = (

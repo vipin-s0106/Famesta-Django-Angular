@@ -17,14 +17,16 @@ export class LogoutComponent implements OnInit {
   constructor(private _auth: AuthService,private app_com_obj:AppComponent,private route:ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
-    
+    localStorage.removeItem('token')
+    localStorage.removeItem('refresh')
     this._auth.logoutUser(this.data).subscribe(
       res => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('refresh')
         this.router.navigate(['/login'])
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this.router.navigate(['/login'])
+      }
     )
     
   }

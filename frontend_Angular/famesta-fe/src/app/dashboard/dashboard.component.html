@@ -4,7 +4,7 @@
     <div class="row">
 
       <!-- Blog Entries Column -->
-      <div class="col-md-8" style="margin-top:45px">
+      <div class="col-md-8" *ngIf="posts.length > 0; else NoPostBlock" style="margin-top:45px">
 
         <!-- <div *ngIf="posts?.length > 0; else ElseBlock"> -->
         <!-- infinite scroll div -->
@@ -91,6 +91,15 @@
         </ng-template> -->
 
       </div>
+      <ng-template #NoPostBlock>
+        <div class="col-md-8">
+          <img class="card-img-top" src="/assets/img/NoPost.gif"alt="Card image cap">
+          <h5 style="margin-left:280px;">
+            No Post found for you
+          </h5>
+        </div>
+        
+      </ng-template>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
