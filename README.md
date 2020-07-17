@@ -95,7 +95,7 @@ https://famesta.herokuapp.com/
 
 Accessing direct backend API
 
-https://famestadjangobackend.herokuapp.com/login/
+https://famestadjangoapi.herokuapp.com/login/
 
 ### Some Snniptes
 - Login
