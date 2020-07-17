@@ -81,6 +81,22 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 - > python manage.py runserver
 - > ng serve
 
+
+#### Url Used for Locally
+http://127.0.0.1:8000/api/movie/list #backend
+
+http://localhost:4200/ #Frontend
+
+#### Deployed Application url -
+
+UI experience
+
+https://famesta.herokuapp.com/
+
+Accessing direct backend API
+
+https://famesta.herokuapp.com/login/
+
 ### Some Snniptes
 - Login
 ![Screenshot](Snippets/Capture.PNG)
